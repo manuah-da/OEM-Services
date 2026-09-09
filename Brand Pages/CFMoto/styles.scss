@@ -1,0 +1,2468 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$screen-xs-min: 320px;
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+$screen-c-min: 1530px;
+$screen-full: 1800px;
+
+$primary-color: #00efd1;
+$secondary-color: #707072;
+$tertiary-color: #282828;
+
+
+$font: "Poppins";
+
+@mixin container {
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 30px 0;
+
+    @media (min-width: $screen-sm-min) {
+        width: 540px;
+        max-width: 100%;
+    }
+
+    @media (min-width: $screen-md-min) {
+        width: 740px;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    @media (min-width: $screen-lg-min) {
+        width: 940px;
+    }
+
+    @media (min-width: $screen-xl-min) {
+        width: 1140px;
+    }
+
+    @media (min-width: $screen-c-min) {
+        width: 90% !important;
+    }
+
+    @media (min-width: $screen-full) {
+        max-width: 1750px
+    }
+}
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-centered {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin black-overlay($opacity) {
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: $black;
+        opacity: $opacity;
+        z-index: 1;
+    }
+
+    >* {
+        position: relative;
+    }
+}
+
+
+div#wpadminbar,
+#site-header,
+#footer {
+    display: none !important;
+}
+
+body:not(.home) {
+    #main {
+        #content {
+
+            // Page
+            .cfmoto-page {
+                position: relative;
+                width: 100%;
+                min-width: 0;
+                overflow-x: hidden;
+                color: #ffffff;
+                font-family: $font, Arial, Helvetica, sans-serif !important;
+
+                *,
+                *::before,
+                *::after {
+                    box-sizing: border-box;
+                }
+            }
+
+            .cfmoto-container {
+                @include container();
+            }
+
+            // Header
+            .cfmoto-header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 20;
+                width: 100%;
+                min-height: 72px;
+                background-color: transparent;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                transition:
+                    background-color 180ms ease,
+                    box-shadow 180ms ease;
+
+                &.is-fixed {
+                    position: fixed;
+                    background-color: #001a21;
+                    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+                }
+
+                &.is-search-open {
+                    background-color: #001a21;
+                }
+
+                &__inner {
+                    min-height: 72px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 18px;
+                }
+
+                &__brand {
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &__logo-link {
+                    flex: 0 0 auto;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                }
+
+                &__logo {
+                    display: block;
+                    width: 132px;
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                &__dealer {
+                    display: none;
+                    min-width: 0;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-left: 20px;
+                    margin-left: 20px;
+                    border-left: 1px solid rgba(255, 255, 255, 0.75);
+                }
+
+                &__dealer-name {
+                    overflow: hidden;
+                    color: #ffffff;
+                    font-size: 15px !important;
+                    font-weight: 700;
+                    line-height: 19px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                &__dealer-address {
+                    overflow: hidden;
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 11px !important;
+                    font-weight: 400;
+                    line-height: 16px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                &__nav {
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 30px;
+                }
+
+                &__nav-link {
+                    color: #ffffff !important;
+                    font-size: 13px !important;
+                    font-weight: 700;
+                    line-height: 20px;
+                    text-decoration: none;
+                    white-space: nowrap;
+
+                    &:hover,
+                    &:focus-visible {
+                        color: #34e3ff !important;
+                    }
+                }
+
+                &__actions {
+                    flex: 0 0 auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 16px;
+                }
+
+                &__action {
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    width: 24px;
+                    height: 32px;
+                    padding: 0;
+                    border: 0;
+                    background-color: transparent;
+                    color: #ffffff !important;
+                    text-decoration: none;
+                    cursor: pointer;
+
+                    &:hover,
+                    &:focus-visible {
+                        color: #34e3ff !important;
+                    }
+
+                    .ph {
+                        font-size: 21px !important;
+                        line-height: 21px;
+
+                        &-magnifying-glass {}
+
+                        &-map-pin {}
+                    }
+                }
+
+                &__contact {
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 122px;
+                    min-height: 36px;
+                    padding: 7px 20px;
+                    border: 2px solid #34e3ff;
+                    border-radius: 22px;
+                    color: #ffffff !important;
+                    font-size: 13px !important;
+                    font-weight: 700;
+                    line-height: 18px;
+                    text-align: center;
+                    text-decoration: none;
+                    white-space: nowrap;
+
+                    &:hover,
+                    &:focus-visible {
+                        background-color: #34e3ff !important;
+                        color: #001a21 !important;
+                    }
+                }
+
+                &__menu-toggle {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 38px;
+                    height: 38px;
+                    padding: 0;
+                    border: 1px solid rgba(255, 255, 255, 0.45);
+                    border-radius: 50%;
+                    background-color: transparent;
+                    color: #ffffff !important;
+                    cursor: pointer;
+
+                    span,
+                    span::before,
+                    span::after {
+                        display: block;
+                        width: 17px;
+                        height: 2px;
+                        background-color: currentColor;
+                    }
+
+                    span {
+                        position: relative;
+
+                        &::before,
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                        }
+
+                        &::before {
+                            top: -6px;
+                        }
+
+                        &::after {
+                            top: 6px;
+                        }
+                    }
+                }
+
+                &__search-toggle {
+                    display: flex;
+                }
+
+                &__search-panel {
+                    width: 100%;
+                    display: none;
+                    background-color: #001a21;
+                    border-bottom: 4px solid #00c9d8;
+                    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+
+                    &[hidden] {
+                        display: none !important;
+                    }
+                }
+
+                &__search-inner {
+                    min-height: 116px;
+                    display: flex;
+                    align-items: center;
+                    padding-top: 24px;
+                    padding-bottom: 24px;
+                }
+
+                &__search-form {
+                    width: 100%;
+                    min-height: 54px;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    flex-wrap: nowrap !important;
+                    align-items: stretch;
+                    gap: 0 !important;
+                    overflow: hidden;
+                    border-radius: 3px;
+                    background-color: #ffffff;
+                }
+
+                &__search-label {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                }
+
+                &__search-input {
+                    width: auto !important;
+                    min-width: 0;
+                    flex: 1 1 auto;
+                    min-height: 54px;
+                    margin: 0 !important;
+                    padding: 12px;
+                    border: 0;
+                    border-radius: 0;
+                    background-color: #ffffff;
+                    color: #001a21;
+                    font-family: $font, Arial, Helvetica, sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 22px;
+
+                    &::placeholder {
+                        color: #8b9296;
+                        opacity: 1;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &::-webkit-search-cancel-button {
+                        cursor: pointer;
+                    }
+                }
+
+                &__search-submit {
+                    width: 56px;
+                    min-height: 54px;
+                    flex: 0 0 56px;
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 !important;
+                    padding: 0;
+                    border: 0;
+                    border-left: 1px solid #d2d7d9;
+                    border-radius: 0;
+                    background-color: #ffffff;
+                    color: #001a21;
+                    font-size: 18px;
+                    cursor: pointer;
+
+                    &:hover,
+                    &:focus-visible {
+                        background-color: #f1f5f6;
+                        color: #009fbb;
+                    }
+                }
+
+                @media (min-width: $screen-sm-min) {
+                    &__dealer {
+                        display: flex;
+                    }
+
+                    &__contact {
+                        display: flex;
+                    }
+                }
+
+                @media (min-width: $screen-md-min) {
+                    min-height: 80px;
+
+                    &__inner {
+                        min-height: 80px;
+                    }
+
+                    &__logo {
+                        width: 155px;
+                    }
+
+                    &__action {
+                        display: flex;
+                    }
+
+                    &__search-input {
+                        padding-right: 18px;
+                        padding-left: 18px;
+                        font-size: 16px;
+                    }
+
+                    &__search-submit {
+                        width: 106px;
+                        flex-basis: 106px;
+                    }
+                }
+
+                @media (min-width: $screen-lg-min) {
+                    &__nav {
+                        display: flex;
+                    }
+
+                    &__menu-toggle {
+                        display: none;
+                    }
+                }
+
+                @media (min-width: $screen-xl-min) {
+                    &__inner {
+                        gap: 28px;
+                    }
+
+                    &__nav {
+                        gap: 38px;
+                    }
+
+                    &__actions {
+                        gap: 22px;
+                    }
+
+                    &__contact {
+                        min-width: 145px;
+                    }
+                }
+            }
+
+            .cfmoto-search-backdrop {
+                position: fixed;
+                inset: 0;
+                z-index: 19;
+                background-color: rgba(229, 232, 233, 0.72);
+                backdrop-filter: blur(4px);
+
+                &[hidden] {
+                    display: none !important;
+                }
+            }
+
+            // Main
+            .cfmoto-main {
+                width: 100%;
+            }
+
+            // Hero
+            .cfmoto-hero {
+                position: relative;
+                min-height: clamp(500px, 58vw, 760px);
+                display: flex;
+                align-items: stretch;
+                overflow: hidden;
+                background: url("https://sthilairebastg.wpenginepowered.com/wp-content/uploads/2026/07/cfmotohero.webp") !important;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                @media (max-width: ($screen-md-min - 1)) {
+                    background-position: 90% -53px !important;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    z-index: 0;
+                    background: linear-gradient(90deg, rgba(0, 26, 33, 0.78) 0%, rgba(0, 26, 33, 0.3) 58%, rgba(0, 26, 33, 0.15) 100%);
+                }
+
+                >.cfmoto-container {
+                    position: relative;
+                    z-index: 1;
+                    min-height: inherit;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-top: 104px;
+                    padding-bottom: 48px;
+
+                }
+
+                &__card {
+                    width: 100%;
+                    max-width: 620px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 24px;
+                    color: #ffffff !important;
+                    text-align: center;
+                    position: relative;
+
+                    @media (max-width: 767px) {
+                        width: 300px;
+                        margin: 0 auto;
+                    }
+
+                    .cfm-heroshot {
+                        &__heading {
+                            margin: 0;
+                            font-size: clamp(38px, 6vw, 72px) !important;
+                            font-weight: 800;
+                            color: #ffffff !important;
+                            line-height: clamp(38px, 6vw, 72px) !important;
+                            letter-spacing: -1px;
+                            position: relative;
+
+                            @media (max-width: ($screen-md-min - 1)) {
+                                width: fit-content;
+                            }
+
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                top: -15%;
+                                left: 0;
+                                max-width: 110px;
+                                width: 100%;
+                                height: 3px;
+                                background-color: $primary-color;
+
+                                @media (max-width: 767px) {
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                }
+                            }
+                        }
+
+                        &__button {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            min-width: 158px;
+                            min-height: 46px;
+                            padding: 10px 24px;
+                            border: 2px solid #34e3ff;
+                            color: #ffffff !important;
+                            font-size: 14px !important;
+                            font-weight: 700;
+                            line-height: 20px;
+                            text-align: center;
+                            text-decoration: none;
+
+                            &:hover,
+                            &:focus-visible {
+                                background-color: #34e3ff !important;
+                                color: #001a21 !important;
+                            }
+
+                            &.scroll-link {}
+                        }
+                    }
+                }
+
+                @media (min-width: $screen-md-min) {
+                    >.cfmoto-container {
+                        justify-content: flex-start;
+                        padding-top: 128px;
+                        padding-bottom: 64px;
+                    }
+
+                    &__card {
+                        align-items: flex-start;
+                        text-align: left;
+                    }
+                }
+
+                @media (min-width: $screen-xl-min) {
+                    >.cfmoto-container {
+                        padding-top: 144px;
+                        padding-bottom: 80px;
+                    }
+                }
+            }
+
+            // Current inventory
+            .cfmoto-current-inv {
+                width: 100%;
+
+                &__type {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 0;
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                }
+
+                &__type-item {
+                    width: 100%;
+                    min-width: 0;
+                    flex: 1 1 auto;
+                    height: 300px;
+                    max-height: 300px;
+
+                    .cfmoto-current-inv__type-img {
+                        filter: invert(1);
+                    }
+
+                    &:first-child {
+                        .cfmoto-current-inv__type-img {
+                            width: 58%;
+                            max-width: 335px;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .cfmoto-current-inv__type-img {
+                            width: 58%;
+                            max-width: 318px;
+                            max-height: 75px;
+
+                            +.cfmoto-current-inv__type-img {
+                                margin-top: -25px;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        .cfmoto-current-inv__type-img {
+                            width: 60%;
+                            max-width: 360px;
+                        }
+                    }
+                }
+
+                &__type-link {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2px;
+                    overflow: hidden;
+                    isolation: isolate;
+                    padding: 28px;
+                    border: 0;
+                    border-bottom: 6px solid transparent;
+                    background-color: #001a21;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    font: inherit;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: border-color 180ms ease;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        z-index: 1;
+                        background-color: rgba(0, 26, 33, 0.8) !important;
+                        transition: background-color 180ms ease;
+                    }
+
+                    &:hover,
+                    &:focus-visible {
+                        &::before {
+                            background-color: rgba(0, 26, 33, 0.35) !important;
+                        }
+                    }
+
+                    &.is-active {
+                        border-bottom-color: #34e3ff;
+
+                        &::before {
+                            background-color: transparent !important;
+                        }
+                    }
+
+                    &:hover {
+                        .cfmoto-current-inv__type-background {
+                            transform: scale(1.03);
+                        }
+                    }
+
+                    &:focus-visible {
+                        outline: 2px solid #ffffff;
+                        outline-offset: -8px;
+                    }
+                }
+
+                &__type-background {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 0;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    transition: transform 280ms ease;
+                }
+
+                &__type-img {
+                    position: relative;
+                    z-index: 2;
+                    display: block;
+                    width: 58%;
+                    max-width: 318px;
+                    max-height: 75px;
+                    object-fit: contain;
+                }
+
+                @media (min-width: $screen-md-min) {
+                    &__type {
+                        flex-direction: row;
+                    }
+
+                    &__type-item {
+                        flex: 1 1 33.333%;
+                        height: 300px;
+                    }
+
+                    &__type-img {
+                        width: 50%;
+                        max-width: 318px;
+                        max-height: 75px;
+                    }
+                }
+
+                &__units {
+                    background-color: #ffffff;
+                    color: #001a21;
+
+                    &[hidden] {
+                        display: none !important;
+                    }
+
+                    &.is-active {
+                        display: block;
+                    }
+
+                    .type {
+                        &__heading {
+                            @include container();
+                            padding-top: 40px !important;
+
+                            &.heading {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                gap: 6px;
+                                margin: 0 auto 20px;
+                                padding-bottom: 20px;
+                                position: relative;
+
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    left: 50%;
+                                    bottom: 0;
+                                    width: 108%;
+                                    height: 6px;
+                                    background: linear-gradient(to right, #34e3ff, #009bb4);
+                                    transform: translateX(-50%);
+                                }
+
+                                >h2 {
+                                    margin: 0;
+                                    color: #0098b2 !important;
+                                    font-size: 16px !important;
+                                    font-weight: 500;
+                                    line-height: 16px !important;
+                                    letter-spacing: 2.6px;
+                                    text-transform: uppercase;
+
+                                    @media (min-width: $screen-md-min) {
+                                        font-size: 20px !important;
+                                        line-height: 20px !important;
+                                    }
+
+                                    @media (min-width: $screen-lg-min) {
+                                        font-size: 22px !important;
+                                    }
+                                }
+
+                                .heading {
+                                    &__logo {
+                                        &.logo {
+                                            min-height: 34px;
+                                            display: flex;
+                                            align-items: center;
+
+                                            >img {
+                                                display: block;
+                                                width: auto;
+                                                max-width: 240px;
+                                                max-height: 42px;
+                                                object-fit: contain;
+
+                                                @media (min-width: $screen-md-min) {
+                                                    max-width: 300px;
+                                                    max-height: 50px;
+                                                }
+
+                                                @media (min-width: $screen-lg-min) {
+                                                    max-width: 360px;
+                                                    max-height: 60px;
+                                                }
+
+                                                @media (min-width: $screen-xl-min) {
+                                                    max-width: 500px;
+                                                    max-height: none;
+                                                }
+                                            }
+
+                                            >div {
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 12px;
+
+                                                img {
+                                                    display: block;
+                                                    width: auto;
+                                                    max-width: 180px;
+                                                    max-height: 40px;
+                                                    object-fit: contain;
+
+                                                    @media (min-width: $screen-md-min) {
+                                                        max-width: 300px;
+                                                        max-height: 50px;
+                                                    }
+
+                                                    @media (min-width: $screen-lg-min) {
+                                                        max-width: 360px;
+                                                        max-height: 60px;
+                                                    }
+
+                                                    @media (min-width: $screen-xl-min) {
+                                                        max-width: 500px;
+                                                        max-height: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &__content {
+                            @include container();
+
+                            &.content {
+                                width: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: stretch;
+                                gap: 10px;
+                                margin: 0 auto;
+
+                                .content {
+                                    &__unit {
+                                        &.unit {
+                                            width: 100%;
+                                            min-width: 0;
+                                            flex: 0 0 100%;
+                                            padding: 14px;
+                                            border: 1px solid #8c8c8c;
+                                            background-color: #ffffff;
+
+                                            >div {
+                                                min-height: 100%;
+                                                display: flex;
+                                                flex-direction: column;
+                                            }
+
+                                            .unit {
+                                                &__img {
+                                                    height: 90px;
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    margin-bottom: 4px;
+                                                    overflow: hidden;
+
+                                                    a {
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                    }
+
+                                                    img {
+                                                        display: block;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        max-width: 150px;
+                                                        object-fit: contain;
+                                                    }
+                                                }
+
+                                                &__summary {
+                                                    &.summary {
+                                                        flex: 1 1 auto;
+                                                        display: flex;
+                                                        flex-direction: column;
+
+                                                        .summary {
+                                                            &__name {
+                                                                padding-bottom: 9px;
+                                                                border-bottom: 1px solid #b4c0c8;
+
+                                                                h3 {
+                                                                    margin: 0;
+                                                                    color: #000000 !important;
+                                                                    font-size: 12px !important;
+                                                                    font-weight: 800;
+                                                                    line-height: 16px !important;
+                                                                    text-transform: uppercase;
+
+                                                                    @media (min-width: 768px) {
+                                                                        font-size: 14px !important;
+                                                                        line-height: 19px !important;
+                                                                    }
+
+                                                                    @media (min-width: $screen-xl-min) {
+                                                                        font-size: 16px !important;
+                                                                        line-height: 22px !important;
+                                                                    }
+
+                                                                    @media (min-width: $screen-c-min) {
+                                                                        font-size: 20px !important;
+                                                                        line-height: 27px !important;
+                                                                    }
+
+                                                                    @media (min-width: $screen-full) {
+                                                                        font-size: 24px !important;
+                                                                        line-height: 31px !important;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                &__specs {
+                                                    &.spec {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 7px;
+                                                        padding: 9px 0 10px;
+                                                        font-size: 8px !important;
+                                                        line-height: 11px !important;
+
+                                                        @media (min-width: 768px) {
+                                                            margin: 10px 0
+                                                        }
+
+                                                        .spec {
+                                                            &__stock {
+                                                                color: #0098b2 !important;
+                                                            }
+
+                                                            &__usage {
+                                                                display: inline-flex;
+                                                                align-items: center;
+                                                                gap: 7px;
+                                                                color: #69747a !important;
+                                                                text-decoration: none;
+
+                                                                &::before {
+                                                                    content: "/";
+                                                                    color: #a9a9a9;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                &__cta {
+                                                    margin-top: 12px;
+
+                                                    a {
+                                                        width: 100%;
+                                                        min-height: 34px;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        padding: 7px 12px;
+                                                        border: 1px solid #00cce7;
+                                                        color: #000000 !important;
+                                                        font-size: 10px !important;
+                                                        font-weight: 600;
+                                                        line-height: 16px !important;
+                                                        text-align: center;
+                                                        text-decoration: none;
+                                                        transition:
+                                                            background-color 180ms ease,
+                                                            color 180ms ease;
+
+                                                        @media (min-width: 768px) {
+                                                            min-height: 40px;
+                                                        }
+
+                                                        @media (min-width: 992px) {
+                                                            min-height: 46px;
+                                                        }
+
+                                                        &:hover,
+                                                        &:focus-visible {
+                                                            background-color: #00cce7;
+                                                            color: white !important;
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+                                            &.unit--motorcycle {
+                                                .unit__img img {
+                                                    max-width: 145px;
+                                                }
+                                            }
+
+                                            .spec {
+                                                &__price-quote {
+                                                    margin-top: auto;
+                                                }
+
+                                                &__price {
+                                                    margin: 0 0 2px;
+                                                    color: #000000 !important;
+                                                    font-weight: 800;
+                                                    line-height: 20px !important;
+                                                    font-family: $font ;
+
+                                                    a {
+                                                        color: inherit !important;
+                                                        font-size: 12px !important;
+                                                        text-decoration: none;
+
+                                                        @media (min-width: 768px) {
+                                                            font-size: 14px !important;
+                                                            line-height: 19px !important;
+                                                        }
+
+                                                        @media (min-width: $screen-xl-min) {
+                                                            font-size: 16px !important;
+                                                            line-height: 22px !important;
+                                                        }
+
+                                                        @media (min-width: $screen-c-min) {
+                                                            font-size: 20px !important;
+                                                            line-height: 27px !important;
+                                                        }
+
+                                                        @media (min-width: $screen-full) {
+                                                            font-size: 24px !important;
+                                                            line-height: 31px !important;
+                                                        }
+                                                    }
+
+                                                    small {
+                                                        font-size: 8px !important;
+                                                        font-weight: 400;
+
+                                                        @media (min-width: 768px) {
+                                                            font-size: 10px !important;
+                                                        }
+
+                                                        @media (min-width: $screen-xl-min) {
+                                                            font-size: 12px !important;
+                                                        }
+
+                                                        @media (min-width: $screen-c-min) {
+                                                            font-size: 20px !important;
+                                                        }
+                                                    }
+                                                }
+
+                                                &__disclaimer {
+                                                    min-height: 22px;
+                                                    color: #747474 !important;
+                                                    font-size: 8px !important;
+                                                    font-style: italic;
+                                                    font-weight: 400;
+                                                    line-height: 10px !important;
+
+                                                    @media (min-width: 768px) {
+                                                        font-size: 10px !important;
+                                                        line-height: 1 !important;
+                                                    }
+
+                                                    @media (min-width: $screen-xl-min) {
+                                                        font-size: 12px !important;
+                                                        line-height: 1.3 !important;
+
+                                                    }
+
+                                                    @media (min-width: $screen-c-min) {
+                                                        font-size: 14px !important;
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &__no-units {
+                                        width: 100%;
+                                        display: none;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: 16px;
+                                        padding: 30px 20px;
+                                        color: #001a21;
+                                        text-align: center;
+
+                                        &:only-child {
+                                            display: flex;
+                                        }
+
+                                        a {
+                                            min-height: 34px;
+                                            display: inline-flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 7px 22px;
+                                            border: 1px solid #00cce7;
+                                            color: #000000 !important;
+                                            font-size: 10px !important;
+                                            font-weight: 600;
+                                            text-decoration: none;
+                                        }
+
+                                        &.no-units--cforce {}
+
+                                        &.no-units--zuforce {}
+
+                                        &.no-units--motorcycles {}
+                                    }
+                                }
+                            }
+                        }
+
+                        &__btn {
+                            width: 100%;
+                            max-width: 850px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 14px;
+                            margin: 15px auto 0;
+                            padding: 20px 0;
+
+                            a {
+                                width: 100%;
+                                min-height: 34px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 7px 18px;
+                                border: 2px solid #00cce7;
+                                color: #000000 !important;
+                                font-size: 10px !important;
+                                font-weight: 600;
+                                line-height: 16px !important;
+                                text-align: center;
+                                text-decoration: none;
+                                transition:
+                                    background-color 180ms ease,
+                                    color 180ms ease;
+
+                                @media (min-width: 768px) {
+                                    font-size: 14px !important;
+                                    line-height: 20px !important;
+                                }
+
+                                @media (min-width: $screen-xl-min) {
+                                    font-size: 16px !important;
+                                    line-height: 24px !important;
+                                    padding: 7px 25px;
+                                }
+
+                                @media (min-width: $screen-c-min) {
+                                    font-size: 20px !important;
+                                    line-height: 34px !important;
+                                }
+
+                                >span {
+                                    font-size: 10px !important;
+
+                                    @media (min-width: 768px) {
+                                        font-size: 14px !important;
+                                        line-height: 20px !important;
+                                    }
+
+                                    @media (min-width: $screen-xl-min) {
+                                        font-size: 16px !important;
+                                        line-height: 24px !important;
+                                    }
+
+                                    @media (min-width: $screen-c-min) {
+                                        font-size: 20px !important;
+                                        line-height: 34px !important;
+                                    }
+                                }
+
+                                &:hover,
+                                &:focus-visible {
+                                    background-color: #00cce7;
+                                    color: white !important;
+                                }
+                            }
+                        }
+                    }
+
+                    @media (min-width: $screen-sm-min) {
+                        .type {
+                            &__content {
+                                &.content {
+                                    .content__unit.unit {
+                                        flex-basis: calc(50% - 5px);
+                                    }
+                                }
+                            }
+
+                            &__btn {
+                                a {
+                                    width: auto;
+                                    min-width: 190px;
+                                }
+                            }
+                        }
+                    }
+
+                    @media (min-width: $screen-lg-min) {
+                        .type {
+                            &__content {
+                                &.content {
+                                    .content__unit.unit {
+                                        flex-basis: calc(25% - 8px);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Current promotions
+            .cfmoto-current-promotions {
+                width: 100%;
+                padding: clamp(38px, 5vw, 62px) 20px clamp(40px, 5vw, 58px);
+                background-color: #ffffff;
+                color: #001a21;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    background: linear-gradient(90deg, #00efd1 0%, #00c5c3 50%, #009bb4 100%);
+                    width: 100%;
+                    height: 6px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+
+                }
+
+                &__container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: clamp(28px, 4vw, 56px);
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+
+                &__heading {
+                    width: 100%;
+
+                    h2 {
+                        margin: 0;
+                        color: #001a21 !important;
+                        font-size: clamp(24px, 3vw, 34px) !important;
+                        font-style: italic;
+                        font-weight: 700;
+                        line-height: clamp(30px, 4vw, 42px) !important;
+                        text-transform: uppercase;
+                    }
+                }
+
+                &__slider {
+                    position: relative;
+                    width: 100%;
+                    max-width: 1152px;
+                    height: clamp(190px, 60vw, 320px);
+                    margin: 0 auto;
+                    overflow: hidden;
+                    background-color: #e8edef;
+                }
+
+                &__slide {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+
+                    &:hover,
+                    &:focus-within {
+                        .cfmoto-current-promotions__overlay {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+
+                        .cfmoto-current-promotions__overlay-inner {
+                            transform: translateY(0);
+                        }
+                    }
+                }
+
+                &__link {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: stretch;
+                    color: inherit;
+                    text-decoration: none;
+                }
+
+                &__image {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &__overlay {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    visibility: hidden;
+                    padding: clamp(18px, 4vw, 48px);
+                    background-color: rgba(0, 26, 33, 0.9);
+                    color: #ffffff;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition:
+                        visibility 240ms ease,
+                        opacity 240ms ease;
+                }
+
+                &__overlay-inner {
+                    width: 100%;
+                    max-width: 880px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 20px;
+                    transform: translateY(14px);
+                    transition: transform 280ms ease;
+                }
+
+                &__content,
+                &__terms {
+                    min-width: 0;
+                    flex: 1 1 50%;
+
+                    h3 {
+                        margin: 0 0 8px;
+                        color: #34e3ff !important;
+                        font-size: clamp(16px, 2vw, 21px) !important;
+                        font-weight: 700;
+                        line-height: clamp(21px, 3vw, 28px) !important;
+                        text-transform: uppercase;
+                    }
+
+                    p {
+                        margin: 0;
+                        color: #ffffff !important;
+                        font-size: clamp(12px, 1.5vw, 15px) !important;
+                        font-weight: 400;
+                        line-height: clamp(18px, 2vw, 23px) !important;
+                    }
+                }
+
+                &__pagination {
+                    position: absolute !important;
+                    left: auto !important;
+                    right: 12px !important;
+                    bottom: 12px !important;
+                    z-index: 5;
+                    width: auto !important;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 7px;
+                    padding: 9px 10px;
+                    background-color: rgba(0, 0, 0, 0.72);
+
+                    .swiper-pagination-bullet {
+                        width: 13px;
+                        height: 13px;
+                        flex: 0 0 13px;
+                        margin: 0 !important;
+                        background-color: #a6adb0;
+                        opacity: 1;
+                    }
+
+                    .swiper-pagination-bullet-active {
+                        background-color: #00aeca;
+                    }
+                }
+
+                @media (min-width: $screen-md-min) {
+                    &__overlay-inner {
+                        flex-direction: row;
+                        gap: 42px;
+                    }
+
+                    &__terms {
+                        padding-left: 42px;
+                        border-left: 1px solid rgba(255, 255, 255, 0.38);
+                    }
+
+                    &__slider {
+                        height: clamp(240px, 32vw, 370px);
+                    }
+
+                    &__pagination {
+                        right: 28px !important;
+                        bottom: 28px !important;
+                        gap: 8px;
+                        padding: 11px 12px;
+
+                        .swiper-pagination-bullet {
+                            width: 18px;
+                            height: 18px;
+                            flex-basis: 18px;
+                        }
+                    }
+                }
+
+                @media (hover: none) {
+                    &__overlay {
+                        visibility: visible;
+                        background-color: rgba(0, 26, 33, 0.82);
+                        opacity: 1;
+                    }
+
+                    &__overlay-inner {
+                        transform: translateY(0);
+                    }
+                }
+            }
+
+            // Model lineup
+            .cfmoto-model-lineup {
+                background-color: #ffffff;
+
+                >div {
+                    @include container();
+
+                    width: 100%;
+                    overflow: hidden;
+                    background-color: #ffffff;
+                    color: #001a21;
+
+                }
+
+                &__header {
+                    width: 100%;
+                    min-height: 116px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    justify-content: center;
+                    gap: 22px;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        background: linear-gradient(90deg, #00efd1 0%, #00c5c3 50%, #009bb4 100%);
+                        width: 130%;
+                        height: 6px;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        z-index: 1;
+                    }
+                }
+
+                &__title {
+                    flex: 0 0 auto;
+                    margin: 0;
+                    color: #001a21 !important;
+                    font-size: clamp(25px, 3vw, 34px) !important;
+                    font-style: italic;
+                    font-weight: 700;
+                    line-height: clamp(30px, 4vw, 42px) !important;
+                    text-align: center;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }
+
+                &__navigation {
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &__select {
+                    width: 100%;
+                    max-width: 360px;
+                    min-height: 44px;
+                    padding: 9px 42px 9px 14px;
+                    border: 1px solid #9ba7ac;
+                    border-radius: 0;
+                    background-color: #ffffff;
+                    color: #001a21;
+                    font-family: $font, Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+
+                &__categories {
+                    width: 100%;
+                    display: none;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: clamp(24px, 4vw, 72px);
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                }
+
+                &__category {
+                    min-width: 0;
+                    flex: 1 1 0;
+
+                    &.is-active {
+                        .cfmoto-model-lineup__category-button {
+                            &::after {
+                                opacity: 1;
+                            }
+                        }
+
+                        .cfmoto-model-lineup__category-logo {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &__category-button {
+                    position: relative;
+                    width: 100%;
+                    min-height: 52px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 5px;
+                    border: 0;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0px;
+                        width: 11px;
+                        height: 11px;
+                        border-top: 4px solid #009fbb;
+                        border-left: 4px solid #009fbb;
+                        opacity: 0;
+                        transform: translateX(-50%) rotate(45deg);
+                        transition: opacity 180ms ease;
+                    }
+
+                    &:focus-visible {
+                        outline: 2px solid #00c9d8;
+                        outline-offset: 3px;
+                    }
+
+                    &:hover,
+                    &:focus-visible {
+                        .cfmoto-model-lineup__category-logo {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &__category-logo {
+                    display: block;
+                    width: 100%;
+                    max-width: 230px;
+                    max-height: 52px;
+                    object-fit: contain;
+                    opacity: 0.12;
+                    transition: opacity 180ms ease;
+                }
+
+                &__group {
+                    width: 100%;
+
+                    &[hidden] {
+                        display: none !important;
+                    }
+                }
+
+                &__controls {
+                    width: 100%;
+                    border-bottom: 1px solid #ccd2d5;
+                    background-color: #ffffff;
+                }
+
+                &__control-list {
+                    width: 100%;
+                    display: flex;
+                    align-items: stretch;
+                    gap: 0;
+                    margin: 0;
+                    padding: 0;
+                    overflow-x: auto;
+                    list-style: none;
+                    scrollbar-width: thin;
+
+                    li {
+                        min-width: 180px;
+                        flex: 0 0 auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 25px 0px;
+                        color: #aab3b7;
+                        font-weight: 500;
+                        line-height: 18px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: color 180ms ease;
+
+                        >span {
+
+                            font-family: $font !important;
+                            font-size: 13px !important;
+                        }
+
+                        &.is-active {
+                            color: #001a21;
+                        }
+
+                        &:hover,
+                        &:focus-visible {
+                            color: #009fbb;
+                            outline: none;
+                        }
+
+                        span {
+                            pointer-events: none;
+                        }
+                    }
+                }
+
+                &__wrapper {
+                    &.swiper {
+                        position: relative;
+                        width: 100%;
+                        overflow: hidden;
+                        background-color: #ffffff;
+
+                        .swiper-wrapper {
+                            align-items: stretch;
+                        }
+                    }
+                }
+
+                &__item {
+                    &.swiper-slide {
+                        min-height: 650px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: stretch;
+                        justify-content: center;
+                        gap: 30px;
+                        padding: 32px 24px 46px;
+                    }
+                }
+
+                &__item-media {
+                    width: 100%;
+                    height: clamp(230px, 72vw, 360px);
+                    order: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+
+                &__item-image {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    object-position: center;
+                }
+
+                &__item-info {
+                    &.info {
+                        width: 100%;
+                        min-width: 0;
+                        order: 2;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        color: #001a21;
+
+                        .info {
+                            &__logo {
+                                width: 100%;
+                                min-height: 54px;
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 22px;
+
+                                img {
+                                    display: block;
+                                    width: auto;
+                                    max-width: 100%;
+                                    max-height: 105px;
+                                    object-fit: contain;
+                                }
+                            }
+
+                            &__copy {
+                                margin: 0 0 20px;
+                                color: #001a21 !important;
+                                font-size: 14px !important;
+                                font-weight: 400;
+                                line-height: 22px !important;
+                            }
+
+                            &__price {
+                                margin-bottom: 34px;
+                                color: #001a21 !important;
+                                font-size: clamp(22px, 3vw, 30px) !important;
+                                font-weight: 700;
+                                line-height: clamp(28px, 4vw, 38px) !important;
+                            }
+
+                            &__button {
+                                width: 100%;
+                                max-width: 260px;
+                                min-height: 68px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 12px 24px;
+                                border: 2px solid #00c9e5;
+                                color: #001a21 !important;
+                                font-size: 15px !important;
+                                font-weight: 600;
+                                line-height: 20px !important;
+                                text-align: center;
+                                text-decoration: none;
+                                transition:
+                                    background-color 180ms ease,
+                                    color 180ms ease;
+
+                                &:hover,
+                                &:focus-visible {
+                                    background-color: #00c9e5;
+                                    color: #ffffff !important;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &__arrow {
+                    position: absolute;
+                    top: 165px;
+                    z-index: 5;
+                    width: 42px;
+                    height: 56px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
+                    border: 0;
+                    background-color: rgba(255, 255, 255, 0.72);
+                    color: #747b7e;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 50px;
+                    font-weight: 300;
+                    line-height: 50px;
+                    cursor: pointer;
+                    transition:
+                        color 180ms ease,
+                        opacity 180ms ease;
+
+                    span {
+                        display: block;
+                        transform: translateY(-3px);
+                    }
+
+                    &:hover,
+                    &:focus-visible {
+                        color: #009fbb;
+                        outline: none;
+                    }
+
+                    &--prev {
+                        left: 8px;
+                    }
+
+                    &--next {
+                        right: 8px;
+                    }
+
+                    &.swiper-button-disabled {
+                        opacity: 0.25;
+                        cursor: default;
+                    }
+                }
+
+                @media (min-width: $screen-md-min) {
+                    &__header {
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: clamp(30px, 4vw, 64px);
+                    }
+
+                    &__title {
+                        text-align: left;
+                    }
+
+                    &__navigation {
+                        flex: 1 1 auto;
+                    }
+
+                    &__select {
+                        display: none;
+                    }
+
+                    &__categories {
+                        display: flex;
+                    }
+
+
+
+                    &__item {
+                        &.swiper-slide {
+                            min-height: 690px;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: clamp(32px, 5vw, 80px);
+                            padding: 60px clamp(36px, 5vw, 90px);
+                        }
+                    }
+
+                    &__item-media {
+                        height: clamp(400px, 42vw, 590px);
+                        min-width: 0;
+                        flex: 1 1 52%;
+                        order: 2;
+                    }
+
+                    &__item-info {
+                        &.info {
+                            width: auto;
+                            max-width: 740px;
+                            flex: 1 1 48%;
+                            order: 1;
+                        }
+                    }
+
+                    &__arrow {
+                        top: 50%;
+                        background-color: transparent;
+                        transform: translateY(-50%);
+
+                        &--prev {
+                            left: clamp(18px, 4vw, 78px);
+                        }
+
+                        &--next {
+                            right: clamp(18px, 4vw, 78px);
+                        }
+                    }
+                }
+
+                @media (min-width: $screen-xl-min) {
+                    &__control-list {
+                        li {
+                            min-width: 0;
+                            flex: 1 1 0;
+                            padding-top: 34px;
+                            padding-bottom: 34px;
+                        }
+                    }
+
+                    &__item {
+                        &.swiper-slide {
+                            min-height: 655px;
+                            gap: clamp(48px, 6vw, 104px);
+                            padding-right: clamp(60px, 7vw, 120px);
+                            padding-left: clamp(60px, 7vw, 120px);
+                        }
+                    }
+                }
+            }
+
+            // Parts and accessories
+            .cfmoto-parts-accessories {
+                width: 100%;
+                padding: clamp(42px, 6vw, 82px) 20px clamp(48px, 7vw, 96px);
+                background-color: #ffffff;
+                color: #001a21;
+
+                &__container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+
+                &__logo {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    margin-bottom: clamp(38px, 5vw, 62px);
+                }
+
+                &__logo-image {
+                    display: block;
+                    width: 100%;
+                    max-width: 430px;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                &__row {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: clamp(34px, 5vw, 58px);
+                }
+
+                &__media {
+                    width: 100%;
+                    min-width: 0;
+                    flex: 1 1 auto;
+                }
+
+                &__video {
+                    position: relative;
+                    width: 100%;
+                    aspect-ratio: 16 / 9;
+                    overflow: hidden;
+                    background-color: #001a21;
+
+                    iframe {
+                        position: absolute;
+                        inset: 0;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        border: 0;
+                    }
+                }
+
+                &__content {
+                    width: 100%;
+                    min-width: 0;
+                    display: flex;
+                    flex: 1 1 auto;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                }
+
+                &__title {
+                    max-width: 540px;
+                    margin: 0 0 clamp(26px, 4vw, 44px);
+                    color: #777777 !important;
+                    font-size: clamp(42px, 7vw, 72px) !important;
+                    font-weight: 700;
+                    line-height: clamp(42px, 7vw, 70px) !important;
+                    letter-spacing: -2px;
+                    text-transform: lowercase;
+                }
+
+                &__description {
+                    max-width: 540px;
+                    margin: 0 0 clamp(28px, 4vw, 44px);
+                    color: #000000 !important;
+                    font-size: 15px !important;
+                    font-weight: 400;
+                    line-height: 24px !important;
+                }
+
+                &__button {
+                    width: 100%;
+                    max-width: 302px;
+                    min-height: 62px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 12px 24px;
+                    border: 2px solid #00c9e5;
+                    color: #000000 !important;
+                    font-size: 16px !important;
+                    font-weight: 600;
+                    line-height: 22px !important;
+                    text-align: center;
+                    text-decoration: none;
+                    transition:
+                        background-color 180ms ease,
+                        color 180ms ease;
+
+                    &:hover,
+                    &:focus-visible {
+                        background-color: #00c9e5;
+                        color: #ffffff !important;
+                    }
+                }
+
+                @media (min-width: $screen-lg-min) {
+                    &__row {
+                        flex-direction: row;
+                        align-items: center;
+                    }
+
+                    &__media {
+                        flex: 1 1 67%;
+                    }
+
+                    &__content {
+                        flex: 1 1 33%;
+                    }
+                }
+            }
+
+            // Accessories categories
+            .cfmoto-accessories-cta {
+                width: 100%;
+                padding: clamp(42px, 6vw, 74px) 20px;
+                background-color: #ffffff;
+
+                &__container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: stretch;
+                    justify-content: center;
+                    gap: 18px;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+
+                &__item {
+                    width: 100%;
+                    min-width: 0;
+                    flex: 0 0 100%;
+                }
+
+                &__button {
+                    position: relative;
+                    width: 100%;
+                    min-height: 244px;
+                    aspect-ratio: 1.2 / 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    isolation: isolate;
+                    overflow: hidden;
+                    padding: 24px 18px;
+                    background-color: #001a21;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    color: #ffffff !important;
+                    text-align: center;
+                    text-decoration: none;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        z-index: -1;
+                        background-color: rgba(0, 26, 33, 0.68);
+                        transition: background-color 180ms ease;
+                    }
+
+                    &:hover,
+                    &:focus-visible {
+                        color: #ffffff !important;
+
+                        &::before {
+                            background-color: rgba(0, 26, 33, 0.4);
+                        }
+
+                        .cfmoto-accessories-cta__image {
+                            transform: scale(1.03);
+                        }
+                    }
+
+                    &:focus-visible {
+                        outline: 2px solid #34e3ff;
+                        outline-offset: 3px;
+                    }
+
+                    &--text-only {
+                        gap: 0;
+                    }
+                }
+
+                &__media {
+                    position: relative;
+                    z-index: 1;
+                    width: 90%;
+                    height: 105px;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                }
+
+                &__image {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    object-position: center bottom;
+                    transition: transform 220ms ease;
+                }
+
+                &__heading {
+                    position: relative;
+                    z-index: 1;
+                    display: block;
+                    color: #ffffff !important;
+                    font-size: 17px !important;
+                    font-weight: 700;
+                    line-height: 22px !important;
+                    text-align: center;
+                }
+
+                @media (min-width: $screen-sm-min) {
+                    &__item {
+                        flex-basis: calc(50% - 9px);
+                    }
+                }
+
+                @media (min-width: $screen-lg-min) {
+                    &__item {
+                        flex-basis: calc(33.333% - 12px);
+                    }
+                }
+
+                @media (min-width: $screen-xl-min) {
+                    &__container {
+                        flex-wrap: nowrap;
+                    }
+
+                    &__item {
+                        flex: 1 1 20%;
+                    }
+                }
+            }
+
+            // Footer
+            .cfmoto-footer {
+                width: 100%;
+                background-color: #001a21;
+                color: #ffffff;
+
+                &:hover {
+                    .cfmoto-footer__contact-media img {
+                        transform: translate(-50%, -50%) scale(1.1) !important;
+                    }
+                }
+
+                &__contact {
+                    position: relative;
+                    min-height: clamp(410px, 28vw, 435px);
+                    display: flex;
+                    align-items: stretch;
+                    overflow: hidden;
+                }
+
+                &__contact-media {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 0;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(to right, #001a21 14%, transparent);
+                    }
+
+                    img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: cover;
+                        object-position: center;
+                        transform: translate(-50%, -50%) scale(1) !important;
+                        transform-origin: center;
+                        transition: transform 800ms cubic-bezier(0.2, 0.65, 0.3, 1);
+                        will-change: transform;
+                    }
+                }
+
+                &__contact-inner {
+                    position: relative;
+                    z-index: 1;
+                    min-height: inherit;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    padding-top: clamp(56px, 7vw, 132px);
+                    padding-bottom: clamp(56px, 7vw, 132px);
+                }
+
+                &__accent {
+                    display: block;
+                    width: 84px;
+                    height: 5px;
+                    margin-bottom: 25px;
+                    background-color: #00c9d8;
+                }
+
+                &__contact-title {
+                    width: 100%;
+                    max-width: 410px;
+                    margin: 0 0 34px;
+                    color: #ffffff !important;
+                    font-size: clamp(34px, 4vw, 40px) !important;
+                    font-weight: 800;
+                    line-height: clamp(35px, 4vw, 40px) !important;
+                    letter-spacing: -1px;
+                }
+
+                &__contact-link {
+                    min-width: 145px;
+                    min-height: 56px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 24px;
+                    border: 2px solid #00c9e5;
+                    color: #ffffff !important;
+                    font-size: 15px !important;
+                    font-weight: 700;
+                    line-height: 20px !important;
+                    text-align: center;
+                    text-decoration: none;
+                    transition:
+                        background-color 180ms ease,
+                        color 180ms ease;
+
+                    &:hover,
+                    &:focus-visible {
+                        background-color: #00c9e5;
+                        color: #001a21 !important;
+                    }
+                }
+
+                &__bar {
+                    width: 100%;
+                    background-color: #001A21;
+                }
+
+                &__bar-inner {
+                    min-height: 80px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    gap: 24px;
+                }
+
+                &__identity {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                &__logo-link {
+                    min-width: 0;
+                    flex: 0 1 auto;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &__logo {
+                    display: block;
+                    width: 100%;
+                    max-width: 170px;
+                    height: auto;
+                    object-fit: contain;
+                }
+
+                &__divider {
+                    width: 2px;
+                    height: 40px;
+                    flex: 0 0 2px;
+                    background-color: #00c9d8;
+                }
+
+                &__dealer-label {
+                    color: #ffffff !important;
+                    font-size: 12px !important;
+                    font-weight: 700;
+                    line-height: 17px !important;
+                    text-transform: uppercase;
+                }
+
+                &__address {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 2px;
+                    margin: 0;
+                    color: #ffffff;
+                    font-style: normal;
+                }
+
+                &__dealer-name {
+                    color: #ffffff !important;
+                    font-size: 14px !important;
+                    font-weight: 700;
+                    line-height: 18px !important;
+                }
+
+                &__dealer-address {
+                    color: rgba(255, 255, 255, 0.72) !important;
+                    font-size: 10px !important;
+                    font-weight: 400;
+                    line-height: 15px !important;
+                }
+
+                &__copyright {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 4px;
+                    margin: 0;
+                    color: rgba(255, 255, 255, 0.65) !important;
+                    font-size: 11px !important;
+                    font-weight: 400;
+                    line-height: 16px !important;
+                }
+
+                @media (min-width: $screen-md-min) {
+                    &__bar-inner {
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: clamp(28px, 4vw, 54px);
+                    }
+
+                    &__identity {
+                        width: auto;
+                        flex: 0 1 auto;
+                    }
+
+                    &__address {
+                        flex: 0 1 auto;
+                    }
+
+                    &__copyright {
+                        flex: 0 0 auto;
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+    }
+}

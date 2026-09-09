@@ -1,0 +1,146 @@
+<main class="oem-mp">
+    <div class="oem-mp__container">
+        <header class="oem-mp__header">
+            <h1 class="oem-mp__title">Manufacturer Promotions</h1>
+            <p class="oem-mp__intro">
+                Discover the latest deals and exclusive offers from leading manufacturers.
+            </p>
+        </header>
+
+        <hr class="oem-mp__divider">
+
+        <section class="oem-mp__featured" aria-labelledby="featured-promotions-title" aria-busy="true">
+            <h2 class="oem-mp__section-title" id="featured-promotions-title">Featured Promotions</h2>
+            <div class="oem-mp__featured-grid oem-mp__featured-grid--widescreen" aria-live="polite"></div>
+        </section>
+
+        <hr class="oem-mp__divider oem-mp__featured-divider">
+
+        <section class="oem-mp__filters" aria-label="Promotion filters">
+            <form class="oem-mp__filters-form" role="search">
+                <div class="oem-mp__search">
+                    <label class="oem-mp__visually-hidden" for="promotion-search">Search promotions</label>
+                    <input class="oem-mp__search-input" id="promotion-search" name="search" type="search"
+                        placeholder="Search Promotions" autocomplete="off" disabled="">
+                    <button class="oem-mp__search-submit" type="submit" aria-label="Search promotions" disabled="">
+                        <svg class="oem-mp__search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path
+                                d="M16.6 18L10.3 11.7C9.8 12.1 9.225 12.4167 8.575 12.65C7.925 12.8833 7.23333 13 6.5 13C4.68333 13 3.146 12.3707 1.888 11.112C0.63 9.85333 0.000667196 8.316 5.29101e-07 6.5C-0.000666138 4.684 0.628667 3.14667 1.888 1.888C3.14733 0.629333 4.68467 0 6.5 0C8.31533 0 9.853 0.629333 11.113 1.888C12.373 3.14667 13.002 4.684 13 6.5C13 7.23333 12.8833 7.925 12.65 8.575C12.4167 9.225 12.1 9.8 11.7 10.3L18 16.6L16.6 18ZM6.5 11C7.75 11 8.81267 10.5627 9.688 9.688C10.5633 8.81333 11.0007 7.75067 11 6.5C10.9993 5.24933 10.562 4.187 9.688 3.313C8.814 2.439 7.75133 2.00133 6.5 2C5.24867 1.99867 4.18633 2.43633 3.313 3.313C2.43967 4.18967 2.002 5.252 2 6.5C1.998 7.748 2.43567 8.81067 3.313 9.688C4.19033 10.5653 5.25267 11.0027 6.5 11Z"
+                                fill="#FBFBFD"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="oem-mp__select-control oem-mp__select-control--oem">
+                    <label class="oem-mp__visually-hidden" for="promotion-oem">Filter by OEM</label>
+                    <select class="oem-mp__select" id="promotion-oem" name="oem" data-placeholder="OEM" disabled="">
+                        <option value="">All OEMs</option>
+                    </select>
+                    <button class="oem-mp__select-trigger" type="button" aria-label="Filter by OEM"
+                        aria-haspopup="listbox" aria-expanded="false" aria-controls="promotion-oem-options" disabled="">
+                        <span class="oem-mp__select-value">OEM</span>
+                        <svg class="oem-mp__select-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M18 9.5L12 15.5L6 9.5H18Z" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <ul class="oem-mp__select-options" id="promotion-oem-options" role="listbox"></ul>
+                </div>
+
+                <div class="oem-mp__select-control oem-mp__select-control--category">
+                    <label class="oem-mp__visually-hidden" for="promotion-category">Filter by category</label>
+                    <select class="oem-mp__select" id="promotion-category" name="category" disabled="">
+                        <option value="">All Categories</option>
+                    </select>
+                    <button class="oem-mp__select-trigger" type="button" aria-label="Filter by category"
+                        aria-haspopup="listbox" aria-expanded="false" aria-controls="promotion-category-options"
+                        disabled="">
+                        <span class="oem-mp__select-value">All Categories</span>
+                        <svg class="oem-mp__select-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M18 9.5L12 15.5L6 9.5H18Z" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <ul class="oem-mp__select-options" id="promotion-category-options" role="listbox"></ul>
+                </div>
+
+                <div class="oem-mp__select-control">
+                    <label class="oem-mp__visually-hidden" for="promotion-type">Filter by type</label>
+                    <select class="oem-mp__select" id="promotion-type" name="type" disabled="">
+                        <option value="">All Types</option>
+                    </select>
+                    <button class="oem-mp__select-trigger" type="button" aria-label="Filter by type"
+                        aria-haspopup="listbox" aria-expanded="false" aria-controls="promotion-type-options"
+                        disabled="">
+                        <span class="oem-mp__select-value">All Types</span>
+                        <svg class="oem-mp__select-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M18 9.5L12 15.5L6 9.5H18Z" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <ul class="oem-mp__select-options" id="promotion-type-options" role="listbox"></ul>
+                </div>
+
+                <div class="oem-mp__select-control oem-mp__select-control--sort">
+                    <label class="oem-mp__visually-hidden" for="promotion-sort">Sort promotions</label>
+                    <select class="oem-mp__select" id="promotion-sort" name="sort" disabled="">
+                        <option value="featured">Featured First</option>
+                        <option value="newest">Newest First</option>
+                        <option value="ending-soon">Ending Soon</option>
+                        <option value="a-z">A-Z</option>
+                    </select>
+                    <button class="oem-mp__select-trigger" type="button" aria-label="Sort promotions"
+                        aria-haspopup="listbox" aria-expanded="false" aria-controls="promotion-sort-options"
+                        disabled="">
+                        <span class="oem-mp__select-value">Featured First</span>
+                        <svg class="oem-mp__select-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M18 9.5L12 15.5L6 9.5H18Z" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <ul class="oem-mp__select-options" id="promotion-sort-options" role="listbox"></ul>
+                </div>
+            </form>
+        </section>
+
+        <section class="oem-mp__promotions" aria-labelledby="all-promotions-title" aria-busy="true">
+            <h2 class="oem-mp__section-title" id="all-promotions-title">All Promotions</h2>
+            <p class="oem-mp__visually-hidden" id="promotion-results-status" aria-live="polite"></p>
+            <div class="oem-mp__promotions-grid oem-mp__promotions-grid--widescreen" aria-live="polite"></div>
+
+            <nav class="oem-mp__pagination" aria-label="Promotion pages" hidden="">
+                <button class="oem-mp__pagination-button oem-mp__pagination-button--previous" type="button"
+                    data-page-action="previous" aria-label="Previous page">
+                    <svg class="oem-mp__pagination-icon" width="41" height="41" viewBox="0 0 41 41" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <rect width="41" height="41" rx="5" fill="#1E1E1E"></rect>
+                        <path d="M16 13L24 20.5L16 28" stroke="#FBFBFD" stroke-width="2.5625"></path>
+                    </svg>
+                </button>
+                <span class="oem-mp__pagination-page" aria-live="polite">1 of 1</span>
+                <button class="oem-mp__pagination-button" type="button" data-page-action="next" aria-label="Next page">
+                    <svg class="oem-mp__pagination-icon" width="41" height="41" viewBox="0 0 41 41" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <rect width="41" height="41" rx="5" fill="#1E1E1E"></rect>
+                        <path d="M16 13L24 20.5L16 28" stroke="#FBFBFD" stroke-width="2.5625"></path>
+                    </svg>
+                </button>
+            </nav>
+        </section>
+
+        <aside class="oem-mp__terms-popover" id="promotion-terms-popover" role="dialog" aria-modal="false"
+            aria-labelledby="promotion-terms-title" aria-hidden="true">
+            <h2 class="oem-mp__visually-hidden" id="promotion-terms-title">Promotion terms and conditions</h2>
+            <button class="oem-mp__terms-close" type="button" aria-label="Close terms and conditions">×</button>
+            <p class="oem-mp__terms-copy"></p>
+            <button class="oem-mp__terms-more" type="button" aria-expanded="false">See More...</button>
+        </aside>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>

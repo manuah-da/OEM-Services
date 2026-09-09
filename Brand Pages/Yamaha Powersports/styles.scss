@@ -1,0 +1,1881 @@
+#wpadminbar {
+    display: none !important;
+}
+
+html {
+    margin: 0px !important;
+}
+
+/* Screen variations Min */
+$screen-xs: 320px; // Extra small devices (phones, portrait)
+$screen-xss: 576px; // Small devices (phones, landscape)
+$screen-md: 768px; // Medium devices (tablets)
+$screen-lg: 992px; // Large devices (small laptops, desktops)
+$screen-xl: 1200px; // Extra large devices (standard desktops, monitors)
+$screen-c: 1530px; // Ultra wide devices (large laptops, wide monitors)
+$screen-full: 1800px; // Full HD and above (large screens, 4K displays)
+
+$light-bg: #fff;
+$text-dark: #333333;
+$text-light: #ffffff;
+$border-color: #dddddd;
+
+$yamaha-blue: #1b3e90;
+$yamaha-dark-bg: #000;
+$yamaha-dark-gray: #282828;
+$yamaha-hover-blue: #0d6efd;
+
+$yamaha-header: "Montserrat", sans-serif;
+$yamaha-noto: "Noto Sans", sans-serif;
+$yamaha-text: "Poppins", sans-serif;
+
+@mixin container {
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 30px 0;
+
+    @media (min-width: $screen-md) {
+        width: 740px;
+        max-width: 100%;
+        padding: 40px 0;
+    }
+
+    @media (min-width: $screen-lg) {
+        width: 940px;
+    }
+
+    @media (min-width: $screen-xl) {
+        width: 1140px;
+    }
+
+    @media (min-width: $screen-c) {
+        width: 1400px;
+    }
+
+    @media (min-width: $screen-full) {
+        width: 1700px;
+    }
+}
+
+@mixin form-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: .2rem solid #fff;
+    background-color: transparent;
+    color: white;
+
+    font-family: $yamaha-noto !important;
+    font-size: 20px;
+    font-weight: 700;
+
+    transition: all 0.3s ease-in-out;
+    text-transform: capitalize !important;
+
+    min-width: fit-content;
+    width: 83%;
+    min-height: 70px;
+    height: stretch;
+
+    padding: 0px 50px;
+
+    white-space: nowrap;
+
+    user-select: none;
+    cursor: pointer;
+
+    &:nth-of-type(2) {
+        padding: 0px 60px;
+    }
+
+    &:hover {
+        color: white;
+        border-color: #1f3d7b;
+        background-color: #1f3d7b;
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        width: 44%;
+    }
+
+    @media only screen and (min-width: $screen-lg) {
+        padding: 0px 20px;
+        white-space: wrap;
+        min-width: 120px;
+        max-width: 120px;
+
+        text-align: center;
+    }
+
+    @media only screen and (min-width: $screen-c) {
+        width: 83%;
+
+        min-width: fit-content;
+        padding: 0px 60px;
+    }
+}
+
+#site-header {
+    display: none !important;
+}
+
+.site-content.clr {
+    padding: 0px;
+}
+
+footer#footer {
+    display: none !important;
+}
+
+// Base Resets
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.yamaha-theme {
+    color: $text-dark;
+    background-color: #ffffff;
+    line-height: 1.6;
+
+    @media only screen and (min-width: $screen-c) {
+        padding-top: 160px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+// Reusable Buttons
+.btn-primary {
+    background-color: $yamaha-blue;
+    color: $text-light;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($yamaha-blue, 10%);
+    }
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: $text-dark;
+    padding: 10px 20px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: $text-dark;
+        background-color: $light-bg;
+    }
+}
+
+body:not(.home) #main #content {
+
+    .header {
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+        left: 0px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        max-width: 100vw;
+
+        box-shadow: 0 0 1rem #555;
+
+        .foldable-menu {
+            position: absolute;
+            bottom: 0px;
+            top: 100%;
+            z-index: 5;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 40px;
+
+            width: 100%;
+            height: 100vh;
+            max-height: 0px;
+            padding: 0px 0px;
+
+            background-color: white;
+
+            transition: all 0.3s ease-in-out;
+            overflow: hidden
+        }
+
+        &__top {
+            display: none;
+
+            width: 100%;
+            background-color: $yamaha-dark-bg;
+            color: $text-light;
+            font-size: 0.85rem;
+            padding: 8px 0;
+
+            @media only screen and (min-width: $screen-lg) {
+                display: block;
+            }
+
+            .header__container {
+                @include container;
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                gap: 20px;
+
+                padding: 6px 0px !important;
+
+                a,
+                a span {
+                    font-size: 1.4rem;
+                    font-family: $yamaha-text;
+                    font-weight: 700;
+                    color: white;
+
+                    transition: all 0.3s ease-in-out;
+
+                    &:first-of-type {
+                        text-transform: uppercase;
+                    }
+
+                    &:hover {
+                        color: $yamaha-hover-blue;
+                    }
+                }
+            }
+        }
+
+        &__bottom {
+            position: relative;
+
+            background-color: #fff;
+
+            width: 100%;
+            max-height: 60px;
+
+            overflow: visible;
+
+            @media only screen and (min-width: $screen-md) {
+                max-height: 90px;
+            }
+
+            @media only screen and (min-width: $screen-lg) {
+                max-height: unset;
+            }
+
+            .header__container {
+                @include container;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 0px !important;
+
+                @media only screen and (max-width: $screen-lg) {
+                    max-width: 100% !important;
+                    margin: 0px !important;
+                }
+
+
+                .navbar {
+                    display: none;
+
+                    @media only screen and (min-width: $screen-lg) {
+                        display: block;
+                    }
+
+                    .nav__list {
+                        .nav__item {
+                            a {
+                                margin-left: 50px;
+                                font-family: $yamaha-noto !important;
+                                font-size: 16px;
+                                text-transform: capitalize !important;
+                                font-weight: 700 !important;
+                                transition: all 0.3s ease-in-out;
+                                white-space: nowrap;
+
+                                &:hover {
+                                    color: $yamaha-hover-blue;
+                                    text-shadow:
+                                        0 0 12px rgba($yamaha-hover-blue, 0.6),
+                                        0 0 24px rgba($yamaha-hover-blue, 0.4);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .header-logo-title {
+                    padding: 0px;
+                    margin: 0px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: space-around;
+
+
+                    @media only screen and (min-width: $screen-md) {
+                        height: 90px;
+                    }
+
+                    @media only screen and (min-width: $screen-lg) {
+                        height: 100%;
+                        justify-content: start;
+                    }
+
+                    .hamburger-menu {
+                        font-size: 28px;
+
+                        @media only screen and (min-width: $screen-lg) {
+                            display: none;
+                        }
+                    }
+
+                    img {
+                        height: 100%;
+
+                        max-height: 60px;
+
+                        @media only screen and (min-width: $screen-md) {
+                            max-height: 90px;
+                        }
+
+                        @media only screen and (min-width: $screen-lg) {
+                            max-height: 110px;
+                        }
+                    }
+
+                    .nav-title,
+                    .nav-title span {
+                        margin: 0px;
+
+                        font-family: $yamaha-noto !important;
+                        font-weight: 700;
+                        font-size: 16px;
+                        text-transform: uppercase;
+
+                        color: $text-dark;
+                        width: fit-content;
+
+                        max-width: 120px;
+
+                        @media only screen and (min-width: $screen-xss) {
+                            max-width: none;
+                        }
+
+                        @media only screen and (min-width: $screen-lg) {
+                            margin-left: 50px;
+                            font-size: 24px;
+                        }
+                    }
+
+                    .nav-title span {
+                        margin: 0px;
+                        display: none;
+
+                        @media only screen and (min-width: 576px) {
+                            display: inline-block;
+                        }
+
+                        @media only screen and (min-width: 992px) {
+                            display: none;
+                        }
+
+                        @media only screen and (min-width: 1200px) {
+                            display: inline-block;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        .navbar .nav__list {
+            display: flex;
+            gap: 20px;
+
+            .nav-link {
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+
+                &.active,
+                &:hover {
+                    color: $yamaha-blue;
+                }
+            }
+        }
+    }
+
+    // Hero Section
+    .hero {
+        margin-top: 60px;
+        position: relative;
+
+        @media only screen and (min-width: $screen-c) {
+            margin-top: 0px;
+        }
+
+        .swiper.hero-swiper {
+            position: relative;
+            height: 100vh;
+            min-height: 800px;
+
+            @media only screen and (min-width: $screen-c) {
+                max-height: 740px;
+            }
+
+            .swiper-slide {
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+
+                width: 100%;
+                height: 100%;
+
+                background-color: black;
+                opacity: 0.3;
+
+                z-index: 3;
+            }
+        }
+
+        &__overlay {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-140%);
+            left: 0px;
+
+            z-index: 99;
+
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            @media only screen and (min-width: $screen-lg) {
+                transform: translateY(-70%);
+            }
+
+            >div {
+                @include container;
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+
+                @media only screen and (min-width: $screen-lg) {
+                    padding-left: 70px !important;
+                }
+            }
+
+
+            .hero__dealer-logo {
+                min-width: 260px;
+                max-width: 260px;
+
+                @media only screen and (min-width: $screen-lg) {
+                    min-width: 300px;
+                    max-width: 300px;
+                }
+            }
+
+            .hero__dealer-name {
+                font-family: $yamaha-noto;
+                font-size: 34px;
+                color: white !important;
+                line-height: 1.2;
+                font-weight: 800 !important;
+                text-transform: uppercase;
+                text-align: center;
+
+                @media only screen and (min-width: 768px) {
+                    body:not(.home) #main #content .hero__overlay .hero__dealer-name {
+                        font-size: 54px;
+                    }
+                }
+
+                body:not(.home) #main #content .hero__overlay .hero__dealer-name span {
+                    font-size: 32px !important;
+                    font-family: "Noto Sans", sans-serif;
+                }
+
+                @media only screen and (min-width: 768px) {
+                    body:not(.home) #main #content .hero__overlay .hero__dealer-name span {
+                        font-size: 59px !important;
+                    }
+                }
+
+                span {
+                    font-size: 32px;
+                    font-family: $yamaha-noto;
+
+                    @media only screen and (min-width: $screen-md) {
+                        font-size: 59px;
+                    }
+                }
+
+                @media only screen and (min-width: $screen-md) {
+                    text-align: start;
+                }
+            }
+
+            .hero__btn {}
+        }
+
+        .form-container {
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 3;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: fit-content;
+
+            background-color: rgba(40, 40, 40, .8);
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                gap: 20px;
+
+                @media only screen and (min-width: $screen-md) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                @media only screen and (min-width: $screen-lg) {
+                    flex-wrap: nowrap;
+                }
+
+                p.form-title {
+                    text-align: center;
+
+                    font-size: 20px;
+
+                    @media only screen and (min-width: $screen-md) {
+                        width: 100%;
+                    }
+
+                    @media only screen and (min-width: $screen-lg) {
+                        font-size: 18px;
+                        text-align: start;
+                        width: fit-content;
+                    }
+
+                    @media only screen and (min-width: $screen-c) {
+                        width: fit-content;
+                        font-size: 36px;
+                        padding-right: 40px;
+                    }
+                }
+            }
+
+            @media only screen and (min-width: $screen-lg) {
+                position: absolute;
+
+            }
+        }
+
+        .form-row {
+            @include container;
+            padding-top: 40px !important;
+            padding-bottom: 40px !important;
+
+            display: flex;
+            justify-content: space-between;
+
+            transition: all ease-in-out 0.2s;
+
+            width: 100%;
+
+            $input-width: 250px;
+
+            .form-title {
+                font-family: $yamaha-noto !important;
+                font-size: 36px;
+                line-height: 1;
+                white-space: nowrap;
+                font-weight: 700;
+                color: white;
+                margin: 0px;
+            }
+
+            .input-item {
+                margin-bottom: 10px;
+                padding: 0px !important;
+                overflow: hidden;
+                background-color: white;
+
+                min-width: $input-width;
+                max-width: $input-width;
+
+                @media (min-width: $screen-xss) {
+                    padding: 0px !important;
+                    margin-bottom: 0px !important;
+                }
+
+                @media (min-width: $screen-md) {
+                    min-width: 27%;
+                    max-width: 27%;
+                }
+
+                @media only screen and (min-width: $screen-lg) {
+                    min-width: 15%;
+                    max-width: 15%;
+                }
+
+                @media only screen and (min-width: $screen-xl) {
+                    min-width: $input-width;
+                    max-width: $input-width;
+                }
+
+                &__cont {
+                    height: 45px;
+                    width: $input-width;
+
+                    @media (min-width: $screen-lg) {
+                        height: 70px;
+                    }
+
+                    label {
+                        width: 100%;
+                        height: 100%;
+
+                        input {
+                            width: 100%;
+                            height: 100%;
+                            border: none !important;
+                            box-shadow: none !important;
+                            font-family: $yamaha-noto;
+                            color: #332f2c;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: normal;
+                            text-transform: capitalize;
+
+                            &::placeholder {
+                                font-family: $yamaha-noto;
+                                color: #332f2c;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                text-transform: capitalize;
+                                font-size: 18px;
+                            }
+
+                            @media (min-width: $screen-lg) {
+                                font-size: 16px;
+
+                                &::placeholder {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .select-item {
+                min-width: $input-width;
+                max-width: $input-width;
+
+                padding: 0px;
+                margin-bottom: 10px;
+                transition: all ease-in-out 0.2s;
+
+                @media (min-width: $screen-xss) {
+                    margin-bottom: 0;
+                }
+
+                @media (min-width: $screen-lg) {
+                    width: auto;
+                }
+
+                @media only screen and (min-width: $screen-lg) {
+                    min-width: 15%;
+                    max-width: 15%;
+                }
+
+                @media only screen and (min-width: $screen-xl) {
+                    min-width: $input-width;
+                    max-width: $input-width;
+                }
+
+                .select-item__cont-options {
+
+                    @media (min-width: $screen-lg) {
+                        width: auto;
+                    }
+                }
+
+                &:first-of-type {
+                    .select-item__cont-selected {
+
+                        @media (min-width: $screen-lg) {
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                &__cont {
+                    font-family: $yamaha-noto !important;
+
+                    position: relative;
+                    transition: all ease-in-out 0.2s;
+
+                    width: $input-width;
+
+                    @media only screen and (min-width: $screen-lg) {
+                        width: 150px;
+                    }
+
+                    @media only screen and (min-width: $screen-xl) {
+                        width: $input-width;
+                    }
+
+                    span {
+                        font-size: 18px !important;
+                        font-family: $yamaha-noto !important;
+                    }
+
+                    &.expanded {
+                        .select-item__cont-selected {
+
+                            span {
+                                color: #b2080e !important;
+                            }
+
+                            &::before {
+                                top: 32%;
+                                transform: rotate(180deg);
+                            }
+                        }
+
+                        .select-item__cont-options {
+                            height: 300px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23);
+                        }
+                    }
+
+                    &-selected {
+                        position: relative;
+                        cursor: pointer;
+                        padding: 10px;
+                        background-color: white;
+                        height: 45px;
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        justify-content: center;
+                        transition: all ease-in-out 0.2s;
+
+                        @media (min-width: $screen-lg) {
+                            border-radius: 0;
+                            padding: 10px 30px;
+                            height: 70px;
+                        }
+
+                        &:hover {
+                            span {
+                                color: #b2080e !important;
+                            }
+
+                            &::before {
+                                top: 32%;
+                                transform: rotate(180deg);
+                            }
+                        }
+
+                        span {
+                            font-family: "Roboto", sans-serif;
+                            color: #332f2c;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: normal;
+                            text-transform: capitalize;
+                            transition: all ease-in-out 0.2s;
+
+                            @media (min-width: $screen-lg) {
+                                font-size: 16px;
+
+                                &::placeholder {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+
+                        &::before {
+                            content: "\f078";
+                            position: absolute;
+                            font-family: "Font Awesome 6 Free";
+                            font-weight: 900;
+                            color: #332f2c;
+                            top: 50%;
+                            right: 15px;
+                            transform: translateY(-50%);
+                            transition: all ease-in-out 0.2s;
+                            pointer-events: none;
+                        }
+                    }
+
+                    &-options {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: flex-start;
+                        margin-top: 10px;
+                        height: 0px;
+                        background-color: white;
+
+                        max-height: 300px;
+                        overflow-y: auto;
+                        position: absolute;
+                        top: 40px;
+                        left: 0;
+                        z-index: 999;
+
+                        transition: all ease-in-out 0.2s;
+
+                        @media (min-width: $screen-lg) {
+                            max-width: 180px;
+                            width: 100% !important;
+                            top: 70px;
+                        }
+
+                        @media (min-width: $screen-c) {
+                            max-width: 260px;
+                        }
+
+                        &::-webkit-scrollbar {
+                            width: 6px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            background: #f1f1f1;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background: $yamaha-blue;
+                            border-radius: 3px;
+                        }
+
+                        &::-webkit-scrollbar-thumb:hover {
+                            background: $yamaha-hover-blue;
+                        }
+
+                        >label {
+                            font-family: "Roboto", sans-serif;
+                            color: black;
+                            border: none;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            text-transform: capitalize !important;
+                            padding: 10px;
+                            width: 100%;
+                            cursor: pointer;
+                            position: relative;
+                            margin-bottom: 0;
+                            max-width: 100%;
+                            word-wrap: break-word;
+                            transition: all ease-in-out 0.2s;
+
+                            &:hover {
+                                background: $yamaha-hover-blue;
+                                color: white;
+                            }
+
+                            input[type="radio"] {
+                                position: absolute;
+                                top: 50%;
+                                left: 0;
+                                transform: translateY(-50%);
+                                opacity: 0;
+
+                                &:checked {
+                                    color: #b2080e !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .cta-submit,
+            .cta-reset {
+                @include form-cta;
+            }
+        }
+
+    }
+
+    // Search Section
+    .search {
+        background-color: $light-bg;
+        padding: 30px 20px;
+
+        &__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        &__heading {
+            font-size: 1.2rem;
+            margin-right: 20px;
+            line-height: 1.2;
+        }
+
+        &__select {
+            padding: 10px;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 150px;
+        }
+    }
+
+    // CTAs Section
+    .ctas {
+        /*  padding: 40px 20px; */
+        background: white;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        &__container {
+            @include container;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+
+            justify-content: center;
+
+            @media only screen and (min-width: $screen-lg) {
+                justify-content: space-between;
+            }
+
+            @media only screen and (min-width: $screen-xl) {
+                flex-wrap: nowrap;
+            }
+        }
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: space-between;
+
+            color: $text-light;
+
+            width: 31%;
+            height: 415px;
+
+            min-width: 280px;
+
+            padding: 80px 50px;
+            background-color: #282828;
+            border-bottom: 1.5rem solid #1f3d7b;
+
+            transition: all 0.3s ease-in-out;
+
+            @media only screen and (min-width: $screen-md) {
+                font-size: 48px;
+                padding: 80px 70px;
+            }
+
+            @media only screen and (min-width: $screen-lg) {
+                width: 45%;
+            }
+
+
+            &:hover {
+                background-color: #000;
+            }
+        }
+
+        &__heading {
+            font-size: 32px;
+            font-family: $yamaha-noto !important;
+            font-weight: 700;
+            line-height: 1;
+            text-transform: uppercase;
+
+            @media only screen and (min-width: $screen-lg) {
+                font-size: 48px;
+            }
+
+            @media only screen and (min-width: $screen-xl) {
+                font-size: 46px;
+            }
+
+            @media only screen and (min-width: $screen-c) {
+                font-size: 48px;
+            }
+        }
+
+        &__subheading {
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: $yamaha-noto !important;
+            white-space: nowrap;
+
+            @media only screen and (min-width: $screen-lg) {
+                font-size: 38px;
+            }
+
+            @media only screen and (min-width: $screen-xl) {
+                font-size: 32px;
+                white-space: nowrap;
+            }
+
+            @media only screen and (min-width: $screen-c) {
+                font-size: 38px;
+            }
+        }
+    }
+
+    /* #region   */
+
+    .featured-inventory-background {
+        .featured-container {
+            @include container;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+
+            a.cta {
+                text-align: center;
+            }
+        }
+
+        /* position: relative;
+        top: -83px; */
+        background-color: transparent;
+
+        @media only screen and (min-width: $screen-lg) {
+            padding: 60px 0px;
+        }
+
+        .container:first-of-type {
+            margin: 0px !important;
+            width: 100% !important;
+        }
+
+
+        .featured-title,
+        .featured-subtitle {
+            font-family: $yamaha-noto !important;
+        }
+
+        .featured-title {
+            word-break: keep-all;
+            overflow-wrap: normal;
+
+            font-size: 56px !important;
+            font-weight: 800 !important;
+            line-height: 1.2;
+            margin: 0;
+            color: black;
+            width: 100%;
+        }
+
+        .featured-subtitle {
+            font-family: $yamaha-noto !important;
+            color: white;
+            font-size: 26px;
+            line-height: 1.2;
+            letter-spacing: 1.4px;
+            font-weight: 500;
+        }
+
+    }
+
+    .featured-inventory.container {
+        width: 1350px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .featured-inventory {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 40px 10px 40px !important;
+        gap: 0px !important;
+
+        max-width: 100% !important;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .featured-inventory__title-container {
+            flex-direction: row;
+        }
+
+        .featured-inventory__title-container h3 {
+            font-size: 70px;
+        }
+    }
+
+    .featured-inventory-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    @media only screen and (min-width: 1700px) {
+        .featured-inventory.container {
+            width: 1670px;
+        }
+
+        .featured-inventory {
+            padding: 50px 50px;
+        }
+
+        .featured-inventory__title-container h3 {
+            font-size: 86px;
+        }
+
+        .featured-inventory__title-container a {
+            font-size: 28px;
+        }
+    }
+
+    //featured modify width here wow!
+    #wpp-manage-inventory-featured-slider {
+        width: 100% !important;
+        background-color: transparent !important;
+        padding-top: 30px;
+
+        @media only screen and (min-width: 992px) {
+            width: 95% !important;
+        }
+
+        @media only screen and (min-width: 992px) {
+            padding: 0px;
+        }
+    }
+
+    .gradient-overlay,
+    .feature-title,
+    .feature-title:after {
+        display: none !important;
+    }
+
+    .wpp-manage-inventory-featured-slider-slide.featured img {
+        border: 0 !important;
+    }
+
+    #wpp-manage-inventory-featured-slider h2 {
+        display: none;
+    }
+
+    .wpp-manage-inventory-featured-slider-slide h3 {
+        color: #1D2442 !important;
+        white-space: wrap !important;
+    }
+
+    .our-price {
+        display: none;
+    }
+
+
+
+    .wpp-manage-inventory-featured-slider-slide.featured img {
+        object-fit: cover !important;
+        border-radius: 20px;
+    }
+
+    #wpp-manage-inventory-featured-slider-content {
+        margin: 0px !important;
+        gap: 40px !important;
+        justify-content: center !important;
+    }
+
+    #wpp-manage-inventory-featured-slider-content .featured {
+        max-width: 380px;
+        min-width: 200px;
+        width: 100% !important;
+    }
+
+    //change quantity of displaying items
+    #wpp-manage-inventory-featured-slider-content .featured:nth-of-type(4) {
+        display: none !important;
+    }
+
+    body.home .wpp-manage-inventory-featured-slider-slide.featured {
+        width: 100% !important;
+    }
+
+    .wpp-manage-inventory-featured-slider-slide {
+        width: 100% !important;
+    }
+
+    body.home {
+        .price-container {
+            min-height: 0px;
+
+            @media only screen and (min-width: 1800px) {
+                min-height: 102px !important;
+            }
+
+            span.price {
+                text-align: center;
+                color: white;
+                margin: 0 !important;
+                font-family: 'Montserrat', sans-serif;
+                padding: 4px 0px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            a {
+                font-family: $yamaha-noto;
+                color: white !important;
+                padding-top: 8px !important;
+                font-weight: 500;
+                font-size: 24px;
+
+                @media only screen and (min-width: 1200px) {
+                    font-size: 22px !important;
+                }
+
+                @media only screen and (min-width: 1500px) {
+                    font-size: 30px !important;
+                }
+
+                @media only screen and (min-width: 1700px) {
+                    font-size: 48px !important;
+                }
+            }
+
+            .call-for-quote {
+                color: white !important;
+            }
+        }
+    }
+
+    .wpp-manage-inventory-featured-slider-slide .view-button {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        padding: 0px !important;
+        border-radius: 30px;
+        background-color: $yamaha-blue !important;
+
+        width: 200px !important;
+        min-width: fit-content !important;
+        max-width: none !important;
+        height: 60px;
+
+        font-weight: 400 !important;
+        font-size: 22px;
+        font-family: $yamaha-noto !important;
+
+        border: 0px !important;
+
+        white-space: nowrap;
+        color: white;
+
+        transition: 0.3s all ease-in-out;
+
+        @media only screen and (min-width: $screen-md) {
+            width: 300px !important;
+        }
+
+        &:hover {
+            color: black;
+            background-color: black !important;
+        }
+    }
+
+    #next-button i,
+    #previous-button i {
+        padding: 10px 15px !important;
+        font-size: 16px !important;
+        background-color: $yamaha-blue;
+
+        transition: all 0.3s ease-in-out;
+
+        @media only screen and (min-width: $screen-lg) {
+            padding: 20px 25px !important;
+        }
+
+        &:hover {
+            background-color: black;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+
+        #previous-button i,
+        #next-button i {
+            font-size: 54px;
+        }
+    }
+
+    .wpp-manage-inventory-featured-slider-slide.featured {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        border-radius: 0px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
+        padding: 0px 0px !important;
+        padding-bottom: 40px !important;
+
+        border: 0.1rem solid #c0c0c0;
+        border-radius: 5px;
+
+
+        @media only screen and (min-width: 1500px) {
+            width: 24% !important;
+        }
+
+        @media only screen and (min-width: 1700px) {
+            width: 28% !important;
+        }
+
+        @media only screen and (min-width: 1700px) {
+            width: 33% !important;
+            max-width: 32% !important;
+        }
+
+        h3 {
+            font-family: $yamaha-noto;
+            font-weight: 700 !important;
+            font-size: 24px !important;
+        }
+
+        h3,
+        span {
+            text-align: center;
+            color: black !important;
+            padding: 0px !important;
+            margin: 0px !important;
+            line-height: 1.2;
+        }
+
+        span.price {
+            font-family: $yamaha-noto !important;
+            padding-top: 8px !important;
+            font-weight: 500;
+            font-size: 30px !important;
+            font-weight: 700;
+        }
+
+        h3 {
+            order: 1;
+
+            color: #1D2442;
+            white-space: wrap !important;
+            max-width: 180px;
+            line-height: 0.9;
+            font-size: 20px;
+
+            @media only screen and (min-width: 992px) {
+                font-size: 24px;
+            }
+
+            @media only screen and (min-width: 1200px) {
+                font-size: 28px;
+                width: auto;
+                white-space: nowrap !important;
+            }
+
+            @media only screen and (min-width: 1500px) {
+                max-width: 280px;
+            }
+
+            @media only screen and (min-width: 1700px) {
+                white-space: wrap !important;
+                font-size: 32px;
+                font-weight: 500;
+                width: fit-content;
+                max-width: 300px;
+                min-height: 87px;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: auto !important;
+            max-height: unset !important;
+            border-radius: 0px;
+        }
+
+    }
+
+
+    .title-price-wrapper span.featured-new-year {
+        font-size: 18px !important;
+        font-weight: 1000;
+        text-transform: capitalize !important;
+    }
+
+    .wpp-manage-inventory-featured-slider-slide.featured img {
+        object-fit: fill !important;
+        background-color: transparent !important;
+
+        @media only screen and (min-width: 500px) {
+            object-fit: contain !important;
+            height: fit-content;
+            max-height: 240px;
+        }
+
+        @media only screen and (min-width: 1200px) {
+            object-fit: fill !important;
+            height: fit-content;
+        }
+
+        @media only screen and (min-width: 1500px) {
+            min-height: 263px;
+        }
+
+        @media only screen and (min-width: 1700px) {
+            object-fit: cover !important;
+            height: 220px;
+            min-height: 338px;
+        }
+    }
+
+    .container {
+        #previous-button {
+            left: -3.8rem !important;
+        }
+
+        #next-button {
+            right: -3.8rem !important;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        #previous-button {
+            right: auto !important;
+            top: 33% !important;
+            border: 0px !important;
+            left: -20px;
+        }
+
+        #next-button {
+            right: -20px !important;
+            top: 33% !important;
+        }
+    }
+
+    @media only screen and (min-width: 1500px) {
+        body.home {
+            .wpp-manage-inventory-featured-slider-slide:nth-of-type(4) {
+                display: block !important;
+            }
+        }
+    }
+
+
+
+    /* #endregion */
+
+
+    .second-hero {
+        @include container;
+
+        @media only screen and (max-width: $screen-lg) {
+            margin: 0px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            object-fit: cover !important;
+            width: 100%;
+        }
+
+        .swiper-slide {
+            position: relative;
+            min-height: 320px;
+            min-width: 100vw;
+
+            @media only screen and (min-width: $screen-lg) {
+                min-height: unset;
+                min-width: unset;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                min-height: 320px;
+            }
+
+            .content-message {
+                position: absolute;
+                top: 47%;
+                transform: translateY(-47%);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                user-select: none;
+
+                width: 100%;
+
+                opacity: 0;
+
+                transition: all 0.3s ease-in-out;
+
+
+                p {
+                    width: 80%;
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.906);
+                    border-radius: 15px;
+                    padding: 50px 30px;
+
+                    max-height: 300px;
+                    overflow: auto;
+
+                    scrollbar-width: thin;
+                    scrollbar-color: #1c75ff transparent;
+
+                    transition: all 0.3s ease-in-out;
+
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: linear-gradient(180deg, #1c75ff, #4aa3ff);
+                        border-radius: 20px;
+                    }
+
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: linear-gradient(180deg, #4aa3ff, #1c75ff);
+                    }
+                }
+            }
+        }
+
+        .swiper-pagination {
+            position: static;
+            background-color: #000;
+            padding: 40px 44px;
+            text-align: end;
+
+            span.swiper-pagination-bullet {
+                width: 1.6rem;
+                height: 1.6rem;
+
+                background-color: white !important;
+                background: white !important;
+                color: white !important;
+                opacity: 1;
+            }
+
+            span.swiper-pagination-bullet-active {
+                background-color: $yamaha-blue !important;
+            }
+        }
+
+        .floating-div {
+            position: absolute;
+            top: 75%;
+            transform: translateY(-75%);
+            right: 40px;
+            z-index: 3;
+
+            display: flex;
+            gap: 20px;
+
+            @media only screen and (min-width: $screen-lg) {
+                right: 100px;
+            }
+
+            a {
+                background-color: black;
+                color: white !important;
+                padding: 10px 40px;
+                border-radius: 40px;
+                font-weight: 700;
+                font-size: 16px;
+
+                transition: all 0.3s ease-in-out;
+                font-family: $yamaha-noto !important;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: #262626;
+                }
+
+
+                @media only screen and (min-width: $screen-lg) {
+                    padding: 15px 70px;
+                    font-size: 20px;
+                    white-space: wrap;
+                }
+            }
+
+            .more-info {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                padding: 10px 20px;
+                border-radius: 100%;
+                background-color: black;
+                color: white;
+                cursor: pointer;
+
+                transition: all 0.3s ease-in-out;
+
+                @media only screen and (min-width: $screen-lg) {
+                    padding: 20px 30px;
+                }
+
+                i {
+                    font-size: 10px;
+                }
+
+                &:hover {
+                    background-color: #262626;
+                }
+            }
+
+        }
+    }
+
+
+    .yamaha-widget {
+        width: 100%;
+        height: 400px;
+        background-color: $yamaha-blue;
+        color: white !important;
+    }
+
+    .map iframe {
+        width: 100%;
+        height: 400px;
+        display: block;
+    }
+
+    // Footer
+    .footer {
+        background-color: $yamaha-dark-bg;
+        color: $text-light;
+
+        &__container {
+            @include container;
+
+            @media only screen and (max-width: $screen-xl) {
+                max-width: 300px !important;
+            }
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+
+            @media only screen and (min-width: $screen-xl) {
+                padding: 30px 90px 50px !important;
+                align-items: start;
+                justify-content: space-between;
+            }
+        }
+
+        .logo-container {
+            margin-bottom: 200px;
+
+            img {}
+        }
+
+        .footer__col:nth-of-type(2) {
+
+            @media only screen and (max-width: $screen-xl) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            @media only screen and (min-width: $screen-xl) {
+                width: fit-content;
+            }
+
+            .footer-title {
+                margin-bottom: 3px;
+                color: white;
+                font-family: $yamaha-noto !important;
+                font-size: 24px;
+                text-transform: uppercase;
+                font-weight: 400 !important;
+
+                text-align: center;
+
+                padding-bottom: 20px;
+                border-bottom: .1rem solid #797979;
+
+                line-height: 1.2;
+
+                margin-bottom: 35px;
+
+                @media only screen and (min-width: $screen-lg) {
+                    text-align: start;
+                    margin-bottom: 15px;
+                }
+            }
+
+            >a {
+                font-family: $yamaha-noto !important;
+                font-size: 18px;
+                text-align: center !important;
+                margin-bottom: 50px;
+                border-bottom: 1px solid $yamaha-blue;
+                padding-bottom: 10px;
+
+                @media only screen and (min-width: $screen-xl) {
+                    white-space: nowrap;
+                    text-align: start;
+                    margin-bottom: 0px;
+                    border-bottom: 0px;
+                    padding-bottom: 0px;
+                }
+
+            }
+
+            >p {
+                display: flex;
+                justify-content: space-between;
+
+                margin: 0px;
+            }
+        }
+
+        h3 {
+            margin-bottom: 3px;
+            color: white;
+            font-family: $yamaha-noto !important;
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 400 !important;
+        }
+
+        ul {
+            margin: 0px;
+
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                margin-bottom: 10px;
+                height: fit-content !important;
+
+                a {
+                    font-family: $yamaha-noto !important;
+                    font-size: 12px;
+                    line-height: 1.2;
+                    text-align: center;
+                }
+
+                a:hover {
+                    color: $yamaha-blue;
+                }
+            }
+        }
+
+        &__bottom {
+            @include container;
+            padding: 20px 0px !important;
+
+            text-align: center;
+            border-top: 1px solid #797979;
+            font-size: 0.85rem;
+            color: #888;
+
+            >p {
+                margin: 0px;
+                font-family: $yamaha-noto !important;
+                color: white;
+                font-size: 12px;
+                text-align: start;
+                font-weight: 400 !important;
+            }
+        }
+    }
+}

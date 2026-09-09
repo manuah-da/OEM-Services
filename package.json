@@ -1,0 +1,18 @@
+{
+  "name": "oem-services-frontend",
+  "version": "0.1.0",
+  "description": "Shared promotion loaders for OEM brand pages and Manufacturer Promotions.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:watch": "node build.mjs --watch",
+    "check": "node scripts/check-build.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "papaparse": "5.4.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

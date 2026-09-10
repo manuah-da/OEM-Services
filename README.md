@@ -13,6 +13,7 @@ is no shared JavaScript between brands.
 ```text
 Brand Pages/CFMoto/script.js
 Brand Pages/Polaris Powersports/script.js
+Brand Pages/Polaris Powersports Canada/script.js
 Brand Pages/Polaris Snowmobile/script.js
 Brand Pages/Polaris Slingshot/script.js
 Brand Pages/Yamaha Powersports/script.js
@@ -43,6 +44,7 @@ The build reads every independent `script.js` and generates:
 ```text
 dist/cfmoto.min.js
 dist/polaris-powersports.min.js
+dist/polaris-powersports-canada.min.js
 dist/polaris-snowmobile.min.js
 dist/polaris-slingshot.min.js
 dist/yamaha-powersports.min.js
@@ -62,6 +64,12 @@ Example CDN URL:
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports.min.js"></script>
+```
+
+Polaris Powersports Canada uses its own independent bundle:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports-canada.min.js"></script>
 ```
 
 The page must continue loading jQuery, PapaParse and Swiper before the CDN

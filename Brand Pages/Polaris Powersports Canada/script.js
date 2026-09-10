@@ -390,7 +390,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   const PROMO_CONFIG = {
     csvUrl:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv",
-    oem: "Polaris Powersports", // must match the OEM column in the sheet
+    oem: "test", // must match the OEM column in the sheet
     inventoryLink:
       "/inventory/?make=Polaris&category=Powersports&condition=New",
     defaultRegion: "USA",
@@ -500,26 +500,42 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
     const currentDomain = promoUtils.normalizeDomain(window.location.hostname);
     const customerRow = rows.slice(CUSTOMER_START_ROW).find(function (row) {
-      return promoUtils.normalizeDomain(row[CUSTOMER_DOMAIN_COLUMN]) === currentDomain;
+      return (
+        promoUtils.normalizeDomain(row[CUSTOMER_DOMAIN_COLUMN]) ===
+        currentDomain
+      );
     });
-    const customerRegion = String(
-      customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : "",
-    ).trim().toUpperCase() || PROMO_CONFIG.defaultRegion;
+    const customerRegion =
+      String(customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : "")
+        .trim()
+        .toUpperCase() || PROMO_CONFIG.defaultRegion;
     const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
 
-    return rows.slice(1).map(function (row) {
-      return headers.reduce(function (promotion, header, index) {
-        const key = String(header || "").trim();
-        if (key) promotion[key] = row[index] == null ? "" : row[index];
-        return promotion;
-      }, {});
-    }).filter(function (promotion) {
-      const oem = String(promotion.OEM || "").trim().toLowerCase();
-      const status = String(promotion.Status || "").trim().toLowerCase();
-      const region = String(promotion.Region || "").trim().toUpperCase();
-      return oem === targetOem && status === "active" &&
-        (region === customerRegion || region === "ALL");
-    });
+    return rows
+      .slice(1)
+      .map(function (row) {
+        return headers.reduce(function (promotion, header, index) {
+          const key = String(header || "").trim();
+          if (key) promotion[key] = row[index] == null ? "" : row[index];
+          return promotion;
+        }, {});
+      })
+      .filter(function (promotion) {
+        const oem = String(promotion.OEM || "")
+          .trim()
+          .toLowerCase();
+        const status = String(promotion.Status || "")
+          .trim()
+          .toLowerCase();
+        const region = String(promotion.Region || "")
+          .trim()
+          .toUpperCase();
+        return (
+          oem === targetOem &&
+          status === "active" &&
+          (region === customerRegion || region === "ALL")
+        );
+      });
   }
 
   // Builds the actual HTML for BOTH the original banners and the new swiper

@@ -9,6 +9,7 @@ const watchMode = process.argv.includes("--watch");
 const entryPoints = {
   cfmoto: path.join(root, "Brand Pages/CFMoto/script.js"),
   "polaris-powersports": path.join(root, "Brand Pages/Polaris Powersports/script.js"),
+  "polaris-powersports-canada": path.join(root, "Brand Pages/Polaris Powersports Canada/script.js"),
   "polaris-snowmobile": path.join(root, "Brand Pages/Polaris Snowmobile/script.js"),
   "polaris-slingshot": path.join(root, "Brand Pages/Polaris Slingshot/script.js"),
   "yamaha-powersports": path.join(root, "Brand Pages/Yamaha Powersports/script.js"),
@@ -35,5 +36,5 @@ if (watchMode) {
   console.log("Watching independent OEM automation scripts...");
 } else {
   await build(options);
-  console.log("Created 6 independent bundles in dist/.");
+  console.log(`Created ${Object.keys(entryPoints).length} independent bundles in dist/.`);
 }

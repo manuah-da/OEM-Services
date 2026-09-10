@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const bundles = [
   "cfmoto.min.js",
   "polaris-powersports.min.js",
+  "polaris-powersports-canada.min.js",
   "polaris-snowmobile.min.js",
   "polaris-slingshot.min.js",
   "yamaha-powersports.min.js",

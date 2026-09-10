@@ -10,7 +10,6 @@ jQuery(document).ready(function ($) {
     csvUrl:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv",
     previewDomain: "", // Optional local testing domain; keep empty in production.
-    defaultRegion: "USA", // Migration fallback until every customer has a region.
     pageSize: 9,
   };
 
@@ -19,7 +18,6 @@ jQuery(document).ready(function ($) {
   const CUSTOMER_START_ROW = 2; // Spreadsheet row 3
   const DOMAIN_COLUMN = 32; // AG
   const CUSTOMER_OEMS_COLUMN = 33; // AH
-  const CUSTOMER_REGION_COLUMN = 34; // AI
 
   const state = {
     customer: null,
@@ -83,14 +81,6 @@ jQuery(document).ready(function ($) {
         .replace(/^https?:\/\//, "")
         .replace(/^www\./, "")
         .split(/[/:?#]/)[0];
-    },
-
-    normalizeRegion: function (value) {
-      const region = utils.normalizeText(value);
-      if (["ca", "can", "canada"].includes(region)) return "CA";
-      if (["us", "usa", "united states"].includes(region)) return "USA";
-      if (["all", "*"].includes(region)) return "ALL";
-      return String(value == null ? "" : value).trim().toUpperCase();
     },
 
     currentDomain: function () {
@@ -400,7 +390,6 @@ jQuery(document).ready(function ($) {
         return {
           domain: utils.normalizeDomain(row[DOMAIN_COLUMN]),
           oems: utils.splitList(row[CUSTOMER_OEMS_COLUMN]),
-          region: utils.normalizeRegion(row[CUSTOMER_REGION_COLUMN]),
         };
       })
       .filter(function (item) {
@@ -417,7 +406,7 @@ jQuery(document).ready(function ($) {
     return promo;
   }
 
-  function normalizePromotion(promo, allowedOemKeys, customerRegion) {
+  function normalizePromotion(promo, allowedOemKeys) {
     const oem = String(promo.OEM || "").trim();
     const title = String(promo.Title || "").trim();
     const startDate = utils.parseDate(promo["Start Date"]);
@@ -428,10 +417,6 @@ jQuery(document).ready(function ($) {
 
     if (utils.normalizeText(promo.Status) !== "active") return null;
     if (!allowedOemKeys.has(utils.normalizeText(oem))) return null;
-    const promotionRegion = utils.normalizeRegion(promo.Region);
-    if (promotionRegion !== customerRegion && promotionRegion !== "ALL") {
-      return null;
-    }
 
     const normalized = {
       ...promo,
@@ -462,7 +447,7 @@ jQuery(document).ready(function ($) {
     return normalized;
   }
 
-  function readPromotions(rows, allowedOems, customerRegion) {
+  function readPromotions(rows, allowedOems) {
     const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
     const allowedOemKeys = new Set(allowedOems.map(utils.normalizeText));
 
@@ -472,7 +457,7 @@ jQuery(document).ready(function ($) {
         return rowToPromotion(headers, row);
       })
       .map(function (promo) {
-        return normalizePromotion(promo, allowedOemKeys, customerRegion);
+        return normalizePromotion(promo, allowedOemKeys);
       })
       .filter(Boolean);
   }
@@ -798,13 +783,7 @@ jQuery(document).ready(function ($) {
             return;
           }
 
-          const customerRegion =
-            state.customer.region || utils.normalizeRegion(config.defaultRegion);
-          state.promotions = readPromotions(
-            rows,
-            state.customer.oems,
-            customerRegion,
-          );
+          state.promotions = readPromotions(rows, state.customer.oems);
           state.filteredPromotions = state.promotions.slice();
           state.currentPage = 1;
           state.isLoading = false;

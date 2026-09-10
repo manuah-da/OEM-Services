@@ -1,5 +1,8 @@
 import { access, stat } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const bundles = [
   "cfmoto.min.js",
   "polaris-powersports.min.js",
@@ -10,11 +13,11 @@ const bundles = [
 ];
 
 for (const bundle of bundles) {
-  const path = new URL(`../dist/${bundle}`, import.meta.url);
-  await access(path);
-  const details = await stat(path);
-  if (!details.size) throw new Error(`${bundle} is empty.`);
+  const file = path.join(root, "dist", bundle);
+  await access(file);
+  if ((await stat(file)).size === 0) {
+    throw new Error(`${bundle} is empty.`);
+  }
 }
 
-console.log(`Verified ${bundles.length} frontend bundles.`);
-
+console.log(`Verified ${bundles.length} independent frontend bundles.`);

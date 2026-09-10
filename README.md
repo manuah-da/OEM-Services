@@ -1,42 +1,44 @@
 # OEM Services Frontend
 
-Public frontend distribution for OEM Brand Pages and Manufacturer Promotions.
-The private OEM Manager and Google Apps Script backend must remain in their
-separate private repository.
+Public CDN scripts for the OEM Brand Pages and Manufacturer Promotions. Each
+bundle contains both the page behavior and its promotion automation. The
+dashboard, Google Apps Script and private credentials belong in the separate
+OEM Manager repository.
 
-## Repository layout
+## Where to make changes
+
+Each page owns all of its JavaScript behavior and promotion automation. There
+is no shared JavaScript between brands.
 
 ```text
-Brand Pages/                    Original working templates and visual assets
-Manufacturer Promotion/        Original Manufacturer Promotions template
-src/core/                       Shared CSV, customer, region and href logic
-src/adapters/                   DOM and Swiper implementations by page family
-src/entries/                    One build entry per CDN bundle
-dist/                           Generated files published through the CDN
-scripts/                        Build verification utilities
+Brand Pages/CFMoto/script.js
+Brand Pages/Polaris Powersports/script.js
+Brand Pages/Polaris Snowmobile/script.js
+Brand Pages/Polaris Slingshot/script.js
+Brand Pages/Yamaha Powersports/script.js
+Manufacturer Promotion/script.js
 ```
 
-The original templates remain untouched during the first migration phase. Once
-a generated bundle is verified against its template, its old inline promotions
-loader can be replaced with the corresponding CDN script.
+Edit the `script.js` next to the page you need to change. It includes that
+page's sliders, navigation, interactive behavior and spreadsheet automation.
+Do not edit files in `dist/`; they are generated files.
 
-## Install and build
+## Generate the CDN files
+
+Install the project once:
 
 ```bash
 npm install
+```
+
+After changing any page script, generate and verify the global distribution:
+
+```bash
 npm run build
 npm run check
 ```
 
-Use watch mode during development:
-
-```bash
-npm run build:watch
-```
-
-Do not edit `dist/` directly. It is generated from `src/`.
-
-## Bundles
+The build reads every independent `script.js` and generates:
 
 ```text
 dist/cfmoto.min.js
@@ -47,49 +49,20 @@ dist/yamaha-powersports.min.js
 dist/manufacturer-promotions.min.js
 ```
 
-Each Brand Page loads only its own bundle. PapaParse is included in the bundle;
-Swiper remains provided by the page because every existing template already
-loads and styles it.
+## Update process
+
+1. Modify only the `script.js` belonging to the affected page, whether the
+   change is visual behavior or promotion automation.
+2. Run `npm run build` and `npm run check`.
+3. Test the corresponding file from `dist/`.
+4. Commit and push both the source script and its generated bundle.
+5. Use a version tag for production or `@main` temporarily during testing.
+
+Example CDN URL:
 
 ```html
-<script>
-  window.OEM_PROMO_CONFIG = {
-    // Optional values for local QA or dealer-specific fallback behavior.
-    previewDomain: "",
-    defaultRegion: "USA"
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/gh/ORGANIZATION/oem-services@production/dist/polaris-powersports.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports.min.js"></script>
 ```
 
-## Region migration
-
-The frontend expects the customer catalog in the published spreadsheet to use:
-
-```text
-AG: Domain
-AH: OEMs
-AI: Region
-```
-
-Until the private manager adds column AI, existing sites fall back to `USA`.
-Supported region values are `USA`, `CA`, and `ALL`. `CAN` and `Canada` are
-normalized to `CA` for compatibility, but the manager should store `CA`.
-
-If a customer exists for the current domain but the page OEM is not included in
-that customer's OEM list, no promotions are rendered.
-
-## Security boundary
-
-This repository is public and must contain read-only browser code only. Never
-commit the Apps Script API token, write endpoints, credentials, `.env` files, or
-administrative dashboard code here.
-
-## Deployment order
-
-1. Build and test locally.
-2. Test one USA dealer with a `previewDomain` override.
-3. Add Region support to the private OEM Manager.
-4. Test one Canadian dealer.
-5. Merge reviewed code into the protected `production` branch.
-6. Replace inline promotion loaders one template family at a time.
+The page must continue loading jQuery, PapaParse and Swiper before the CDN
+automation script, as its original template already does.

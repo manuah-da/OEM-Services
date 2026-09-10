@@ -451,8 +451,15 @@ jQuery(document).ready(function () {
         const PROMO_CONFIG = {
             csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv',
             oem: 'Polaris Snowmobile', // must match the OEM column in the sheet
-            inventoryLink: 'javascript:void(0);' // fallback link if no HREFs match the current domain
+            inventoryLink: 'javascript:void(0);', // fallback link if no HREFs match the current domain
+            defaultRegion: 'USA'
         };
+
+        // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.
+        const PROMOTION_COLUMN_COUNT = 15;
+        const CUSTOMER_START_ROW = 2;
+        const CUSTOMER_DOMAIN_COLUMN = 32;
+        const CUSTOMER_REGION_COLUMN = 34;
 
         const promoUtils = {
             // Split a cell that may hold several links (newline / comma / semicolon separated)
@@ -555,6 +562,32 @@ jQuery(document).ready(function () {
             }
         };
 
+        function getMatchingPromotions(rows) {
+            const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
+            const currentDomain = promoUtils.normalizeDomain(window.location.hostname);
+            const customerRow = rows.slice(CUSTOMER_START_ROW).find(function (row) {
+                return promoUtils.normalizeDomain(row[CUSTOMER_DOMAIN_COLUMN]) === currentDomain;
+            });
+            const customerRegion = String(
+                customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : ''
+            ).trim().toUpperCase() || PROMO_CONFIG.defaultRegion;
+            const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
+
+            return rows.slice(1).map(function (row) {
+                return headers.reduce(function (promotion, header, index) {
+                    const key = String(header || '').trim();
+                    if (key) promotion[key] = row[index] == null ? '' : row[index];
+                    return promotion;
+                }, {});
+            }).filter(function (promotion) {
+                const oem = String(promotion.OEM || '').trim().toLowerCase();
+                const status = String(promotion.Status || '').trim().toLowerCase();
+                const region = String(promotion.Region || '').trim().toUpperCase();
+                return oem === targetOem && status === 'active' &&
+                    (region === customerRegion || region === 'ALL');
+            });
+        }
+
         // Build and inject one promotion banner per matching sheet row
         function renderPromotions(promos) {
             const $cont = $('#promotionsCont');
@@ -646,16 +679,10 @@ jQuery(document).ready(function () {
             }
             Papa.parse(PROMO_CONFIG.csvUrl, {
                 download: true,
-                header: true,
+                header: false,
                 skipEmptyLines: true,
                 complete: function (results) {
-                    // Match OEM + Active, case-insensitive and trimmed
-                    const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
-                    const matching = (results.data || []).filter(function (row) {
-                        const oem = (row.OEM || '').toString().trim().toLowerCase();
-                        const status = (row.Status || '').toString().trim().toLowerCase();
-                        return oem === targetOem && status === 'active';
-                    });
+                    const matching = getMatchingPromotions(results.data || []);
                     renderPromotions(matching);
                     initSwiper();
                 },

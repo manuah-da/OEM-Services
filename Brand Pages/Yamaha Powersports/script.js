@@ -244,8 +244,15 @@ jQuery(document).ready(function () {
         const PROMO_CONFIG = {
             csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv',
             oem: 'Yamaha Powersports', // must match the OEM column in the sheet
-            inventoryLink: '/inventory/?make=Polaris&category=Powersports&condition=New'
+            inventoryLink: '/inventory/?make=Polaris&category=Powersports&condition=New',
+            defaultRegion: 'USA'
         };
+
+        // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.
+        const PROMOTION_COLUMN_COUNT = 15;
+        const CUSTOMER_START_ROW = 2;
+        const CUSTOMER_DOMAIN_COLUMN = 32;
+        const CUSTOMER_REGION_COLUMN = 34;
 
         const promoUtils = {
             splitImageLinks: function (value) {
@@ -302,6 +309,32 @@ jQuery(document).ready(function () {
                 return result;
             }
         };
+
+        function getMatchingPromotions(rows) {
+            const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
+            const currentDomain = promoUtils.normalizeDomain(window.location.hostname);
+            const customerRow = rows.slice(CUSTOMER_START_ROW).find(function (row) {
+                return promoUtils.normalizeDomain(row[CUSTOMER_DOMAIN_COLUMN]) === currentDomain;
+            });
+            const customerRegion = String(
+                customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : ''
+            ).trim().toUpperCase() || PROMO_CONFIG.defaultRegion;
+            const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
+
+            return rows.slice(1).map(function (row) {
+                return headers.reduce(function (promotion, header, index) {
+                    const key = String(header || '').trim();
+                    if (key) promotion[key] = row[index] == null ? '' : row[index];
+                    return promotion;
+                }, {});
+            }).filter(function (promotion) {
+                const oem = String(promotion.OEM || '').trim().toLowerCase();
+                const status = String(promotion.Status || '').trim().toLowerCase();
+                const region = String(promotion.Region || '').trim().toUpperCase();
+                return oem === targetOem && status === 'active' &&
+                    (region === customerRegion || region === 'ALL');
+            });
+        }
 
         // Builds the actual HTML for BOTH the original banners and the new swiper
         function renderPromotions(promos) {
@@ -416,16 +449,10 @@ jQuery(document).ready(function () {
 
             Papa.parse(PROMO_CONFIG.csvUrl, {
                 download: true,
-                header: true,
+                header: false,
                 skipEmptyLines: true,
                 complete: function (results) {
-                    const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
-
-                    let matching = (results.data || []).filter(function (row) {
-                        const oem = (row.OEM || '').toString().trim().toLowerCase();
-                        const status = (row.Status || '').toString().trim().toLowerCase();
-                        return oem === targetOem && status === 'active';
-                    });
+                    let matching = getMatchingPromotions(results.data || []);
 
                     // Sort ascending by Carousel position
                     matching.sort(function (a, b) {

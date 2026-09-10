@@ -66,3 +66,10 @@ Example CDN URL:
 
 The page must continue loading jQuery, PapaParse and Swiper before the CDN
 automation script, as its original template already does.
+
+## Brand Page regions
+
+Brand Pages resolve the current domain against the customer catalog (`AG`) and
+read its region from `AI`. Customer and promotion regions must use the exact
+codes `USA` or `CAN`; promotions marked `ALL` apply to both countries. An empty
+customer region temporarily falls back to `USA`.

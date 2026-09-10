@@ -313,8 +313,15 @@ jQuery(function ($) {
         var promotionConfig = {
             csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv',
             oem: 'CFMoto',
-            inventoryLink: '/inventory'
+            inventoryLink: '/inventory',
+            defaultRegion: 'USA'
         };
+
+        // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.
+        var PROMOTION_COLUMN_COUNT = 15;
+        var CUSTOMER_START_ROW = 2;
+        var CUSTOMER_DOMAIN_COLUMN = 32;
+        var CUSTOMER_REGION_COLUMN = 34;
         var $promotionSection = $('.cfmoto-current-promotions');
         var $promotionSlider = $('.cfmoto-current-promotions__slider');
         var $promotionWrapper = $promotionSlider.find('.swiper-wrapper');
@@ -356,6 +363,33 @@ jQuery(function ($) {
                     .split('/')[0]
                     .trim();
             }
+        }
+
+        function getMatchingPromotions(rows) {
+            var headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
+            var currentDomain = normalizePromoDomain(window.location.hostname);
+            var customerRow = rows.slice(CUSTOMER_START_ROW).filter(function (row) {
+                return normalizePromoDomain(row[CUSTOMER_DOMAIN_COLUMN]) === currentDomain;
+            })[0];
+            var customerRegion = String(
+                customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : ''
+            ).trim().toUpperCase() || promotionConfig.defaultRegion;
+            var targetOem = normalizePromoOem(promotionConfig.oem);
+
+            return rows.slice(1).map(function (row) {
+                return headers.reduce(function (promotion, header, index) {
+                    var key = String(header || '').trim();
+                    if (key) promotion[key] = row[index] == null ? '' : row[index];
+                    return promotion;
+                }, {});
+            }).filter(function (promotion) {
+                var status = String(promotion.Status || '').trim().toLowerCase();
+                var region = String(promotion.Region || '').trim().toUpperCase();
+
+                return normalizePromoOem(promotion.OEM) === targetOem &&
+                    status === 'active' &&
+                    (region === customerRegion || region === 'ALL');
+            });
         }
 
         // Read the domain-specific and wildcard links saved by the dashboard.
@@ -582,15 +616,10 @@ jQuery(function ($) {
 
             Papa.parse(promotionConfig.csvUrl, {
                 download: true,
-                header: true,
+                header: false,
                 skipEmptyLines: true,
                 complete: function (results) {
-                    var targetOem = normalizePromoOem(promotionConfig.oem);
-                    var promotions = (results.data || []).filter(function (row) {
-                        var status = String(row.Status || '').trim().toLowerCase();
-
-                        return normalizePromoOem(row.OEM) === targetOem && status === 'active';
-                    });
+                    var promotions = getMatchingPromotions(results.data || []);
 
                     promotions.sort(function (firstPromo, secondPromo) {
                         var firstPosition = parseInt(firstPromo['Carousel position'], 10);

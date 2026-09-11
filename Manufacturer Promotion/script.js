@@ -380,6 +380,43 @@ jQuery(document).ready(function ($) {
   }
 
   /* --------------------------------------------------------------------------
+     Coupon image modal
+     -------------------------------------------------------------------------- */
+
+  const $couponModal = $page.find(".oem-mp__coupon-modal");
+  const $couponImage = $couponModal.find(".oem-mp__coupon-image");
+  const $couponClose = $couponModal.find(".oem-mp__coupon-close");
+  let $activeCouponButton = null;
+
+  function openCouponModal($button) {
+    const image = $button.attr("data-coupon-src");
+    const title = $button.attr("data-coupon-title") || "Promotion";
+    if (!image) return;
+
+    if ($activeTermsButton) closePopover(false);
+    $activeCouponButton = $button.attr("aria-expanded", "true");
+    $couponImage.attr({ src: image, alt: `Coupon for ${title}` });
+    $couponModal.addClass("is-open").attr("aria-hidden", "false");
+    $("body").addClass("oem-mp--coupon-open");
+
+    requestAnimationFrame(function () {
+      $couponClose.trigger("focus");
+    });
+  }
+
+  function closeCouponModal(restoreFocus) {
+    if (!$couponModal.hasClass("is-open")) return;
+    const $previousButton = $activeCouponButton;
+
+    $couponModal.removeClass("is-open").attr("aria-hidden", "true");
+    $("body").removeClass("oem-mp--coupon-open");
+    $couponImage.attr({ src: "", alt: "" });
+    if ($previousButton) $previousButton.attr("aria-expanded", "false");
+    $activeCouponButton = null;
+    if (restoreFocus && $previousButton) $previousButton.trigger("focus");
+  }
+
+  /* --------------------------------------------------------------------------
      CSV parsing and promotion normalization
      -------------------------------------------------------------------------- */
 
@@ -512,10 +549,30 @@ jQuery(document).ready(function ($) {
 
   function couponButtonMarkup(promo) {
     return `
-      <a class="oem-mp__coupon-button" href="${utils.escapeHtml(promo.image)}"
-        target="_blank" rel="noopener noreferrer" aria-label="View coupon for ${utils.escapeHtml(promo.Title)}">
+      <button class="oem-mp__coupon-button" type="button"
+        data-coupon-src="${utils.escapeHtml(promo.image)}"
+        data-coupon-title="${utils.escapeHtml(promo.Title)}"
+        aria-controls="promotion-coupon-modal" aria-haspopup="dialog" aria-expanded="false"
+        aria-label="View coupon for ${utils.escapeHtml(promo.Title)}">
         View Coupon
-      </a>`;
+      </button>`;
+  }
+
+  function termsMarkup(promo, featured) {
+    const disabled = promo.terms ? "" : " disabled aria-disabled=\"true\"";
+    const modifier = featured ? " oem-mp__terms-button--featured" : "";
+    const iconColor = featured ? "#FBFBFD" : "#1E1E1E";
+    const template = promo.terms
+      ? `<template class="oem-mp__terms-template">${utils.escapeHtml(promo.terms)}</template>`
+      : "";
+
+    return `
+      <button class="oem-mp__terms-button${modifier}" type="button"
+        aria-haspopup="dialog" aria-expanded="false"${disabled}>
+        ${termsIcon(iconColor)}
+        <span>Terms &amp; Conditions</span>
+      </button>
+      ${template}`;
   }
 
   function featuredCardMarkup(promo) {
@@ -529,12 +586,7 @@ jQuery(document).ready(function ($) {
           <h3 class="oem-mp__featured-title">${utils.escapeHtml(promo.Title)}</h3>
           ${promo.Content ? `<p class="oem-mp__featured-description">${utils.escapeHtml(promo.Content)}</p>` : ""}
         </div>
-        <button class="oem-mp__terms-button oem-mp__terms-button--featured" type="button"
-          aria-haspopup="dialog" aria-expanded="false">
-          ${termsIcon("#FBFBFD")}
-          <span>Terms &amp; Conditions</span>
-        </button>
-        <template class="oem-mp__terms-template">${utils.escapeHtml(promo.terms)}</template>
+        ${termsMarkup(promo, true)}
       </article>`;
   }
 
@@ -548,13 +600,9 @@ jQuery(document).ready(function ($) {
           ${promo.Content ? `<p class="oem-mp__card-description">${utils.escapeHtml(promo.Content)}</p>` : ""}
         </div>
         <footer class="oem-mp__card-footer">
-          <button class="oem-mp__terms-button" type="button" aria-haspopup="dialog" aria-expanded="false">
-            ${termsIcon("#1E1E1E")}
-            <span>Terms &amp; Conditions</span>
-          </button>
+          ${termsMarkup(promo, false)}
           <time class="oem-mp__end-date" datetime="${utils.toIsoDate(promo.endDate)}">End Date: ${utils.formatDate(promo.endDate)}</time>
         </footer>
-        <template class="oem-mp__terms-template">${utils.escapeHtml(promo.terms)}</template>
       </article>`;
   }
 
@@ -917,6 +965,7 @@ jQuery(document).ready(function ($) {
   });
 
   $page.on("click", ".oem-mp__terms-button", function () {
+    if ($(this).prop("disabled")) return;
     openPopover($(this));
   });
 
@@ -930,6 +979,14 @@ jQuery(document).ready(function ($) {
     requestAnimationFrame(positionPopover);
   });
 
+  $page.on("click", ".oem-mp__coupon-button", function () {
+    openCouponModal($(this));
+  });
+
+  $page.on("click", "[data-coupon-close]", function () {
+    closeCouponModal(true);
+  });
+
   $(document).on("click.oemPromotions", function (event) {
     const $target = $(event.target);
     if (!$target.closest(".oem-mp__select-control").length) closeDropdowns();
@@ -941,6 +998,10 @@ jQuery(document).ready(function ($) {
 
   $(document).on("keydown.oemPromotions", function (event) {
     if (event.key !== "Escape") return;
+    if ($couponModal.hasClass("is-open")) {
+      closeCouponModal(true);
+      return;
+    }
     const $openDropdown = $page.find(".oem-mp__select-control.is-open");
     if ($openDropdown.length) closeDropdown($openDropdown, true);
     if ($activeTermsButton) closePopover(true);

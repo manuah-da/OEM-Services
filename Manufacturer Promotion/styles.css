@@ -205,13 +205,14 @@ div#wpadminbar {
   align-items: center;
   justify-content: center;
   min-height: 38px;
-  padding: 8px 16px;
-  border: 1px solid #FBFBFD;
+  padding: 3px 10px;
+  border: 1px solid #acee01;
   border-radius: 5px;
-  background: rgba(30, 30, 30, 0.9) !important;
-  color: #FBFBFD !important;
+  background: rgba(30, 30, 30, 0.5) !important;
+  color: #acee01 !important;
   font-size: 16px !important;
   font-weight: 700;
+  font-family: inherit;
   line-height: 1.2;
   text-decoration: none;
   opacity: 0;
@@ -219,6 +220,7 @@ div#wpadminbar {
   transform: translateY(-8px);
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease, background-color 0.2s ease;
   pointer-events: none;
+  cursor: pointer;
 }
 .oem-mp__featured-card:hover .oem-mp__coupon-button, .oem-mp__featured-card:focus-within .oem-mp__coupon-button, .oem-mp__card:hover .oem-mp__coupon-button, .oem-mp__card:focus-within .oem-mp__coupon-button {
   opacity: 1;
@@ -230,6 +232,81 @@ div#wpadminbar {
   background: #1E1E1E !important;
   color: #ACEE01 !important;
   text-decoration: none;
+}
+.oem-mp__coupon-modal {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+}
+.oem-mp__coupon-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.oem-mp__coupon-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.82) !important;
+  cursor: pointer;
+}
+.oem-mp__coupon-dialog {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  max-height: calc(100vh - 60px);
+  padding: 50px 25px 25px;
+  border-radius: 8px;
+  background: #FBFBFD !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+}
+.oem-mp__coupon-modal.is-open .oem-mp__coupon-dialog {
+  transform: scale(1);
+}
+.oem-mp__coupon-image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 135px);
+  object-fit: contain;
+}
+.oem-mp__coupon-close {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #1E1E1E !important;
+  color: #FBFBFD !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.oem-mp__coupon-close:hover, .oem-mp__coupon-close:focus-visible {
+  background: #ACEE01 !important;
+  color: #1E1E1E !important;
 }
 .oem-mp__featured-overlay {
   position: absolute;
@@ -731,6 +808,15 @@ div#wpadminbar {
   height: 16px;
   flex: 0 0 16px;
 }
+.oem-mp__terms-button:disabled, .oem-mp__terms-button.is-disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+.oem-mp__featured-card:hover .oem-mp__terms-button--featured:disabled, .oem-mp__featured-card:focus-within .oem-mp__terms-button--featured:disabled {
+  opacity: 0.38;
+  pointer-events: auto;
+}
 .oem-mp__terms-popover {
   position: fixed;
   z-index: 1000;
@@ -769,7 +855,7 @@ div#wpadminbar {
   pointer-events: auto;
 }
 .oem-mp__terms-popover.is-expanded {
-  width: 830px;
+  width: 560px;
 }
 .oem-mp__terms-copy {
   width: 100%;
@@ -783,13 +869,16 @@ div#wpadminbar {
   line-height: normal;
   letter-spacing: -0.96px;
   overflow-wrap: anywhere;
-  text-align: center;
+  text-align: justify;
 }
 .oem-mp__terms-popover.is-expanded .oem-mp__terms-copy {
-  max-width: 721px;
-  max-height: calc(100vh - 70px);
+  max-width: 100%;
+  max-height: 320px;
+  min-height: 0;
+  padding-right: 8px;
   overflow-x: hidden;
   overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 .oem-mp__terms-more, .oem-mp__terms-close {
   border: 0;
@@ -972,6 +1061,16 @@ div#wpadminbar {
   }
 }
 @media (max-width: 575px) {
+  .oem-mp__coupon-modal {
+    padding: 15px;
+  }
+  .oem-mp__coupon-dialog {
+    max-height: calc(100vh - 30px);
+    padding: 45px 15px 15px;
+  }
+  .oem-mp__coupon-image {
+    max-height: calc(100vh - 90px);
+  }
   .oem-mp__title {
     letter-spacing: -1.2px;
   }
@@ -1004,4 +1103,8 @@ div#wpadminbar {
     justify-content: center;
     margin-top: 50px;
   }
+}
+
+body.oem-mp--coupon-open {
+  overflow: hidden;
 }

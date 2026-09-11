@@ -1,115 +1,117 @@
 # OEM Services Frontend
 
-Public CDN scripts for the OEM Brand Pages and Manufacturer Promotions. Each
-bundle contains both the page behavior and its promotion automation. The
-dashboard, Google Apps Script and private credentials belong in the separate
-OEM Manager repository.
+Public CDN scripts for OEM Brand Pages and Manufacturer Promotions. Each
+bundle includes the page behavior and spreadsheet automation.
 
-## Where to make changes
+## Make and publish changes
 
-Each page owns all of its JavaScript behavior and promotion automation. There
-is no shared JavaScript between brands.
-
-```text
-Brand Pages/CFMoto/script.js
-Brand Pages/Polaris Powersports/script.js
-Brand Pages/Polaris Powersports Canada/script.js
-Brand Pages/Polaris Snowmobile/script.js
-Brand Pages/Polaris Slingshot/script.js
-Brand Pages/Yamaha Powersports/script.js
-Manufacturer Promotion/script.js
-```
-
-Edit the `script.js` next to the page you need to change. It includes that
-page's sliders, navigation, interactive behavior and spreadsheet automation.
-Do not edit files in `dist/`; they are generated files.
-
-## Generate the CDN files
-
-Install the project once:
+Edit the page's `script.js`; never edit `dist/` manually.
 
 ```bash
 npm install
-```
-
-After changing any page script, generate and verify the global distribution:
-
-```bash
 npm run build
 npm run check
 ```
 
-The build reads every independent `script.js` and generates:
+Commit the source and generated bundle, push the branch, and merge it into
+`main`.
 
-```text
-dist/cfmoto.min.js
-dist/polaris-powersports.min.js
-dist/polaris-powersports-canada.min.js
-dist/polaris-snowmobile.min.js
-dist/polaris-slingshot.min.js
-dist/yamaha-powersports.min.js
-dist/manufacturer-promotions.min.js
-```
+## Site installation
 
-## Update process
-
-1. Modify only the `script.js` belonging to the affected page, whether the
-   change is visual behavior or promotion automation.
-2. Run `npm run build` and `npm run check`.
-3. Test the corresponding file from `dist/`.
-4. Commit and push both the source script and its generated bundle.
-5. Use a version tag for production or `@main` temporarily during testing.
-
-## Available CDN URLs
+Keep the page's complete HTML and CSS. Load the following tags in the displayed
+order. Omit jQuery or Font Awesome only when the site already provides them.
 
 ### CFMoto
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the CFMoto page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/cfmoto.min.js"></script>
 ```
 
 ### Polaris Powersports
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the Polaris page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports.min.js"></script>
 ```
 
 ### Polaris Powersports Canada
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the Polaris page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports-canada.min.js"></script>
 ```
 
 ### Polaris Snowmobile
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the Polaris page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-snowmobile.min.js"></script>
 ```
 
 ### Polaris Slingshot
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the Polaris page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-slingshot.min.js"></script>
 ```
 
 ### Yamaha Powersports
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- Keep the Yamaha page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/yamaha-powersports.min.js"></script>
 ```
 
 ### Manufacturer Promotions
 
+Requires the HTML from `Manufacturer Promotion/index.html` and its compiled
+`Manufacturer Promotion/styles.css`.
+
 ```html
+<!-- Load the Manufacturer Promotions CSS before these scripts. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/manufacturer-promotions.min.js"></script>
 ```
 
-The page must continue loading jQuery, PapaParse and Swiper before the CDN
-automation script, as its original template already does.
+## Regions
 
-## Brand Page regions
-
-Brand Pages resolve the current domain against the customer catalog (`AG`) and
-read its region from `AI`. Customer and promotion regions must use the exact
-codes `USA` or `CAN`; promotions marked `ALL` apply to both countries. An empty
-customer region temporarily falls back to `USA`.
+Brand Pages resolve the current domain from customer column `AG` and its region
+from `AI`. Use `USA` or `CAN`; promotions with `ALL` apply to both regions.

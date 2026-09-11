@@ -60,16 +60,48 @@ dist/manufacturer-promotions.min.js
 4. Commit and push both the source script and its generated bundle.
 5. Use a version tag for production or `@main` temporarily during testing.
 
-Example CDN URL:
+## Available CDN URLs
+
+### CFMoto
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/cfmoto.min.js"></script>
+```
+
+### Polaris Powersports
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports.min.js"></script>
 ```
 
-Polaris Powersports Canada uses its own independent bundle:
+### Polaris Powersports Canada
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports-canada.min.js"></script>
+```
+
+### Polaris Snowmobile
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-snowmobile.min.js"></script>
+```
+
+### Polaris Slingshot
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-slingshot.min.js"></script>
+```
+
+### Yamaha Powersports
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/yamaha-powersports.min.js"></script>
+```
+
+### Manufacturer Promotions
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/manufacturer-promotions.min.js"></script>
 ```
 
 The page must continue loading jQuery, PapaParse and Swiper before the CDN

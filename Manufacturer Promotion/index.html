@@ -140,6 +140,23 @@
             <p class="oem-mp__terms-copy"></p>
             <button class="oem-mp__terms-more" type="button" aria-expanded="false">See More...</button>
         </aside>
+
+        <div class="oem-mp__coupon-modal" id="promotion-coupon-modal" role="dialog" aria-modal="true"
+            aria-labelledby="promotion-coupon-title" aria-hidden="true">
+            <button class="oem-mp__coupon-backdrop" type="button" data-coupon-close
+                aria-label="Close coupon preview"></button>
+            <div class="oem-mp__coupon-dialog">
+                <h2 class="oem-mp__visually-hidden" id="promotion-coupon-title">Promotion coupon preview</h2>
+                <button class="oem-mp__coupon-close" type="button" data-coupon-close aria-label="Close coupon preview">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" focusable="false">
+                        <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        </path>
+                    </svg>
+                </button>
+                <img class="oem-mp__coupon-image" src="" alt="">
+            </div>
+        </div>
     </div>
 </main>
 

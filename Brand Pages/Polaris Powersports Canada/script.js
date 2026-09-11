@@ -390,10 +390,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   const PROMO_CONFIG = {
     csvUrl:
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv",
-    oem: "test", // must match the OEM column in the sheet
+    oem: "Polaris Powersports", // must match the OEM column in the sheet
     inventoryLink:
       "/inventory/?make=Polaris&category=Powersports&condition=New",
-    defaultRegion: "USA",
+    defaultRegion: "CAN",
   };
 
   // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.

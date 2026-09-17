@@ -450,6 +450,20 @@ jQuery(document).ready(function () {
             const infoEl = card.find('.js-product-info');
             const buttons = card.find('.js-version-selectors button');
 
+            // Reuse the static image directory so each WordPress site's upload month stays correct.
+            const staticImageSrc = imageEl.attr('src') || '';
+            const lastDirectorySlash = staticImageSrc.lastIndexOf('/');
+            const imageDirectory = lastDirectorySlash >= 0
+                ? staticImageSrc.slice(0, lastDirectorySlash + 1)
+                : '';
+
+            function resolveProductImage(imagePath) {
+                const imageFile = String(imagePath || '').split('/').pop();
+                return imageDirectory && imageFile
+                    ? imageDirectory + imageFile
+                    : imagePath;
+            }
+
             imageEl.on('load', function () {
                 loaderEl.hide();
                 imageEl.removeClass('is-loading');
@@ -465,18 +479,15 @@ jQuery(document).ready(function () {
                 const data = productVariations[variantKey];
                 if (!data) return;
 
-                if (imageEl.attr('src') !== data.image) {
+                const imageSrc = resolveProductImage(data.image);
+
+                if (imageEl.attr('src') !== imageSrc) {
                     loaderEl.show();
                     imageEl.addClass('is-loading');
-
-                    imageEl.attr({
-                        'src': data.image,
-                        'alt': data.title
-                    });
                 }
 
                 imageEl.attr({
-                    'src': data.image,
+                    'src': imageSrc,
                     'alt': data.title
                 });
 

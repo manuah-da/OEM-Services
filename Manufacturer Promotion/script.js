@@ -11,6 +11,8 @@ jQuery(document).ready(function ($) {
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv",
     previewDomain: "", // Optional local testing domain; keep empty in production.
     pageSize: 9,
+    featuredLimit: 6,
+    defaultRegion: "USA",
   };
 
   // Fixed spreadsheet layout managed by the OEM Manager dashboard.
@@ -18,6 +20,8 @@ jQuery(document).ready(function ($) {
   const CUSTOMER_START_ROW = 2; // Spreadsheet row 3
   const DOMAIN_COLUMN = 32; // AG
   const CUSTOMER_OEMS_COLUMN = 33; // AH
+  const CUSTOMER_REGION_COLUMN = 34; // AI
+  const CUSTOMER_PREFERENCES_COLUMN = 35; // AJ
 
   const state = {
     customer: null,
@@ -427,6 +431,13 @@ jQuery(document).ready(function ($) {
         return {
           domain: utils.normalizeDomain(row[DOMAIN_COLUMN]),
           oems: utils.splitList(row[CUSTOMER_OEMS_COLUMN]),
+          region:
+            String(row[CUSTOMER_REGION_COLUMN] || "")
+              .trim()
+              .toUpperCase() || config.defaultRegion,
+          preferences: utils
+            .splitList(row[CUSTOMER_PREFERENCES_COLUMN])
+            .slice(0, config.featuredLimit),
         };
       })
       .filter(function (item) {
@@ -443,8 +454,9 @@ jQuery(document).ready(function ($) {
     return promo;
   }
 
-  function normalizePromotion(promo, allowedOemKeys) {
+  function normalizePromotion(promo, allowedOemKeys, customerRegion) {
     const oem = String(promo.OEM || "").trim();
+    const region = String(promo.Region || "").trim().toUpperCase();
     const title = String(promo.Title || "").trim();
     const startDate = utils.parseDate(promo["Start Date"]);
     const endDate = utils.parseDate(promo["End Date"]);
@@ -454,6 +466,7 @@ jQuery(document).ready(function ($) {
 
     if (utils.normalizeText(promo.Status) !== "active") return null;
     if (!allowedOemKeys.has(utils.normalizeText(oem))) return null;
+    if (region !== customerRegion && region !== "ALL") return null;
 
     const normalized = {
       ...promo,
@@ -484,9 +497,9 @@ jQuery(document).ready(function ($) {
     return normalized;
   }
 
-  function readPromotions(rows, allowedOems) {
+  function readPromotions(rows, customer) {
     const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
-    const allowedOemKeys = new Set(allowedOems.map(utils.normalizeText));
+    const allowedOemKeys = new Set(customer.oems.map(utils.normalizeText));
 
     return rows
       .slice(1)
@@ -494,7 +507,7 @@ jQuery(document).ready(function ($) {
         return rowToPromotion(headers, row);
       })
       .map(function (promo) {
-        return normalizePromotion(promo, allowedOemKeys);
+        return normalizePromotion(promo, allowedOemKeys, customer.region);
       })
       .filter(Boolean);
   }
@@ -614,12 +627,41 @@ jQuery(document).ready(function ($) {
       </div>`;
   }
 
-  function renderFeatured() {
-    const featured = state.promotions
+  // Added 11092026: keep one featured promotion per OEM and honor AJ priority.
+  function selectFeaturedPromotions() {
+    const featuredByOem = new Map();
+
+    state.promotions
       .filter(function (promo) {
         return promo.featured;
       })
-      .sort(compareByPosition);
+      .sort(compareByPosition)
+      .forEach(function (promo) {
+        const oemKey = utils.normalizeText(promo.OEM);
+        if (oemKey && !featuredByOem.has(oemKey)) {
+          featuredByOem.set(oemKey, promo);
+        }
+      });
+
+    const preferences = (state.customer.preferences || [])
+      .map(utils.normalizeText)
+      .filter(Boolean)
+      .slice(0, config.featuredLimit);
+
+    if (preferences.length) {
+      return preferences
+        .map(function (oemKey) {
+          return featuredByOem.get(oemKey);
+        })
+        .filter(Boolean)
+        .slice(0, config.featuredLimit);
+    }
+
+    return Array.from(featuredByOem.values()).slice(0, config.featuredLimit);
+  }
+
+  function renderFeatured() {
+    const featured = selectFeaturedPromotions();
 
     const hasFeatured = featured.length > 0;
     $dom.featured.prop("hidden", !hasFeatured).attr("aria-busy", "false");
@@ -831,7 +873,7 @@ jQuery(document).ready(function ($) {
             return;
           }
 
-          state.promotions = readPromotions(rows, state.customer.oems);
+          state.promotions = readPromotions(rows, state.customer);
           state.filteredPromotions = state.promotions.slice();
           state.currentPage = 1;
           state.isLoading = false;

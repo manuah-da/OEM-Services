@@ -113,5 +113,8 @@ Requires the HTML from `Manufacturer Promotion/index.html` and its compiled
 
 ## Regions
 
-Brand Pages resolve the current domain from customer column `AG` and its region
-from `AI`. Use `USA` or `CAN`; promotions with `ALL` apply to both regions.
+Brand Pages and Manufacturer Promotions resolve the current domain from `AG`
+and its region from `AI`. Use `USA` or `CAN`; promotions with `ALL` apply to both.
+
+Manufacturer Promotions reads the ordered OEM preferences from `AJ`, renders one
+featured promotion per preferred OEM, and shows at most six featured cards.

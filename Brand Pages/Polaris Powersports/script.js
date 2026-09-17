@@ -536,7 +536,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       const url = promoUtils.getDrivePreviewUrl(rawUrl);
       if (!url) return;
 
-      const title = (promo.Title || "Polaris Snowmobile Promotion").toString();
+      const title = (promo.Title || "Polaris Powersports Promotion").toString();
       const terms = (promo["Terms & Conditions"] || "").toString().trim();
       const promoHref = promoUtils.resolvePromoHref(promo);
       banners.push({

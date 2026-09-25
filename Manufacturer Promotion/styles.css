@@ -4,6 +4,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400..800;1,400..800&display=swap");
 
+/* Client colors: change primary to match the client's brand. */
+:root {
+  --oem-mp-primary: #CC0000;
+  --oem-mp-on-primary: #ffffff;
+  --oem-mp-coupon-text: #ffffff;
+  --oem-mp-heading-color: #000000;
+}
+
 html {
   margin-top: 0 !important;
 }
@@ -15,17 +23,17 @@ html {
 @keyframes pulse {
   0% {
     transform: scale(0.98);
-    filter: drop-shadow(0 0 0 #acee01);
+    filter: drop-shadow(0 0 0 var(--oem-mp-primary));
   }
 
   70% {
     transform: scale(1);
-    filter: drop-shadow(0 0 10px rgba(172, 238, 1, 0.2));
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--oem-mp-primary) 20%, transparent));
   }
 
   100% {
     transform: scale(0.99);
-    filter: drop-shadow(0 0 0 rgba(172, 238, 1, 0.2));
+    filter: drop-shadow(0 0 0 color-mix(in srgb, var(--oem-mp-primary) 20%, transparent));
   }
 }
 
@@ -161,7 +169,7 @@ html {
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
-  scrollbar-color: #ACEE01 #E5E7EB !important;
+  scrollbar-color: var(--oem-mp-primary) #E5E7EB !important;
   scrollbar-width: thin;
   overscroll-behavior-inline: contain;
   -webkit-overflow-scrolling: touch;
@@ -178,7 +186,7 @@ html {
 
 .oem-mp__featured-grid::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: #ACEE01 !important;
+  background: var(--oem-mp-primary) !important;
 }
 
 .oem-mp__featured-card {
@@ -242,10 +250,10 @@ html {
   justify-content: center;
   min-height: 38px;
   padding: 3px 10px;
-  border: 1px solid #acee01;
+  border: 1px solid var(--oem-mp-coupon-text);
   border-radius: 5px;
   background: rgba(30, 30, 30, 0.5) !important;
-  color: #acee01 !important;
+  color: var(--oem-mp-coupon-text) !important;
   font-size: 16px !important;
   font-weight: 700;
   font-family: inherit;
@@ -272,7 +280,7 @@ html {
 .oem-mp__coupon-button:hover,
 .oem-mp__coupon-button:focus-visible {
   background: #1E1E1E !important;
-  color: #ACEE01 !important;
+  color: var(--oem-mp-coupon-text) !important;
   text-decoration: none;
 }
 
@@ -356,7 +364,7 @@ html {
 
 .oem-mp__coupon-close:hover,
 .oem-mp__coupon-close:focus-visible {
-  background: #ACEE01 !important;
+  background: var(--oem-mp-primary) !important;
   color: #1E1E1E !important;
 }
 
@@ -375,8 +383,8 @@ html {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background: #ACEE01 !important;
-  color: #1E1E1E !important;
+  background: var(--oem-mp-primary) !important;
+  color: var(--oem-mp-on-primary) !important;
   font-size: 16px !important;
   font-weight: 600;
   line-height: 1.2;
@@ -554,7 +562,7 @@ html {
 .oem-mp__search-input:focus-visible,
 .oem-mp__select:focus-visible,
 .oem-mp__select-trigger:focus-visible {
-  box-shadow: 0 0 0 3px rgba(172, 238, 1, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--oem-mp-primary) 25%, transparent), 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .oem-mp__search-input {
@@ -964,7 +972,7 @@ html {
   padding: 15px 25px;
   overflow: hidden;
   border: 0;
-  border-bottom: 5px solid #ACEE01;
+  border-bottom: 5px solid var(--oem-mp-primary);
   border-radius: 5px;
   background: #FBFBFD !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
@@ -1292,4 +1300,13 @@ html {
 
 body.oem-mp--coupon-open {
   overflow: hidden;
+}
+
+
+/* Extra styles */
+.oem-mp__title,
+.oem-mp__section-title,
+.oem-mp__card-title {
+  color: var(--oem-mp-heading-color) !important;
+
 }

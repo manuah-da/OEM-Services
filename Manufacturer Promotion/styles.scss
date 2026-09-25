@@ -1,5 +1,5 @@
 /* Theme colors */
-$primary-color: #acee01;
+$primary-color: var(--oem-mp-primary);
 $secondary-color: #bd0313;
 $tertiary-color: #920511;
 $light-blue: #BEDBFF;
@@ -18,7 +18,7 @@ $dark-gray: #0C0B0B;
 $promo-white: #FBFBFD;
 $promo-gray: #AAAAAA;
 $promo-copy: #535353;
-$promo-green: #ACEE01;
+$promo-green: var(--oem-mp-primary);
 $promo-control: rgba(235, 235, 235, 0.79);
 
 $screen-xs-min: 320px; // Phone
@@ -44,7 +44,7 @@ $font-subtitle: "Karla";
 
 /* Form styles */
 $input-border-color: #a0a0a0;
-$input-boder-shadow: 1px 1px 7px 0px rgba($primary-color, 0.21);
+$input-boder-shadow: 1px 1px 7px 0px color-mix(in srgb, var(--oem-mp-primary) 21%, transparent);
 $input-border-color-hvr: $primary-color;
 
 
@@ -137,9 +137,9 @@ html {
     margin-top: 0 !important;
 }
 
-div#wpadminbar {
+/* div#wpadminbar {
     display: none !important;
-}
+} */
 
 
 
@@ -151,12 +151,12 @@ div#wpadminbar {
 
     70% {
         transform: scale(1);
-        filter: drop-shadow(0 0 10px transparentize($primary-color, 0.8))
+        filter: drop-shadow(0 0 10px color-mix(in srgb, var(--oem-mp-primary) 20%, transparent))
     }
 
     100% {
         transform: scale(0.99);
-        filter: drop-shadow(0 0 0 transparentize($primary-color, 0.8))
+        filter: drop-shadow(0 0 0 color-mix(in srgb, var(--oem-mp-primary) 20%, transparent))
     }
 }
 
@@ -170,6 +170,14 @@ div#wpadminbar {
     }
 }
 
+
+/* Client colors: change primary to match the client's brand. */
+:root {
+  --oem-mp-primary: #5AAEC3;
+  --oem-mp-on-primary: #ffffff;
+  --oem-mp-coupon-text: #ffffff;
+  --oem-mp-heading-color: #000000;
+}
 
 // /* Internal pages */
 
@@ -357,10 +365,10 @@ div#wpadminbar {
         justify-content: center;
         min-height: 38px;
         padding: 3px 10px;
-        border: 1px solid $primary-color;
+        border: 1px solid var(--oem-mp-coupon-text);
         border-radius: 5px;
         background: rgba(30, 30, 30, 0.5) !important;
-        color: $primary-color !important;
+        color: var(--oem-mp-coupon-text) !important;
         font-size: 16px !important;
         font-weight: 700;
         font-family: inherit;
@@ -387,7 +395,7 @@ div#wpadminbar {
     &__coupon-button:hover,
     &__coupon-button:focus-visible {
         background: #1E1E1E !important;
-        color: $promo-green !important;
+        color: var(--oem-mp-coupon-text) !important;
         text-decoration: none;
     }
 
@@ -491,7 +499,7 @@ div#wpadminbar {
         justify-content: center;
         border-radius: 5px;
         background: $promo-green !important;
-        color: #1E1E1E !important;
+        color: var(--oem-mp-on-primary) !important;
         font-size: 16px !important;
         font-weight: 600;
         line-height: 1.2;
@@ -654,7 +662,7 @@ div#wpadminbar {
         text-transform: capitalize;
 
         &:focus-visible {
-            box-shadow: 0 0 0 3px rgba($primary-color, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--oem-mp-primary) 25%, transparent), 0 2px 4px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -1379,4 +1387,11 @@ div#wpadminbar {
 
 body.oem-mp--coupon-open {
     overflow: hidden;
+}
+
+/* Heading colors */
+.oem-mp__title,
+.oem-mp__section-title,
+.oem-mp__card-title {
+    color: var(--oem-mp-heading-color) !important;
 }

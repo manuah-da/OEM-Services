@@ -16,12 +16,13 @@ jQuery(document).ready(function ($) {
   };
 
   // Fixed spreadsheet layout managed by the OEM Manager dashboard.
-  const PROMOTION_COLUMN_COUNT = 15; // A:O
+  const PROMOTION_COLUMN_COUNT = 16; // A:P
   const CUSTOMER_START_ROW = 2; // Spreadsheet row 3
   const DOMAIN_COLUMN = 32; // AG
   const CUSTOMER_OEMS_COLUMN = 33; // AH
   const CUSTOMER_REGION_COLUMN = 34; // AI
   const CUSTOMER_PREFERENCES_COLUMN = 35; // AJ
+  const CUSTOMER_STATES_COLUMN = 36; // AK
 
   const state = {
     customer: null,
@@ -100,6 +101,14 @@ jQuery(document).ready(function ($) {
           return item.trim();
         })
         .filter(Boolean);
+    },
+
+    matchesStates: function (bannerValue, dealerStates) {
+      const bannerStates = utils.splitList(bannerValue);
+      if (!bannerStates.length || bannerStates.includes("ALL")) return true;
+      return bannerStates.some(function (state) {
+        return dealerStates.includes(state);
+      });
     },
 
     isFeatured: function (value) {
@@ -433,11 +442,11 @@ jQuery(document).ready(function ($) {
           oems: utils.splitList(row[CUSTOMER_OEMS_COLUMN]),
           region:
             String(row[CUSTOMER_REGION_COLUMN] || "")
-              .trim()
-              .toUpperCase() || config.defaultRegion,
+              .trim() || config.defaultRegion,
           preferences: utils
             .splitList(row[CUSTOMER_PREFERENCES_COLUMN])
             .slice(0, config.featuredLimit),
+          dealerStates: utils.splitList(row[CUSTOMER_STATES_COLUMN]),
         };
       })
       .filter(function (item) {
@@ -454,9 +463,9 @@ jQuery(document).ready(function ($) {
     return promo;
   }
 
-  function normalizePromotion(promo, allowedOemKeys, customerRegion) {
+  function normalizePromotion(promo, allowedOemKeys, customer) {
     const oem = String(promo.OEM || "").trim();
-    const region = String(promo.Region || "").trim().toUpperCase();
+    const region = String(promo.Region || "").trim();
     const title = String(promo.Title || "").trim();
     const startDate = utils.parseDate(promo["Start Date"]);
     const endDate = utils.parseDate(promo["End Date"]);
@@ -466,7 +475,10 @@ jQuery(document).ready(function ($) {
 
     if (utils.normalizeText(promo.Status) !== "active") return null;
     if (!allowedOemKeys.has(utils.normalizeText(oem))) return null;
-    if (region !== customerRegion && region !== "ALL") return null;
+    if (region !== customer.region && region !== "ALL") return null;
+    if (!utils.matchesStates(promo["Banner States"], customer.dealerStates)) {
+      return null;
+    }
 
     const normalized = {
       ...promo,
@@ -507,7 +519,7 @@ jQuery(document).ready(function ($) {
         return rowToPromotion(headers, row);
       })
       .map(function (promo) {
-        return normalizePromotion(promo, allowedOemKeys, customer.region);
+        return normalizePromotion(promo, allowedOemKeys, customer);
       })
       .filter(Boolean);
   }

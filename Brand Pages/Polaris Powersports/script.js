@@ -396,11 +396,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     defaultRegion: "USA",
   };
 
-  // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.
-  const PROMOTION_COLUMN_COUNT = 15;
+  // Added 29092026: Match Active promotions to the dealer's region and states.
+  const PROMOTION_COLUMN_COUNT = 16;
   const CUSTOMER_START_ROW = 2;
   const CUSTOMER_DOMAIN_COLUMN = 32;
   const CUSTOMER_REGION_COLUMN = 34;
+  const CUSTOMER_STATES_COLUMN = 36;
 
   const promoUtils = {
     splitImageLinks: function (value) {
@@ -439,6 +440,18 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           .split("/")[0]
           .trim();
       }
+    },
+    splitStates: function (value) {
+      return String(value || "").split(",").map(function (state) {
+        return state.trim();
+      }).filter(Boolean);
+    },
+    matchesStates: function (bannerValue, dealerStates) {
+      const bannerStates = promoUtils.splitStates(bannerValue);
+      if (!bannerStates.length || bannerStates.includes("ALL")) return true;
+      return bannerStates.some(function (state) {
+        return dealerStates.includes(state);
+      });
     },
     parseHrefs: function (value) {
       if (!value) return [];
@@ -504,7 +517,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
     const customerRegion = String(
       customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : "",
-    ).trim().toUpperCase() || PROMO_CONFIG.defaultRegion;
+    ).trim() || PROMO_CONFIG.defaultRegion;
+    const dealerStates = promoUtils.splitStates(
+      customerRow ? customerRow[CUSTOMER_STATES_COLUMN] : "",
+    );
     const targetOem = PROMO_CONFIG.oem.trim().toLowerCase();
 
     return rows.slice(1).map(function (row) {
@@ -516,9 +532,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }).filter(function (promotion) {
       const oem = String(promotion.OEM || "").trim().toLowerCase();
       const status = String(promotion.Status || "").trim().toLowerCase();
-      const region = String(promotion.Region || "").trim().toUpperCase();
+      const region = String(promotion.Region || "").trim();
       return oem === targetOem && status === "active" &&
-        (region === customerRegion || region === "ALL");
+        (region === customerRegion || region === "ALL") &&
+        promoUtils.matchesStates(promotion["Banner States"], dealerStates);
     });
   }
 

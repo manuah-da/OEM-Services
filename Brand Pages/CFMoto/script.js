@@ -317,11 +317,12 @@ jQuery(function ($) {
             defaultRegion: 'USA'
         };
 
-        // Added 10092026: Resolve Region from the customer catalog and filter this OEM's Active promotions.
-        var PROMOTION_COLUMN_COUNT = 15;
+        // Added 29092026: Match Active promotions to the dealer's region and states.
+        var PROMOTION_COLUMN_COUNT = 16;
         var CUSTOMER_START_ROW = 2;
         var CUSTOMER_DOMAIN_COLUMN = 32;
         var CUSTOMER_REGION_COLUMN = 34;
+        var CUSTOMER_STATES_COLUMN = 36;
         var $promotionSection = $('.cfmoto-current-promotions');
         var $promotionSlider = $('.cfmoto-current-promotions__slider');
         var $promotionWrapper = $promotionSlider.find('.swiper-wrapper');
@@ -365,6 +366,20 @@ jQuery(function ($) {
             }
         }
 
+        function splitPromoStates(value) {
+            return String(value || '').split(',').map(function (state) {
+                return state.trim();
+            }).filter(Boolean);
+        }
+
+        function promotionMatchesStates(bannerValue, dealerStates) {
+            var bannerStates = splitPromoStates(bannerValue);
+            if (!bannerStates.length || bannerStates.indexOf('ALL') > -1) return true;
+            return bannerStates.some(function (state) {
+                return dealerStates.indexOf(state) > -1;
+            });
+        }
+
         function getMatchingPromotions(rows) {
             var headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
             var currentDomain = normalizePromoDomain(window.location.hostname);
@@ -373,7 +388,10 @@ jQuery(function ($) {
             })[0];
             var customerRegion = String(
                 customerRow ? customerRow[CUSTOMER_REGION_COLUMN] : ''
-            ).trim().toUpperCase() || promotionConfig.defaultRegion;
+            ).trim() || promotionConfig.defaultRegion;
+            var dealerStates = splitPromoStates(
+                customerRow ? customerRow[CUSTOMER_STATES_COLUMN] : ''
+            );
             var targetOem = normalizePromoOem(promotionConfig.oem);
 
             return rows.slice(1).map(function (row) {
@@ -384,11 +402,12 @@ jQuery(function ($) {
                 }, {});
             }).filter(function (promotion) {
                 var status = String(promotion.Status || '').trim().toLowerCase();
-                var region = String(promotion.Region || '').trim().toUpperCase();
+                var region = String(promotion.Region || '').trim();
 
                 return normalizePromoOem(promotion.OEM) === targetOem &&
                     status === 'active' &&
-                    (region === customerRegion || region === 'ALL');
+                    (region === customerRegion || region === 'ALL') &&
+                    promotionMatchesStates(promotion['Banner States'], dealerStates);
             });
         }
 

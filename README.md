@@ -108,7 +108,13 @@ Requires the HTML from `Manufacturer Promotion/index.html` and its compiled
 ## Regions
 
 Brand Pages and Manufacturer Promotions resolve the current domain from `AG`
-and its region from `AI`. Use `USA` or `CAN`; promotions with `ALL` apply to both.
+and its region from `AI`. New records use `USA` or `CAN`; legacy promotions
+with region `ALL` continue to apply to both.
+
+State targeting uses `Banner States` in promotion column `P` and the dealer's
+`Dealer States` in customer column `AK`. A blank `Banner States` value or `ALL`
+applies to every dealer in the selected region. Otherwise, the promotion is
+shown when at least one banner state matches one dealer state.
 
 Manufacturer Promotions reads the ordered OEM preferences from `AJ`, renders one
 featured promotion per preferred OEM, and shows at most six featured cards.

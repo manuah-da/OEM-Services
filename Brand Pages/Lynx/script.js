@@ -120,11 +120,15 @@
     const terms = String(promo["Terms & Conditions"] || "").trim();
     const content = String(promo.Content || "").trim();
     if (!terms && !content) return "";
+    const promotionHref = utils.escapeHtml(resolveHref(promo));
 
     return `<div class="lynx-promotions__overlay">
       <div class="lynx-promotions__overlay-inner">
-        ${terms ? `<div><h3 class="lynx-promotions__overlay-title">Terms</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(terms).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
-        ${content ? `<div><h3 class="lynx-promotions__overlay-title">Content</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(content).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
+        <div class="lynx-promotions__overlay-content">
+          ${terms ? `<div><h3 class="lynx-promotions__overlay-title">Terms</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(terms).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
+          ${content ? `<div><h3 class="lynx-promotions__overlay-title">Content</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(content).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
+        </div>
+        <a class="lynx-promotions__overlay-cta" href="${promotionHref}">View Promotion</a>
       </div>
     </div>`;
   }

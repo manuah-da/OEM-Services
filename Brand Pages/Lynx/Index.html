@@ -1852,9 +1852,10 @@
         inset: 0;
         z-index: 2;
         display: flex;
-        align-items: flex-end;
+        align-items: stretch;
         padding: clamp(22px, 4vw, 58px);
         box-sizing: border-box;
+        overflow: hidden;
         color: #fff;
         background: linear-gradient(115deg, rgba(223, 98, 91, 0.96), rgba(223, 98, 91, 0.72));
         backdrop-filter: blur(4px);
@@ -1866,21 +1867,185 @@
 
     .lynx-promotions__overlay-inner {
         display: flex;
+        flex-direction: column;
         width: 100%;
-        gap: clamp(24px, 5vw, 70px);
+        height: 100%;
+        gap: clamp(18px, 3vw, 32px);
+        pointer-events: auto;
         transform: translateY(18px);
         transition: transform 0.35s ease
     }
 
-    .lynx-promotions__overlay-inner>div {
-        flex: 1 1 0;
-        min-width: 0;
-        max-height: 220px;
-        overflow-y: auto
+    .lynx-promotions__overlay-content {
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 0;
+        gap: clamp(24px, 5vw, 70px)
     }
 
-    .lynx-promotions__overlay-inner>div:only-child {
+    .lynx-promotions__overlay-content>div {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
+        height: 100%;
+        padding-right: 12px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-color: rgba(255, 255, 255, 0.85) rgba(0, 0, 0, 0.18);
+        scrollbar-width: thin
+    }
+
+    .lynx-promotions__overlay-content>div::-webkit-scrollbar {
+        width: 7px
+    }
+
+    .lynx-promotions__overlay-content>div::-webkit-scrollbar-track {
+        background-color: rgba(0, 0, 0, 0.18);
+        border-radius: 10px
+    }
+
+    .lynx-promotions__overlay-content>div::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px
+    }
+
+    .lynx-promotions__overlay-content>div::-webkit-scrollbar-thumb:hover {
+        background-color: #fff
+    }
+
+    .lynx-promotions__overlay-content>div:only-child {
         max-width: 720px
+    }
+
+    .lynx-promotions__overlay-cta {
+        flex: 0 0 auto;
+        align-self: flex-start;
+        display: inline-flex;
+        justify-content: center;
+        padding: 12px 24px;
+        color: #111;
+        font-size: 15px !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: #fff;
+        border: 1px solid #fff;
+        transition: color 0.25s ease, background-color 0.25s ease
+    }
+
+    .lynx-promotions__overlay-cta:hover,
+    .lynx-promotions__overlay-cta:focus {
+        color: #fff;
+        background-color: transparent
+    }
+
+    .lynx-promotions__mobile-actions {
+        display: none
+    }
+
+    .lynx-promotions__modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.78);
+        opacity: 0;
+        transition: opacity 0.25s ease
+    }
+
+    .lynx-promotions__modal[hidden] {
+        display: none
+    }
+
+    .lynx-promotions__modal.is-open {
+        opacity: 1
+    }
+
+    .lynx-promotions__modal-dialog {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 760px;
+        max-height: 80vh;
+        color: #111;
+        background-color: #fff;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        transform: translateY(18px);
+        transition: transform 0.25s ease
+    }
+
+    .lynx-promotions__modal.is-open .lynx-promotions__modal-dialog {
+        transform: translateY(0)
+    }
+
+    .lynx-promotions__modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 22px 24px;
+        border-bottom: 1px solid #ddd
+    }
+
+    .lynx-promotions__modal-header h2 {
+        margin: 0;
+        color: #111;
+        font-size: clamp(20px, 5vw, 28px) !important;
+        line-height: 1.2
+    }
+
+    .lynx-promotions__modal-close {
+        flex: 0 0 auto;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        color: #111;
+        font-size: 30px !important;
+        line-height: 32px;
+        background: transparent;
+        border: 0;
+        cursor: pointer
+    }
+
+    .lynx-promotions__modal-body {
+        min-height: 0;
+        padding: 24px;
+        color: #222;
+        font-size: 16px !important;
+        line-height: 1.6;
+        white-space: pre-line;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-color: #df625b #eee;
+        scrollbar-width: thin
+    }
+
+    .lynx-promotions__modal-footer {
+        padding: 18px 24px;
+        border-top: 1px solid #ddd
+    }
+
+    .lynx-promotions__modal-cta {
+        display: inline-flex;
+        justify-content: center;
+        padding: 12px 24px;
+        color: #fff;
+        font-size: 15px !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: #df625b;
+        border: 1px solid #df625b;
+        transition: color 0.25s ease, background-color 0.25s ease
+    }
+
+    .lynx-promotions__modal-cta:hover,
+    .lynx-promotions__modal-cta:focus {
+        color: #df625b;
+        background-color: #fff
     }
 
     .lynx-promotions__overlay-title {
@@ -1967,6 +2132,7 @@
         }
 
         .lynx-promotions__link {
+            height: auto;
             aspect-ratio: 1.7777777778
         }
 
@@ -1978,15 +2144,43 @@
             visibility: visible
         }
 
+        .lynx-promotions__overlay-content {
+            display: none
+        }
+
         .lynx-promotions__overlay-inner {
-            flex-direction: column;
-            gap: 20px;
+            height: auto;
             transform: none
         }
 
-        .lynx-promotions__overlay-inner>div {
-            max-height: 180px
+        .lynx-promotions__mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
         }
+
+        .lynx-promotions__mobile-actions button {
+            width: 100%;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 15px !important;
+            font-weight: 700;
+            text-align: left;
+            text-transform: uppercase;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer
+        }
+
+        .lynx-promotions__overlay-cta,
+        .lynx-promotions__modal-cta {
+            align-self: stretch;
+            text-align: center
+        }
+    }
+
+    body.lynx-promotions-modal-open {
+        overflow: hidden
     }
 
     .lynx-accessories>div {

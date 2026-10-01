@@ -899,6 +899,116 @@ body:not(.home) #main #primary #content .lynx-brandpage__header .text-container 
         }
     }
 
+    &__mobile-actions {
+        display: none;
+    }
+
+    // Long mobile copy opens in one reusable, scrollable modal.
+    &__modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.78);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &.is-open {
+            opacity: 1;
+        }
+    }
+
+    &__modal-dialog {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 760px;
+        max-height: 80vh;
+        color: #111;
+        background-color: #fff;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        transform: translateY(18px);
+        transition: transform 0.25s ease;
+    }
+
+    &__modal.is-open &__modal-dialog {
+        transform: translateY(0);
+    }
+
+    &__modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 22px 24px;
+        border-bottom: 1px solid #ddd;
+
+        h2 {
+            margin: 0;
+            color: #111;
+            font-size: clamp(20px, 5vw, 28px) !important;
+            line-height: 1.2;
+        }
+    }
+
+    &__modal-close {
+        flex: 0 0 auto;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        color: #111;
+        font-size: 30px !important;
+        line-height: 32px;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    &__modal-body {
+        min-height: 0;
+        padding: 24px;
+        color: #222;
+        font-size: 16px !important;
+        line-height: 1.6;
+        white-space: pre-line;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-color: #df625b #eee;
+        scrollbar-width: thin;
+    }
+
+    &__modal-footer {
+        padding: 18px 24px;
+        border-top: 1px solid #ddd;
+    }
+
+    &__modal-cta {
+        display: inline-flex;
+        justify-content: center;
+        padding: 12px 24px;
+        color: #fff;
+        font-size: 15px !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: #df625b;
+        border: 1px solid #df625b;
+        transition: color 0.25s ease, background-color 0.25s ease;
+
+        &:hover,
+        &:focus {
+            color: #df625b;
+            background-color: #fff;
+        }
+    }
+
     &__overlay-title {
         margin: 0 0 10px;
         color: #fff;
@@ -986,6 +1096,7 @@ body:not(.home) #main #primary #content .lynx-brandpage__header .text-container 
         }
 
         &__link {
+            height: auto;
             aspect-ratio: 16 / 9;
         }
 
@@ -998,18 +1109,43 @@ body:not(.home) #main #primary #content .lynx-brandpage__header .text-container 
         }
 
         &__overlay-content {
-            flex-direction: column;
-            gap: 20px;
-
-            >div {
-                width: 100%;
-            }
+            display: none;
         }
 
         &__overlay-inner {
+            height: auto;
             transform: none;
         }
+
+        &__mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            button {
+                width: 100%;
+                padding: 12px 16px;
+                color: #fff;
+                font-size: 15px !important;
+                font-weight: 700;
+                text-align: left;
+                text-transform: uppercase;
+                background-color: rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                cursor: pointer;
+            }
+        }
+
+        &__overlay-cta,
+        &__modal-cta {
+            align-self: stretch;
+            text-align: center;
+        }
     }
+}
+
+body.lynx-promotions-modal-open {
+    overflow: hidden;
 }
 
 .lynx-accessories>div {

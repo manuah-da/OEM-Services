@@ -8,6 +8,7 @@ const watchMode = process.argv.includes("--watch");
 // Every output is built only from the independent script owned by that page.
 const entryPoints = {
   cfmoto: path.join(root, "Brand Pages/CFMoto/script.js"),
+  lynx: path.join(root, "Brand Pages/Lynx/script.js"),
   "polaris-powersports": path.join(root, "Brand Pages/Polaris Powersports/script.js"),
   "polaris-powersports-canada": path.join(root, "Brand Pages/Polaris Powersports Canada/script.js"),
   "polaris-snowmobile": path.join(root, "Brand Pages/Polaris Snowmobile/script.js"),

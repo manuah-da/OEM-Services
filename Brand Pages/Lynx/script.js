@@ -20,6 +20,8 @@
   const $slider = $section.find(".lynx-promotions__slider");
   const $wrapper = $slider.find(".swiper-wrapper");
   let promotionSwiper = null;
+  let currentPromotions = [];
+  let lastModalTrigger = null;
 
   /* Small helpers for sheet values and safe HTML output. */
   const utils = {
@@ -116,7 +118,7 @@
   }
 
   /* Render Terms on the left and Content on the right when supplied. */
-  function overlayMarkup(promo) {
+  function overlayMarkup(promo, promotionIndex) {
     const terms = String(promo["Terms & Conditions"] || "").trim();
     const content = String(promo.Content || "").trim();
     if (!terms && !content) return "";
@@ -128,25 +130,90 @@
           ${terms ? `<div><h3 class="lynx-promotions__overlay-title">Terms</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(terms).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
           ${content ? `<div><h3 class="lynx-promotions__overlay-title">Content</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(content).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
         </div>
+        <div class="lynx-promotions__mobile-actions">
+          ${content ? `<button type="button" data-promotion-index="${promotionIndex}" data-promotion-copy="content">View Details</button>` : ""}
+          ${terms ? `<button type="button" data-promotion-index="${promotionIndex}" data-promotion-copy="terms">Terms & Conditions</button>` : ""}
+        </div>
         <a class="lynx-promotions__overlay-cta" href="${promotionHref}">View Promotion</a>
       </div>
     </div>`;
   }
 
+  /* Use one accessible modal for long mobile promotion copy. */
+  function setupPromotionModal() {
+    if ($section.find(".lynx-promotions__modal").length) return;
+
+    $section.append(`<div class="lynx-promotions__modal" aria-hidden="true" hidden>
+      <div class="lynx-promotions__modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lynx-promotion-modal-title">
+        <div class="lynx-promotions__modal-header">
+          <h2 id="lynx-promotion-modal-title"></h2>
+          <button class="lynx-promotions__modal-close" type="button" aria-label="Close promotion details">&times;</button>
+        </div>
+        <div class="lynx-promotions__modal-body"></div>
+        <div class="lynx-promotions__modal-footer">
+          <a class="lynx-promotions__modal-cta" href="">View Promotion</a>
+        </div>
+      </div>
+    </div>`);
+
+    const $modal = $section.find(".lynx-promotions__modal");
+
+    function closeModal() {
+      $modal.removeClass("is-open").attr("aria-hidden", "true");
+      $("body").removeClass("lynx-promotions-modal-open");
+      window.setTimeout(function () {
+        $modal.prop("hidden", true);
+      }, 250);
+      if (lastModalTrigger) lastModalTrigger.focus();
+    }
+
+    $section.on("click", ".lynx-promotions__mobile-actions button", function () {
+      const promo = currentPromotions[Number($(this).attr("data-promotion-index"))];
+      const copyType = $(this).attr("data-promotion-copy");
+      if (!promo) return;
+
+      const isTerms = copyType === "terms";
+      const copy = isTerms ? promo["Terms & Conditions"] : promo.Content;
+      const promoTitle = String(promo.Title || "Lynx Promotion").trim();
+      lastModalTrigger = this;
+
+      $modal.find("#lynx-promotion-modal-title").text(isTerms ? "Terms & Conditions" : promoTitle);
+      $modal.find(".lynx-promotions__modal-body").text(String(copy || "").trim());
+      $modal.find(".lynx-promotions__modal-cta").attr("href", resolveHref(promo));
+      $modal.prop("hidden", false).attr("aria-hidden", "false");
+      $("body").addClass("lynx-promotions-modal-open");
+      window.requestAnimationFrame(function () {
+        $modal.addClass("is-open");
+        $modal.find(".lynx-promotions__modal-close").trigger("focus");
+      });
+    });
+
+    $modal.on("click", function (event) {
+      if (event.target === this) closeModal();
+    });
+    $modal.on("click", ".lynx-promotions__modal-close", closeModal);
+    $(document).on("keydown.lynxPromotions", function (event) {
+      if (event.key === "Escape" && $modal.hasClass("is-open")) closeModal();
+    });
+  }
+
   /* Replace the skeleton with promotion slides and initialize Swiper. */
   function renderPromotions(promotions) {
-    const slides = promotions.map(function (promo) {
+    currentPromotions = promotions.filter(function (promo) {
+      return Boolean(utils.imageUrl(promo["Image 2"]) || utils.imageUrl(promo.Image));
+    });
+
+    const slides = currentPromotions.map(function (promo, promotionIndex) {
       const image = utils.imageUrl(promo["Image 2"]) || utils.imageUrl(promo.Image);
-      if (!image) return "";
       const title = String(promo.Title || "Lynx Promotion").trim();
 
       return `<div class="lynx-promotions__slide swiper-slide">
         <a class="lynx-promotions__link" href="${utils.escapeHtml(resolveHref(promo))}" title="${utils.escapeHtml(title)}">
           <img class="lynx-promotions__image" src="${utils.escapeHtml(image)}" alt="${utils.escapeHtml(title)}" loading="lazy">
         </a>
-        ${overlayMarkup(promo)}
+        ${overlayMarkup(promo, promotionIndex)}
       </div>`;
-    }).filter(Boolean);
+    });
 
     if (!slides.length) {
       $section.prop("hidden", true).attr("aria-busy", "false");
@@ -187,6 +254,7 @@
       return;
     }
 
+    setupPromotionModal();
     Papa.parse(config.csvUrl, {
       download: true,
       header: false,

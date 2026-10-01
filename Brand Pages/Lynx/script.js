@@ -1,148 +1,125 @@
 (function ($) {
   "use strict";
 
-  /* Spreadsheet and page configuration. */
-  const config = {
-    csvUrl:
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv",
-    oem: "Lynx",
-    inventoryLink: "/inventory/?condition=New&make=Lynx",
-    defaultRegion: "USA",
-  };
-
-  const PROMOTION_COLUMN_COUNT = 16; // A:P, including Banner States.
-  const CUSTOMER_START_ROW = 2; // Customer records begin on spreadsheet row 3.
-  const CUSTOMER_DOMAIN_COLUMN = 32; // AG
-  const CUSTOMER_REGION_COLUMN = 34; // AI
-  const CUSTOMER_STATES_COLUMN = 36; // AK
-
+  // Lynx promotion feed and customer columns in the shared spreadsheet.
+  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0&single=true&output=csv";
+  const currentDomain = window.location.hostname.toLowerCase().replace(/^www\./, "");
   const $section = $(".lynx-promotions");
   const $slider = $section.find(".lynx-promotions__slider");
   const $wrapper = $slider.find(".swiper-wrapper");
-  let promotionSwiper = null;
-  let currentPromotions = [];
-  let lastModalTrigger = null;
+  // Spreadsheet positions are zero-based in CSV rows.
+  const promotionColumnCount = 16; // A:P
+  const customerRowsStart = 2; // Customer records start at spreadsheet row 3.
+  const customerDomainColumn = 32; // AG
+  const customerRegionColumn = 34; // AI
+  const customerStatesColumn = 36; // AK
+  let promotions = [];
 
-  /* Small helpers for sheet values and safe HTML output. */
-  const utils = {
-    escapeHtml: function (value) {
-      return String(value == null ? "" : value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    },
+  // Escape spreadsheet text before placing it in generated HTML.
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-    normalizeDomain: function (value) {
-      const raw = String(value || "").trim().toLowerCase();
-      if (!raw || raw === "*") return raw;
-      try {
-        return new URL(raw.includes("://") ? raw : `https://${raw}`)
-          .hostname.replace(/^www\./, "");
-      } catch (error) {
-        return raw.replace(/^https?:\/\//, "").replace(/^www\./, "").split("/")[0];
-      }
-    },
+  // Match saved domains and page hosts in the same format.
+  function domainName(value) {
+    return String(value || "").toLowerCase()
+      .replace(/^https?:\/\//, "")
+      .replace(/^www\./, "")
+      .split("/")[0]
+      .trim();
+  }
 
-    splitList: function (value) {
-      return String(value || "").split(",").map(function (item) {
-        return item.trim();
-      }).filter(Boolean);
-    },
+  // Convert a Google Drive image link to a direct display URL.
+  function imageUrl(value) {
+    const url = String(value || "").split(/[\n,;]+/)[0].trim();
+    const fileId = url.match(/drive\.google\.com.*\/d\/([\w-]+)/);
+    return fileId ? "https://lh3.googleusercontent.com/d/" + fileId[1] + "=w1600" : url;
+  }
 
-    matchesStates: function (bannerValue, dealerStates) {
-      const bannerStates = utils.splitList(bannerValue);
-      if (!bannerStates.length || bannerStates.includes("ALL")) return true;
-      return bannerStates.some(function (state) {
-        return dealerStates.includes(state);
-      });
-    },
+  // Split comma-separated state cells into values used by the filter.
+  function splitStates(value) {
+    return (value || "").split(",").map(function (state) {
+      return state.trim();
+    }).filter(Boolean);
+  }
 
-    imageUrl: function (value) {
-      const url = String(value || "").split(/[\n,;]+/)[0].trim();
-      if (!url || !url.includes("drive.google.com")) return url;
-      const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-      return match ? `https://lh3.googleusercontent.com/d/${match[1]}=w1600` : url;
-    },
-  };
-
-  /* Resolve an exact dealer href first, then wildcard, then inventory. */
-  function resolveHref(promo) {
-    let hrefs = [];
-    try {
-      hrefs = JSON.parse(promo.Hrefs || "[]");
-    } catch (error) {
-      hrefs = [];
-    }
-
-    const currentDomain = utils.normalizeDomain(window.location.hostname);
-    const exact = hrefs.find(function (item) {
-      return utils.normalizeDomain(item.domain) === currentDomain;
+  // Use dealer-specific hrefs first, then the wildcard, then inventory.
+  function promotionHref(promo) {
+    const hrefs = JSON.parse(promo.Hrefs || "[]");
+    const dealerHref = hrefs.find(function (item) {
+      return domainName(item.domain) === currentDomain;
     });
-    const wildcard = hrefs.find(function (item) {
+    const wildcardHref = hrefs.find(function (item) {
       return item.domain === "*";
     });
-    return String((exact || wildcard || {}).href || config.inventoryLink).trim();
+    return (dealerHref || wildcardHref || {}).href || "/inventory/?condition=New&make=Lynx";
   }
 
-  /* Read only Active Lynx rows valid for this dealer's region and states. */
-  function readPromotions(rows) {
-    const headers = (rows[0] || []).slice(0, PROMOTION_COLUMN_COUNT);
-    const currentDomain = utils.normalizeDomain(window.location.hostname);
-    const customer = rows.slice(CUSTOMER_START_ROW).find(function (row) {
-      return utils.normalizeDomain(row[CUSTOMER_DOMAIN_COLUMN]) === currentDomain;
+  // Keep active Lynx promotions for this dealer's region and states.
+  function getPromotions(rows) {
+    const headers = rows[0].slice(0, promotionColumnCount);
+    const customer = rows.slice(customerRowsStart).find(function (row) {
+      return domainName(row[customerDomainColumn]) === currentDomain;
     });
-    const region = String(customer ? customer[CUSTOMER_REGION_COLUMN] : "").trim() ||
-      config.defaultRegion;
-    const dealerStates = utils.splitList(
-      customer ? customer[CUSTOMER_STATES_COLUMN] : "",
-    );
+    const region = customer[customerRegionColumn];
+    const dealerStates = splitStates(customer[customerStatesColumn]);
 
-    return rows.slice(1).map(function (row) {
-      return headers.reduce(function (promo, header, index) {
-        const key = String(header || "").trim();
-        if (key) promo[key] = row[index] == null ? "" : row[index];
-        return promo;
-      }, {});
-    }).filter(function (promo) {
-      const promoRegion = String(promo.Region || "").trim();
-      return String(promo.OEM || "").trim().toLowerCase() === config.oem.toLowerCase() &&
-        String(promo.Status || "").trim().toLowerCase() === "active" &&
-        (promoRegion === region || promoRegion === "ALL") &&
-        utils.matchesStates(promo["Banner States"], dealerStates);
-    }).sort(function (a, b) {
-      return (parseInt(a["Carousel position"], 10) || 999) -
-        (parseInt(b["Carousel position"], 10) || 999);
+    const allPromotions = rows.slice(1).map(function (row) {
+      const promo = {};
+      headers.forEach(function (header, index) {
+        promo[header.trim()] = row[index] || "";
+      });
+      return promo;
+    });
+
+    return allPromotions.filter(function (promo) {
+      const bannerStates = splitStates(promo["Banner States"]);
+      const stateMatches = !bannerStates.length || bannerStates.includes("ALL") ||
+        bannerStates.some(function (state) { return dealerStates.includes(state); });
+      const regionMatches = promo.Region === region || promo.Region === "ALL";
+
+      return promo.OEM === "Lynx" && promo.Status === "Active" && regionMatches && stateMatches;
+    }).sort(function (first, second) {
+      return Number(first["Carousel position"]) - Number(second["Carousel position"]);
     });
   }
 
-  /* Render Terms on the left and Content on the right when supplied. */
-  function overlayMarkup(promo, promotionIndex) {
-    const terms = String(promo["Terms & Conditions"] || "").trim();
-    const content = String(promo.Content || "").trim();
-    if (!terms && !content) return "";
-    const promotionHref = utils.escapeHtml(resolveHref(promo));
+  // Render one optional Terms or Content panel.
+  function detailMarkup(title, copy) {
+    if (!copy) return "";
+    return `<div>
+      <h3 class="lynx-promotions__overlay-title">${title}</h3>
+      <p class="lynx-promotions__overlay-copy">${escapeHtml(copy).replace(/\r?\n/g, "<br>")}</p>
+    </div>`;
+  }
+
+  // Build the hover overlay and mobile detail buttons from available fields.
+  function overlayMarkup(promo, index) {
+    const terms = promo["Terms & Conditions"].trim();
+    const content = promo.Content.trim();
 
     return `<div class="lynx-promotions__overlay">
       <div class="lynx-promotions__overlay-inner">
         <div class="lynx-promotions__overlay-content">
-          ${terms ? `<div><h3 class="lynx-promotions__overlay-title">Terms</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(terms).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
-          ${content ? `<div><h3 class="lynx-promotions__overlay-title">Content</h3><p class="lynx-promotions__overlay-copy">${utils.escapeHtml(content).replace(/\r?\n/g, "<br>")}</p></div>` : ""}
+          ${detailMarkup("Terms", terms)}
+          ${detailMarkup("Content", content)}
         </div>
         <div class="lynx-promotions__mobile-actions">
-          ${content ? `<button type="button" data-promotion-index="${promotionIndex}" data-promotion-copy="content">View Details</button>` : ""}
-          ${terms ? `<button type="button" data-promotion-index="${promotionIndex}" data-promotion-copy="terms">Terms & Conditions</button>` : ""}
+          ${content ? `<button type="button" data-promo-index="${index}" data-copy="content">View Details</button>` : ""}
+          ${terms ? `<button type="button" data-promo-index="${index}" data-copy="terms">Terms &amp; Conditions</button>` : ""}
         </div>
-        <a class="lynx-promotions__overlay-cta" href="${promotionHref}">View Promotion</a>
+        <a class="lynx-promotions__overlay-cta" href="${escapeHtml(promotionHref(promo))}">View Promotion</a>
       </div>
     </div>`;
   }
 
-  /* Use one accessible modal for long mobile promotion copy. */
-  function setupPromotionModal() {
-    if ($section.find(".lynx-promotions__modal").length) return;
-
+  // Create one modal and load the selected full text when a mobile button is tapped.
+  function setupModal() {
     $section.append(`<div class="lynx-promotions__modal" aria-hidden="true" hidden>
       <div class="lynx-promotions__modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lynx-promotion-modal-title">
         <div class="lynx-promotions__modal-header">
@@ -157,61 +134,47 @@
     </div>`);
 
     const $modal = $section.find(".lynx-promotions__modal");
+    let modalTrigger;
 
     function closeModal() {
-      $modal.removeClass("is-open").attr("aria-hidden", "true");
+      $modal.removeClass("is-open").attr("aria-hidden", "true").prop("hidden", true);
       $("body").removeClass("lynx-promotions-modal-open");
-      window.setTimeout(function () {
-        $modal.prop("hidden", true);
-      }, 250);
-      if (lastModalTrigger) lastModalTrigger.focus();
+      if (modalTrigger) modalTrigger.focus();
     }
 
     $section.on("click", ".lynx-promotions__mobile-actions button", function () {
-      const promo = currentPromotions[Number($(this).attr("data-promotion-index"))];
-      const copyType = $(this).attr("data-promotion-copy");
-      if (!promo) return;
+      const promo = promotions[Number(this.dataset.promoIndex)];
+      const isTerms = this.dataset.copy === "terms";
+      modalTrigger = this;
 
-      const isTerms = copyType === "terms";
-      const copy = isTerms ? promo["Terms & Conditions"] : promo.Content;
-      const promoTitle = String(promo.Title || "Lynx Promotion").trim();
-      lastModalTrigger = this;
-
-      $modal.find("#lynx-promotion-modal-title").text(isTerms ? "Terms & Conditions" : promoTitle);
-      $modal.find(".lynx-promotions__modal-body").text(String(copy || "").trim());
-      $modal.find(".lynx-promotions__modal-cta").attr("href", resolveHref(promo));
-      $modal.prop("hidden", false).attr("aria-hidden", "false");
+      $modal.find("#lynx-promotion-modal-title").text(isTerms ? "Terms & Conditions" : promo.Title);
+      $modal.find(".lynx-promotions__modal-body").text(isTerms ? promo["Terms & Conditions"] : promo.Content);
+      $modal.find(".lynx-promotions__modal-cta").attr("href", promotionHref(promo));
+      $modal.prop("hidden", false).attr("aria-hidden", "false").addClass("is-open");
       $("body").addClass("lynx-promotions-modal-open");
-      window.requestAnimationFrame(function () {
-        $modal.addClass("is-open");
-        $modal.find(".lynx-promotions__modal-close").trigger("focus");
-      });
     });
 
+    $modal.on("click", ".lynx-promotions__modal-close", closeModal);
     $modal.on("click", function (event) {
       if (event.target === this) closeModal();
     });
-    $modal.on("click", ".lynx-promotions__modal-close", closeModal);
     $(document).on("keydown.lynxPromotions", function (event) {
-      if (event.key === "Escape" && $modal.hasClass("is-open")) closeModal();
+      if (event.key === "Escape" && !$modal.prop("hidden")) closeModal();
     });
   }
 
-  /* Replace the skeleton with promotion slides and initialize Swiper. */
-  function renderPromotions(promotions) {
-    currentPromotions = promotions.filter(function (promo) {
-      return Boolean(utils.imageUrl(promo["Image 2"]) || utils.imageUrl(promo.Image));
-    });
-
-    const slides = currentPromotions.map(function (promo, promotionIndex) {
-      const image = utils.imageUrl(promo["Image 2"]) || utils.imageUrl(promo.Image);
-      const title = String(promo.Title || "Lynx Promotion").trim();
+  // Replace the loading placeholder with the filtered slides.
+  function renderPromotions(rows) {
+    promotions = getPromotions(rows);
+    const slides = promotions.map(function (promo, index) {
+      const image = imageUrl(promo["Image 2"]) || imageUrl(promo.Image);
+      const title = promo.Title || "Lynx Promotion";
 
       return `<div class="lynx-promotions__slide swiper-slide">
-        <a class="lynx-promotions__link" href="${utils.escapeHtml(resolveHref(promo))}" title="${utils.escapeHtml(title)}">
-          <img class="lynx-promotions__image" src="${utils.escapeHtml(image)}" alt="${utils.escapeHtml(title)}" loading="lazy">
+        <a class="lynx-promotions__link" href="${escapeHtml(promotionHref(promo))}" title="${escapeHtml(title)}">
+          <img class="lynx-promotions__image" src="${escapeHtml(image)}" alt="${escapeHtml(title)}" loading="lazy">
         </a>
-        ${overlayMarkup(promo, promotionIndex)}
+        ${overlayMarkup(promo, index)}
       </div>`;
     });
 
@@ -222,18 +185,12 @@
 
     $wrapper.html(slides.join(""));
     $section.prop("hidden", false).attr("aria-busy", "false");
-
-    if (promotionSwiper) promotionSwiper.destroy(true, true);
-    promotionSwiper = new Swiper($slider[0], {
+    new Swiper($slider[0], {
       slidesPerView: 1,
       autoHeight: true,
       speed: 650,
       loop: slides.length > 1,
-      autoplay: slides.length > 1 ? {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      } : false,
+      autoplay: slides.length > 1 ? { delay: 5000, pauseOnMouseEnter: true } : false,
       navigation: {
         prevEl: $section.find(".lynx-promotions__prev")[0],
         nextEl: $section.find(".lynx-promotions__next")[0],
@@ -245,29 +202,17 @@
     });
   }
 
-  /* Load the published sheet once the page dependencies are available. */
-  function loadPromotions() {
-    if (!$slider.length) return;
-    if (typeof Papa === "undefined" || typeof Swiper === "undefined") {
-      console.error("Lynx promotions require PapaParse and Swiper.");
+  // Load the public spreadsheet after the page libraries are ready.
+  setupModal();
+  Papa.parse(csvUrl, {
+    download: true,
+    header: false,
+    skipEmptyLines: true,
+    complete: function (result) {
+      renderPromotions(result.data);
+    },
+    error: function () {
       $section.prop("hidden", true).attr("aria-busy", "false");
-      return;
-    }
-
-    setupPromotionModal();
-    Papa.parse(config.csvUrl, {
-      download: true,
-      header: false,
-      skipEmptyLines: true,
-      complete: function (results) {
-        renderPromotions(readPromotions(results.data || []));
-      },
-      error: function (error) {
-        console.error("Unable to load Lynx promotions:", error);
-        $section.prop("hidden", true).attr("aria-busy", "false");
-      },
-    });
-  }
-
-  $(loadPromotions);
+    },
+  });
 })(jQuery);

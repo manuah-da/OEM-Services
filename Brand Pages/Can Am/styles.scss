@@ -1040,14 +1040,64 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
 
     &__prev,
     &__next {
-        width: 44px;
-        height: 44px;
+        top: 50%;
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        max-width: 52px;
+        flex: 0 0 52px;
+        margin-top: 0;
+        padding: 0;
+        box-sizing: border-box;
         color: #fff;
-        background-color: rgba(0, 0, 0, 0.58);
+        background-color: #000;
+        border: 0;
+        border-radius: 50%;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+        transform: translateY(-50%);
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.65;
+        }
+
+        &:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
 
         &::after {
-            font-size: 20px;
+            width: 10px;
+            height: 10px;
+            color: currentColor;
+            font-family: inherit;
+            font-size: 0;
             font-weight: 700;
+            content: "";
+            border-top: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+        }
+
+        &.swiper-button-prev {
+            left: clamp(10px, 2vw, 28px);
+
+            &::after {
+                transform: rotate(-135deg);
+            }
+        }
+
+        &.swiper-button-next {
+            right: clamp(10px, 2vw, 28px);
+
+            &::after {
+                transform: rotate(45deg);
+            }
+        }
+
+        &.swiper-button-disabled {
+            opacity: 0.4;
+            cursor: default;
+            pointer-events: none;
         }
     }
 

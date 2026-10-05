@@ -9,12 +9,31 @@ const watchMode = process.argv.includes("--watch");
 const entryPoints = {
   cfmoto: path.join(root, "Brand Pages/CFMoto/script.js"),
   lynx: path.join(root, "Brand Pages/Lynx/script.js"),
-  "polaris-powersports": path.join(root, "Brand Pages/Polaris Powersports/script.js"),
-  "polaris-powersports-canada": path.join(root, "Brand Pages/Polaris Powersports Canada/script.js"),
-  "polaris-snowmobile": path.join(root, "Brand Pages/Polaris Snowmobile/script.js"),
-  "polaris-slingshot": path.join(root, "Brand Pages/Polaris Slingshot/script.js"),
-  "yamaha-powersports": path.join(root, "Brand Pages/Yamaha Powersports/script.js"),
-  "manufacturer-promotions": path.join(root, "Manufacturer Promotion/script.js")
+  "can-am": path.join(root, "Brand Pages/Can Am/script.js"),
+  "polaris-powersports": path.join(
+    root,
+    "Brand Pages/Polaris Powersports/script.js",
+  ),
+  "polaris-powersports-canada": path.join(
+    root,
+    "Brand Pages/Polaris Powersports Canada/script.js",
+  ),
+  "polaris-snowmobile": path.join(
+    root,
+    "Brand Pages/Polaris Snowmobile/script.js",
+  ),
+  "polaris-slingshot": path.join(
+    root,
+    "Brand Pages/Polaris Slingshot/script.js",
+  ),
+  "yamaha-powersports": path.join(
+    root,
+    "Brand Pages/Yamaha Powersports/script.js",
+  ),
+  "manufacturer-promotions": path.join(
+    root,
+    "Manufacturer Promotion/script.js",
+  ),
 };
 
 const options = {
@@ -27,8 +46,8 @@ const options = {
   target: ["es2018"],
   legalComments: "none",
   banner: {
-    js: "/*! OEM Services - generated file; edit the page script.js instead. */"
-  }
+    js: "/*! OEM Services - generated file; edit the page script.js instead. */",
+  },
 };
 
 if (watchMode) {
@@ -37,5 +56,7 @@ if (watchMode) {
   console.log("Watching independent OEM automation scripts...");
 } else {
   await build(options);
-  console.log(`Created ${Object.keys(entryPoints).length} independent bundles in dist/.`);
+  console.log(
+    `Created ${Object.keys(entryPoints).length} independent bundles in dist/.`,
+  );
 }

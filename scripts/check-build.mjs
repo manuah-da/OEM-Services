@@ -7,6 +7,7 @@ const bundles = [
   "cfmoto.min.js",
   "lynx.min.js",
   "can-am.min.js",
+  "sea-doo.min.js",
   "polaris-powersports.min.js",
   "polaris-powersports-canada.min.js",
   "polaris-snowmobile.min.js",

@@ -86,6 +86,20 @@ provides it.
 <script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/can-am.min.js"></script>
 ```
 
+### Sea-Doo
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<!-- Keep the Sea-Doo page CSS after the dependency CSS. -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/sea-doo.min.js"></script>
+```
+
 ### Polaris Powersports Canada
 
 ```html
@@ -181,6 +195,7 @@ https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/polaris-powersports
 https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/cfmoto.min.js
 https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/lynx.min.js
 https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/can-am.min.js
+https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/sea-doo.min.js
 
 ## Regions
 

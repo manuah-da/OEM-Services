@@ -11,6 +11,7 @@ const entryPoints = {
   lynx: path.join(root, "Brand Pages/Lynx/script.js"),
   "can-am": path.join(root, "Brand Pages/Can Am/script.js"),
   "sea-doo": path.join(root, "Brand Pages/Sea Doo/script.js"),
+  "ski-doo": path.join(root, "Brand Pages/Ski Doo/script.js"),
   "polaris-powersports": path.join(
     root,
     "Brand Pages/Polaris Powersports/script.js",

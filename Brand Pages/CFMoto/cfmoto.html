@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <div class="hero-shot">
-    <img src="/wp-content/uploads/2026/09/cfmoto_hero.webp" alt="All terrain blue car">
+    <img src="/wp-content/uploads/2026/10/cfmoto_hero.webp" alt="All terrain blue car">
     <div class="floating-container">
         <div>
             <h1 class="title">
@@ -85,8 +85,8 @@
         <div class="line"></div>
     </div>
     <div>
-        <video src="/wp-content/uploads/2026/09/Cracter-Cfmoto-Video.mp4" title="CFMoto displayed video" autoplay loop
-            muted playsinline></video>
+        <video src="/wp-content/uploads/2026/10/Cracter-Cfmoto-Video.mp4" title="CFMoto displayed video" autoplay=""
+            loop="" muted="" playsinline=""></video>
         <div>
             <h3 class="title">
                 Where <br>
@@ -109,10 +109,6 @@
 <style>
     #site-header {
         display: none !important
-    }
-
-    html {
-        margin: 0px !important
     }
 
     body:not(.home) #main #content .hero-shot {
@@ -324,7 +320,8 @@
     body:not(.home) #main #content .matrix .header h2 {
         position: relative;
         font-size: 60px !important;
-        margin: 0
+        margin: 0;
+        color: #001a21 !important
     }
 
     @media only screen and (min-width:768px) {
@@ -352,7 +349,7 @@
         width: 100%
     }
 
-    @media only screen and (max-width:1200px) {
+    @media only screen and (max-width:992px) {
         body:not(.home) #main #content .matrix .header .cta-row {
             flex-wrap: wrap
         }
@@ -560,7 +557,7 @@
         }
     }
 
-    @media only screen and (min-width:1200px) {
+    @media only screen and (min-width:992px) {
         body:not(.home) #main #content .matrix .content .unit-content .right img {
             min-width: 400px !important
         }
@@ -629,7 +626,7 @@
         color: #001a21 !important;
         font-size: 54px !important;
         font-weight: 700;
-        line-height: 1.2;
+        line-height: clamp(30px, 4vw, 42px) !important;
         text-transform: uppercase
     }
 
@@ -759,11 +756,16 @@
     body:not(.home) #main #content .cfmoto-current-promotions__content h3,
     body:not(.home) #main #content .cfmoto-current-promotions__terms h3 {
         margin: 0 0 10px;
-        color: #34e3ff !important;
         font-size: clamp(16px, 2vw, 21px) !important;
         font-weight: 700;
         line-height: clamp(21px, 3vw, 28px) !important;
-        text-transform: uppercase
+        text-transform: uppercase;
+        color: #001a21 !important
+    }
+
+    body:not(.home) #main #content .cfmoto-current-promotions__content h3 span,
+    body:not(.home) #main #content .cfmoto-current-promotions__terms h3 span {
+        color: #34e3ff !important
     }
 
     body:not(.home) #main #content .cfmoto-current-promotions__content p,
@@ -839,7 +841,7 @@
         body:not(.home) #main #content .cfmoto-current-promotions {}
 
         body:not(.home) #main #content .cfmoto-current-promotions__heading h2 {
-            font-size: 40px !important
+            font-size: clamp(32px, 8vw, 54px) !important
         }
 
         body:not(.home) #main #content .cfmoto-current-promotions__slide {
@@ -985,7 +987,8 @@
 
     body:not(.home) #main #content .parts>div:last-of-type div .title {
         font-size: 64px !important;
-        line-height: 0.8
+        line-height: 0.8;
+        color: #001a21 !important
     }
 
     body:not(.home) #main #content .parts>div:last-of-type div .title span {
@@ -1022,56 +1025,56 @@
             cforce: [
                 {
                     name: "CFORCE 1000 Overland",
-                    logo: "/wp-content/uploads/2026/09/cforce-1000-overland-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-1000-overland.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-1000-overland-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-1000-overland.webp",
                     desc: "The CFORCE 1000 Overland isn’t just built for the job—it’s built for every job, every journey, and every unforgiving stretch of trail. And it shows up fully equipped. No weekends spent bolting on upgrades. No choosing between hauling gear and hauling butt. You’re getting the whole package: 963cc V-Twin with 84 hp and 62 lb-ft of torque. OmniDrive™ CVT. High-clearance suspension. Beadlock wheels. 3,500-lb. winch with synthetic rope. Full fairing with windscreen. Heated grips. Premium hard-side travel cases. Downhill assist. Three ride modes. 7” full-color TFT with Bluetooth. Other ATVs make you check boxes. This one checks all of them for you.",
                     price: "Starting at $11,799 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 1000 TOURING",
-                    logo: "/wp-content/uploads/2026/09/cforce-1000-toruing-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-1000-toruing.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-1000-toruing-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-1000-toruing.webp",
                     desc: "The CFORCE 1000 Touring redefines what a top-tier ATV should be. It’s ferocious—with a new 963cc V-Twin engine pumping out 84 hp and 62 lb-ft of torque—and refined all at once. The ride-by-wire throttle, selectable ride modes, and OmniDrive™ CVT deliver smooth, responsive power...",
                     price: "Starting at $10,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 800 TOURING",
-                    logo: "/wp-content/uploads/2026/09/cforce-800-touring-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-800-touring.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-800-touring-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-800-touring.webp",
                     desc: "The CFORCE 800 Touring has proven itself to riders across the country—from rugged two-up trail rides to serious backcountry hunts to daily workhorse duty. And no surprise—it delivers more standard than anything in its class. More horsepower. More tech. More control. More comfort...",
                     price: "Starting at $9,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 600 TOURING",
-                    logo: "/wp-content/uploads/2026/09/cforce-600-touring-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-600-touring.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-600-touring-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-600-touring.webp",
                     desc: "This is the all-terrain, all-day, all-seasons machine that checks every box. Power? You’ve got a 580cc liquid-cooled engine with 44 hp. Control? Smooth CVTech® CVT and electronic power steering. Comfort? Plush two-up seating, long-travel suspension, and a composed 58.5” wheelbase...",
                     price: "Starting at $8,799 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 600",
-                    logo: "/wp-content/uploads/2026/09/cforce-600-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-600.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-600-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-600.webp",
                     desc: "Whether you’ve got acres to manage, trails to explore, game to haul, or snow to push, the CFORCE 600 shows up ready—no matter your zip code, workload, or season. It’s powered by a 580cc liquid-cooled engine delivering 44 hp and backed by a CVTech® CVT, electronic power steering, and 10.6 inches of ground clearance...",
                     price: "Starting at $7,799 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 500",
-                    logo: "/wp-content/uploads/2026/09/cforce-500-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-500.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-500-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-500.webp",
                     desc: "Now, check out these numbers: 34 horsepower. 29 lb-ft of torque. 10.3 inches of ground clearance. 1,350 pounds of towing capacity. 2,500-pound winch. 4WD with diff lock. All of it standard. This isn’t just a mid-size ATV—it’s the golden ratio of power, price, and pure usability...",
                     price: "Starting at $6,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "CFORCE 400",
-                    logo: "/wp-content/uploads/2026/09/cforce-400-text.webp",
-                    img: "/wp-content/uploads/2026/09/cforce-400.webp",
+                    logo: "/wp-content/uploads/2026/10/cforce-400-text.webp",
+                    img: "/wp-content/uploads/2026/10/cforce-400.webp",
                     desc: "The CFORCE 400 keeps things honest. No overkill. No overspend. Just a dependable mid-size ATV built to handle hard days and tight trails with ease. With 30 horsepower, 4WD, and class-leading low vibration, it’s engineered for comfort and control over long hours...",
                     price: "Starting at $4,999 MSRP",
                     link: "#"
@@ -1080,48 +1083,48 @@
             zforce: [
                 {
                     name: "ZFORCE Z10-4",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-Z10-4-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-Z10-4.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-Z10-4-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-Z10-4.webp",
                     desc: "The all-new CFMOTO ZFORCE Z10-4 delivers the same power, precision, and refinement as the Z10—engineered from day one to carry four without compromise. Brought to life by CFMOTO’s U.S. Design & Innovation Group (DIG), it wasn’t adapted or stretched. It was built with intent...",
                     price: "Starting at $22,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "ZFORCE Z10",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-Z10-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-Z10.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-Z10-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-Z10.webp",
                     desc: "The wait is finally over—and it was worth every second. The all-new CFMOTO ZFORCE Z10 has arrived, delivering the power, precision, and refinement riders have been asking for. Designed by CFMOTO’s U.S. Design & Innovation Group (DIG), the Z10 wasn’t rushed to market...",
                     price: "Starting at $19,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "ZFORCE 950 SPORT-4",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-950-SPORT-4-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-950-SPORT-4.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-950-SPORT-4-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-950-SPORT-4.webp",
                     desc: "The ZFORCE 950 Sport-4 takes the same aggressive DNA as the 950 Sport and stretches the wheelbase to fit four full-sized bolstered seats—so everyone can chase the adrenaline together. The 963cc V-Twin engine delivers 83 horsepower...",
                     price: "Starting at $18,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "ZFORCE 950 SPORT",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-950-SPORT-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-950-SPORT.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-950-SPORT-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-950-SPORT.webp",
                     desc: "Built to conquer the roughest trails with power, stability, and confidence, the ZFORCE 950 Sport delivers big performance in a two-seat platform. With a 963cc V-Twin producing 83 hp, dual power modes, and a ride-by-wire throttle...",
                     price: "Starting at $15,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "ZFORCE 950 TRAIL",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-950-TRAIL-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-950-TRAIL.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-950-TRAIL-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-950-TRAIL.webp",
                     desc: "Built to dominate 50-inch trails straight off the showroom floor, the ZFORCE 950 Trail packs serious performance into a narrow-track chassis that’s anything but compromised. Powered by an 83 hp 963cc V-Twin...",
                     price: "Starting at $14,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "ZFORCE 800 TRAIL",
-                    logo: "/wp-content/uploads/2026/09/ZFORCE-800-TRAIL-text.webp",
-                    img: "/wp-content/uploads/2026/09/ZFORCE-800-TRAIL.webp",
+                    logo: "/wp-content/uploads/2026/10/ZFORCE-800-TRAIL-text.webp",
+                    img: "/wp-content/uploads/2026/10/ZFORCE-800-TRAIL.webp",
                     desc: "The ZFORCE 800 Trail is the gateway to restricted trails. With its 50” wide stance, it meets width-restricted trail regulations without sacrificing capability or rider comfort. A punchy 800cc V-Twin engine delivers reliable power...",
                     price: "Starting at $13,999 MSRP",
                     link: "#"
@@ -1130,64 +1133,64 @@
             uforce: [
                 {
                     name: "UFORCE U10 XL PRO HIGHLAND",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-U10-XL-PRO-HIGHLAND-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-U10-XL-PRO-HIGHLAND.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-U10-XL-PRO-HIGHLAND-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-U10-XL-PRO-HIGHLAND.webp",
                     desc: "The U10 XL Pro Highland is designed to handle bigger teams and bigger tasks with ease. Its premium cabin, complete with a factory-installed HVAC system, delivers year-round comfort. The spacious interior features seating for up to six...",
                     price: "Starting at $27,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE U10 PRO HIGHLAND",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-U10-PRO-HIGHLAND-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-U10-PRO-HIGHLAND.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-U10-PRO-HIGHLAND-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-U10-PRO-HIGHLAND.webp",
                     desc: "Premium details and muscle meet in the UFORCE U10 Pro Highland. It’s got a sealed, climate-controlled cab that laughs at -10° and shrugs off 110°. Premium seats, power windows, and a whisper-quiet headliner make it feel more SUV than UTV...",
                     price: "Starting at $24,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE U10 XL PRO",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-U10-XL-PRO-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-U10-XL-PRO.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-U10-XL-PRO-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-U10-XL-PRO.webp",
                     desc: "This is the rig for crews who show up early, stay late, and don’t cut corners. The UFORCE U10 XL Pro delivers serious muscle and six-seat capacity without skipping comfort or tech...",
                     price: "Starting at $19,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE U10 PRO",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-U10-PRO-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-U10-PRO.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-U10-PRO-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-U10-PRO.webp",
                     desc: "The UFORCE U10 Pro delivers the rugged performance of a hard-working utility machine with the comfort and innovation of a top-tier ride. Its 998cc inline triple engine delivers 88 horsepower...",
                     price: "Starting at $17,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE 1000 XL",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-1000-XL-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-1000-XL.webp",
-                    desc: "The UFORCE 1000 brings big muscle, smart tech, and field-proven durability together in one hard-working, hard-charging machine...",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-1000-XL-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-1000-XL.webp",
+                    desc: "The UFORCE 1000 XL brings big muscle, smart tech, and field-proven durability together in one hard-working, hard-charging machine...",
                     price: "Starting at $15,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE 1000",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-1000-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-1000.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-1000-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-1000.webp",
                     desc: "Built for crews of three who work like six, the UFORCE 1000 packs a 963cc V-Twin punching out 71 hp and 54 lb-ft of torque...",
                     price: "Starting at $13,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE 800 XL",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-800-XL-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-800-XL.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-800-XL-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-800-XL.webp",
                     desc: "When the job calls for more people, more gear, and more gusto, the UFORCE 800 XL answers without hesitation. Built around a 63 hp V-Twin engine...",
                     price: "Starting at $13,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "UFORCE 600",
-                    logo: "/wp-content/uploads/2026/09/UFORCE-600-text.webp",
-                    img: "/wp-content/uploads/2026/09/UFORCE-600.webp",
+                    logo: "/wp-content/uploads/2026/10/UFORCE-600-text.webp",
+                    img: "/wp-content/uploads/2026/10/UFORCE-600.webp",
                     desc: "The UFORCE 600 was made for the early risers, the gate menders, and the back-forty riders who know how to get things done...",
                     price: "Starting at $10,999 MSRP",
                     link: "#"
@@ -1196,96 +1199,96 @@
             motorcycles: [
                 {
                     name: "675 SS",
-                    logo: "/wp-content/uploads/2026/09/675-SS-text.webp",
-                    img: "/wp-content/uploads/2026/09/675-SS.webp",
+                    logo: "/wp-content/uploads/2026/10/675-SS-text.webp",
+                    img: "/wp-content/uploads/2026/10/675-SS.webp",
                     desc: "Behold 429 pounds of aluminum, electronics, and attitude—driven by a 675cc inline-triple unleashing 95 horsepower at 11,000 rpm...",
                     price: "Starting at $7,999 MSRP",
                     link: "#"
                 },
                 {
                     name: "450 SS",
-                    logo: "/wp-content/uploads/2026/09/450-SS-text.webp",
-                    img: "/wp-content/uploads/2026/09/450-SS.webp",
+                    logo: "/wp-content/uploads/2026/10/450-SS-text.webp",
+                    img: "/wp-content/uploads/2026/10/450-SS.webp",
                     desc: "If someone tells you price equals performance, hand them the keys to this. The 449cc parallel twin with a 270° crank delivers 51 horsepower...",
                     price: "Starting at $5,699 MSRP",
                     link: "#"
                 },
                 {
                     name: "300 SS",
-                    logo: "/wp-content/uploads/2026/09/300-SS-text.webp",
-                    img: "/wp-content/uploads/2026/09/300-SS.webp",
+                    logo: "/wp-content/uploads/2026/10/300-SS-text.webp",
+                    img: "/wp-content/uploads/2026/10/300-SS.webp",
                     desc: "The 300SS proves that a single cylinder doesn’t mean single-minded. Its 298cc DOHC engine delivers 29.5 hp...",
                     price: "Starting at $4,599 MSRP",
                     link: "#"
                 },
                 {
                     name: "800NK",
-                    logo: "/wp-content/uploads/2026/09/800NK-text.webp",
-                    img: "/wp-content/uploads/2026/09/800NK.webp",
+                    logo: "/wp-content/uploads/2026/10/800NK-text.webp",
+                    img: "/wp-content/uploads/2026/10/800NK.webp",
                     desc: "Meet the most powerful naked bike in the CFMOTO lineup—100 hp from a 799cc twin that responds with immediacy and intent...",
                     price: "Starting at $8,699 MSRP",
                     link: "#"
                 },
                 {
                     name: "675NK",
-                    logo: "/wp-content/uploads/2026/09/675NK-text.webp",
-                    img: "/wp-content/uploads/2026/09/675NK.webp",
+                    logo: "/wp-content/uploads/2026/10/675NK-text.webp",
+                    img: "/wp-content/uploads/2026/10/675NK.webp",
                     desc: "The all-new 675NK harbors a purpose-built 675cc inline triple delivering 95 hp at 11,000 rpm and 51.6 lb-ft of torque...",
                     price: "Starting at $7,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "450NK",
-                    logo: "/wp-content/uploads/2026/09/450NK-text.webp",
-                    img: "/wp-content/uploads/2026/09/450NK.webp",
+                    logo: "/wp-content/uploads/2026/10/450NK-text.webp",
+                    img: "/wp-content/uploads/2026/10/450NK.webp",
                     desc: "At its heart is a 449cc parallel twin, featuring a 270° crank for torque-rich delivery and an exhaust note that resonates...",
                     price: "Starting at $5,399 MSRP",
                     link: "#"
                 },
                 {
                     name: "300NK",
-                    logo: "/wp-content/uploads/2026/09/300NK-text.webp",
-                    img: "/wp-content/uploads/2026/09/300NK.webp",
+                    logo: "/wp-content/uploads/2026/10/300NK-text.webp",
+                    img: "/wp-content/uploads/2026/10/300NK.webp",
                     desc: "Light enough to welcome new riders. Engineered to keep the experienced entertained. The 292cc single-cylinder engine...",
                     price: "Starting at $4,199 MSRP",
                     link: "#"
                 },
                 {
                     name: "Ibex 800 E",
-                    logo: "/wp-content/uploads/2026/09/Ibex-800-E-text.webp",
-                    img: "/wp-content/uploads/2026/09/Ibex-800-E.webp",
+                    logo: "/wp-content/uploads/2026/10/Ibex-800-E-text.webp",
+                    img: "/wp-content/uploads/2026/10/Ibex-800-E.webp",
                     desc: "The 799cc parallel twin delivers 94 hp and 56.8 lb-ft of torque. On the highway, the bike settles in...",
                     price: "Starting at $10,299 MSRP",
                     link: "#"
                 },
                 {
                     name: "Ibex 450",
-                    logo: "/wp-content/uploads/2026/09/Ibex-450-text.webp",
-                    img: "/wp-content/uploads/2026/09/Ibex-450.webp",
+                    logo: "/wp-content/uploads/2026/10/Ibex-450-text.webp",
+                    img: "/wp-content/uploads/2026/10/Ibex-450.webp",
                     desc: "Blaze through urban gridlock or kick up a dust storm on backcountry paths. This isn’t just the bike the ADV community wanted...",
                     price: "Starting at $6,499 MSRP",
                     link: "#"
                 },
                 {
                     name: "450CL-C",
-                    logo: "/wp-content/uploads/2026/09/450CL-C-text.webp",
-                    img: "/wp-content/uploads/2026/09/450CL-C.webp",
+                    logo: "/wp-content/uploads/2026/10/450CL-C-text.webp",
+                    img: "/wp-content/uploads/2026/10/450CL-C.webp",
                     desc: "The 450CL-C is built around a 449cc parallel twin with a 270° crank that sounds and feels like a V-twin...",
                     price: "Starting at $5,799 MSRP",
                     link: "#"
                 },
                 {
                     name: "Papio SS",
-                    logo: "/wp-content/uploads/2026/09/Papio-SS-text.webp",
-                    img: "/wp-content/uploads/2026/09/Papio-SS.webp",
+                    logo: "/wp-content/uploads/2026/10/Papio-SS-text.webp",
+                    img: "/wp-content/uploads/2026/10/Papio-SS.webp",
                     desc: "The Papio SS is what happens when retro styling collides with modern mischief. Updated race fairing. Color-matched rims. Clip-ons...",
                     price: "Starting at $3,299 MSRP",
                     link: "#"
                 },
                 {
                     name: "Papio CL",
-                    logo: "/wp-content/uploads/2026/09/Papio-CL-text.webp",
-                    img: "/wp-content/uploads/2026/09/Papio-CL.webp",
+                    logo: "/wp-content/uploads/2026/10/Papio-CL-text.webp",
+                    img: "/wp-content/uploads/2026/10/Papio-CL.webp",
                     desc: "The Papio CL isn’t just a mini. It’s a minimalist. Lightweight, rugged, and ready for anything, it carries the DNA of a full-sized scrambler...",
                     price: "Starting at $3,299 MSRP",
                     link: "#"

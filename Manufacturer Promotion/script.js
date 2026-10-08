@@ -813,9 +813,13 @@ jQuery(document).ready(function ($) {
   function setFilterFromUrl($select, value) {
     if (!value) return;
 
-    const requestedValue = utils.normalizeText(value);
+    // Treat punctuation and spacing as equivalent so OEM slugs match labels.
+    const requestedValue = utils.normalizeText(value).replace(/[^a-z0-9]/g, "");
     const matchingOption = $select.find("option").filter(function () {
-      return utils.normalizeText(this.value) === requestedValue;
+      return (
+        utils.normalizeText(this.value).replace(/[^a-z0-9]/g, "") ===
+        requestedValue
+      );
     })[0];
 
     if (!matchingOption) return;

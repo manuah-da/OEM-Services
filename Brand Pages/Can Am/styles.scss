@@ -773,7 +773,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
 .can-am-promotions {
     width: 100%;
     padding: clamp(24px, 4vw, 54px) 0;
-    background-color: #fff;
+    background-color: #fff !important;
 
     &[hidden] {
         display: none;
@@ -788,7 +788,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
     &__slider {
         position: relative;
         overflow: hidden;
-        background-color: #ececec;
+        background-color: #ececec !important;
     }
 
     &__slide,
@@ -818,8 +818,8 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         padding: clamp(22px, 4vw, 58px);
         box-sizing: border-box;
         overflow: hidden;
-        color: #fff;
-            background: linear-gradient(115deg, rgba(223, 91, 91, 0.96), rgba(223, 91, 91, 0.72));
+        color: #fff !important;
+        background: linear-gradient(115deg, #FFC72C 0%, #CC2323 100%) !important;
         backdrop-filter: blur(4px);
         opacity: 0;
         visibility: hidden;
@@ -853,7 +853,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
             box-sizing: border-box;
             overflow-y: auto;
             overscroll-behavior: contain;
-            scrollbar-color: rgba(255, 255, 255, 0.85) rgba(0, 0, 0, 0.18);
+            scrollbar-color: #FFC72C #CC2323 !important;
             scrollbar-width: thin;
 
             // Keep long promotion copy usable without growing the banner.
@@ -862,17 +862,17 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
             }
 
             &::-webkit-scrollbar-track {
-                background-color: rgba(0, 0, 0, 0.18);
+                background-color: #CC2323 !important;
                 border-radius: 10px;
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: rgba(255, 255, 255, 0.85);
+                background-color: #FFC72C !important;
                 border-radius: 10px;
             }
 
             &::-webkit-scrollbar-thumb:hover {
-                background-color: #fff;
+                background-color: #CC2323 !important;
             }
         }
 
@@ -887,18 +887,19 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         display: inline-flex;
         justify-content: center;
         padding: 12px 24px;
-        color: #111;
+        color: #CC2323 !important;
         font-size: 15px !important;
         font-weight: 700;
         text-transform: uppercase;
-        background-color: #fff;
-        border: 1px solid #fff;
+        background-color: #FFC72C !important;
+        border: 1px solid #FFC72C !important;
         transition: color 0.25s ease, background-color 0.25s ease;
 
         &:hover,
         &:focus {
-            color: #fff;
-            background-color: transparent;
+            color: #FFC72C !important;
+            background-color: #CC2323 !important;
+            border-color: #CC2323 !important;
         }
     }
 
@@ -916,7 +917,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         justify-content: center;
         padding: 16px;
         box-sizing: border-box;
-        background-color: rgba(0, 0, 0, 0.78);
+        background-color: rgba(0, 0, 0, 0.78) !important;
         opacity: 0;
         transition: opacity 0.25s ease;
 
@@ -935,9 +936,9 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         width: 100%;
         max-width: 760px;
         max-height: 80vh;
-        color: #111;
-        background-color: #fff;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        color: #CC2323 !important;
+        background-color: #fff !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35) !important;
         transform: translateY(18px);
         transition: transform 0.25s ease;
     }
@@ -952,11 +953,11 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         justify-content: space-between;
         gap: 20px;
         padding: 22px 24px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #FFC72C !important;
 
         h2 {
             margin: 0;
-            color: #111;
+            color: #CC2323 !important;
             font-size: clamp(20px, 5vw, 28px) !important;
             line-height: 1.2;
         }
@@ -967,54 +968,55 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         width: 36px;
         height: 36px;
         padding: 0;
-        color: #111;
+        color: #CC2323 !important;
         font-size: 30px !important;
         line-height: 32px;
-        background: transparent;
-        border: 0;
+        background: transparent !important;
+        border: 0 !important;
         cursor: pointer;
     }
 
     &__modal-body {
         min-height: 0;
         padding: 24px;
-        color: #222;
+        color: #CC2323 !important;
         font-size: 16px !important;
         line-height: 1.6;
         white-space: pre-line;
         overflow-y: auto;
         overscroll-behavior: contain;
-        scrollbar-color: #df625b #eee;
+        scrollbar-color: #FFC72C #CC2323 !important;
         scrollbar-width: thin;
     }
 
     &__modal-footer {
         padding: 18px 24px;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid #FFC72C !important;
     }
 
     &__modal-cta {
         display: inline-flex;
         justify-content: center;
         padding: 12px 24px;
-        color: #fff;
+        color: #FFC72C !important;
         font-size: 15px !important;
         font-weight: 700;
         text-transform: uppercase;
-        background-color: #df625b;
-        border: 1px solid #df625b;
+        background-color: #CC2323 !important;
+        border: 1px solid #CC2323 !important;
         transition: color 0.25s ease, background-color 0.25s ease;
 
         &:hover,
         &:focus {
-            color: #df625b;
-            background-color: #fff;
+            color: #CC2323 !important;
+            background-color: #FFC72C !important;
+            border-color: #FFC72C !important;
         }
     }
 
     &__overlay-title {
         margin: 0 0 10px;
-        color: #fff;
+        color: #fff !important;
         font-size: clamp(18px, 2vw, 28px) !important;
         font-weight: 700;
         text-transform: uppercase;
@@ -1022,7 +1024,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
 
     &__overlay-copy {
         margin: 0;
-        color: #fff;
+        color: #fff !important;
         font-size: clamp(14px, 1.3vw, 17px) !important;
         line-height: 1.55;
     }
@@ -1041,19 +1043,26 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
     &__prev,
     &__next {
         top: 50%;
-        width: 52px;
-        height: 52px;
-        min-width: 52px;
-        max-width: 52px;
-        flex: 0 0 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+        min-height: 52px !important;
+        max-height: 52px !important;
+        aspect-ratio: 1 / 1;
+        flex: 0 0 52px !important;
         margin-top: 0;
-        padding: 0;
+        padding: 0 !important;
+        line-height: 1;
         box-sizing: border-box;
-        color: #fff;
-        background-color: #000;
-        border: 0;
-        border-radius: 50%;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+        color: #fff !important;
+        background-color: #000 !important;
+        border: 0 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
         transform: translateY(-50%);
         transition: opacity 0.2s ease;
 
@@ -1062,20 +1071,20 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         }
 
         &:focus-visible {
-            outline: 3px solid #fff;
+            outline: 3px solid #FFC72C !important;
             outline-offset: 3px;
         }
 
         &::after {
             width: 10px;
             height: 10px;
-            color: currentColor;
+            color: currentColor !important;
             font-family: inherit;
             font-size: 0;
             font-weight: 700;
             content: "";
-            border-top: 2px solid currentColor;
-            border-right: 2px solid currentColor;
+            border-top: 2px solid currentColor !important;
+            border-right: 2px solid currentColor !important;
         }
 
         &.swiper-button-prev {
@@ -1105,23 +1114,23 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         .swiper-pagination-bullet {
             width: 10px;
             height: 10px;
-            background-color: #fff;
+            background-color: #FFC72C !important;
             opacity: 0.55;
         }
 
         .swiper-pagination-bullet-active {
-            background-color: #df625b;
+            background-color: #CC2323 !important;
             opacity: 1;
         }
     }
 
     &__skeleton {
-        background-color: #e4e4e4;
+        background-color: #e4e4e4 !important;
 
         span {
             position: absolute;
             inset: 0;
-            background: linear-gradient(100deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%);
+            background: linear-gradient(100deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%) !important;
             background-size: 200% 100%;
             animation: can-am-promotion-loading 1.35s linear infinite;
         }
@@ -1156,7 +1165,7 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
         &__overlay {
             position: relative;
             padding: 22px;
-            background: #df625b;
+            background: linear-gradient(115deg, #FFC72C 0%, #CC2323 100%) !important;
             opacity: 1;
             visibility: visible;
         }
@@ -1178,13 +1187,13 @@ body:not(.home) #main #primary #content .can-am-brandpage__header .text-containe
             button {
                 width: 100%;
                 padding: 12px 16px;
-                color: #fff;
+                color: #FFC72C !important;
                 font-size: 15px !important;
                 font-weight: 700;
                 text-align: left;
                 text-transform: uppercase;
-                background-color: rgba(0, 0, 0, 0.2);
-                border: 1px solid rgba(255, 255, 255, 0.8);
+                background-color: #CC2323 !important;
+                border: 1px solid #FFC72C !important;
                 cursor: pointer;
             }
         }

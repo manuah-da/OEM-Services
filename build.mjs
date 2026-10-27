@@ -24,6 +24,10 @@ const entryPoints = {
     root,
     "Brand Pages/Polaris Snowmobile/script.js",
   ),
+  "polaris-snowmobile-canada": path.join(
+    root,
+    "Brand Pages/Polaris Snowmobile Canada/script.js",
+  ),
   "polaris-slingshot": path.join(
     root,
     "Brand Pages/Polaris Slingshot/script.js",

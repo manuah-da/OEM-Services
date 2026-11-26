@@ -36,6 +36,7 @@ const entryPoints = {
     root,
     "Brand Pages/Yamaha Powersports/script.js",
   ),
+  "indian-motorcycle": path.join(root, "Brand Pages/Indian Motorcycle/script.js"),
   "manufacturer-promotions": path.join(
     root,
     "Manufacturer Promotion/script.js",

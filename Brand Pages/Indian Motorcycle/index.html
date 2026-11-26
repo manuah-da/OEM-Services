@@ -1,0 +1,982 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css">
+<div class="indian-page" id="indian-brand-page">
+    <div class="imc-header" role="banner">
+        <div class="imc-header-inner">
+            <div class="imc-identity">
+                <a class="imc-brand-logo" data-link="home" aria-label="Indian Motorcycle dealer home"><img data-image="logo" alt="Indian Motorcycle" width="150" height="58"></a>
+                <span class="imc-dealer-name" data-dealer="name"></span>
+            </div>
+            <div class="imc-header-nav" role="navigation" aria-label="Indian Motorcycle navigation">
+                <a data-link="inventory">In-Stock Inventory</a>
+                <a data-link="lineup">Motorcycles</a>
+                <a data-link="promotions">Promotions</a>
+                <a data-link="service">Service</a>
+            </div>
+            <div class="imc-header-info">
+                <a class="imc-address" data-link="directions" target="_blank" rel="noopener noreferrer"><span data-dealer="street"></span><span data-dealer="cityLine"></span></a>
+                <div><span class="imc-phone-label">Phone</span><a class="imc-contact-link" data-link="phone"><span data-dealer="phone"></span></a></div>
+                <a class="imc-contact-link" data-link="contact"><svg class="imc-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="1"></rect>
+                        <path d="m3 6 9 7 9-7"></path>
+                    </svg><span>Contact Us</span></a>
+            </div>
+            <button type="button" class="imc-menu-button" aria-label="Open navigation" aria-expanded="false" aria-controls="imc-mobile-menu"><svg class="imc-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path class="imc-menu-open-icon" d="M3 6h18M3 12h18M3 18h18"></path>
+                    <path class="imc-menu-close-icon" d="m5 5 14 14M19 5 5 19" style="display:none"></path>
+                </svg></button>
+        </div>
+        <div class="imc-mobile-nav" id="imc-mobile-menu" role="navigation" aria-label="Mobile navigation" hidden="">
+            <a data-link="inventory">In-Stock Inventory</a>
+            <a data-link="lineup">Motorcycles</a>
+            <a data-link="promotions">Promotions</a>
+            <a data-link="service">Service</a>
+            <a data-link="directions" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            <a data-link="phone">Call <span data-dealer="phone"></span></a>
+            <a data-link="contact">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="imc-hero">
+        <div class="swiper imc-hero-swiper" aria-label="Featured Indian Motorcycle banners">
+            <div class="swiper-wrapper imc-hero-slides">
+                <div class="swiper-slide">
+                    <div class="imc-hero-media imc-placeholder imc-hero-fallback">
+                        <strong>Indian Motorcycle</strong>
+                        <span>Explore the motorcycle lineup and in-stock inventory.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination imc-hero-dots"></div>
+        </div>
+        <div class="imc-hero-actions">
+            <a class="imc-button" data-link="inventory">View In-Stock Inventory</a>
+            <a class="imc-button imc-button-outline" data-link="promotions">Explore Current Promotions</a>
+        </div>
+    </div>
+
+    <div class="imc-search">
+        <div class="imc-container imc-search-inner">
+            <h3 class="imc-search-title">Search Inventory</h3>
+            <button type="button" class="imc-search-toggle" aria-expanded="false" aria-controls="imc-search-fields">Search Inventory</button>
+            <form class="imc-search-fields" id="imc-search-fields" action="/inventory/" method="get" role="search" aria-label="Search inventory" aria-busy="true">
+                <select name="make" aria-label="Make" disabled="">
+                    <option value="">All Makes</option>
+                </select>
+                <select name="category" aria-label="Category" disabled="">
+                    <option value="">All Categories</option>
+                </select>
+                <div class="imc-year-range" role="group" aria-label="Model year range">
+                    <input type="number" name="min-year" placeholder="From year" aria-label="Minimum year" step="1" disabled="">
+                    <input type="number" name="max-year" placeholder="To year" aria-label="Maximum year" step="1" disabled="">
+                </div>
+                <select name="condition" aria-label="Condition" disabled="">
+                    <option value="">All Conditions</option>
+                </select>
+                <button type="submit" class="imc-button imc-search-button" disabled="">View Results</button>
+                <div class="imc-search-status" role="status" aria-live="polite">Loading inventory filters…</div>
+            </form>
+        </div>
+    </div>
+
+    <div class="imc-leatest-carrousel" id="imc-current-inventory">
+        [latest_inventory filter="make=Indian+Motorcycles"]
+    </div>
+
+    <div class="imc-lineup" id="imc-lineup">
+        <div class="imc-container">
+            <h2 class="imc-heading">Motorcycles</h2>
+            <div class="imc-family-nav">
+                <button type="button" class="imc-arrow imc-prev imc-family-prev" aria-label="Previous motorcycle families"></button>
+                <div class="swiper imc-family-swiper">
+                    <div class="swiper-wrapper" role="tablist" aria-label="Motorcycle families">
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-scout" class="imc-family-tab is-active" data-family="scout" aria-controls="imc-panel-scout" aria-selected="true" tabindex="0">Scout</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-chief" class="imc-family-tab" data-family="chief" aria-controls="imc-panel-chief" aria-selected="false" tabindex="-1">Chief</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-springfield" class="imc-family-tab" data-family="springfield" aria-controls="imc-panel-springfield" aria-selected="false" tabindex="-1">Indian
+                                Springfield</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-chieftain-powerplus" class="imc-family-tab" data-family="chieftain-powerplus" aria-controls="imc-panel-chieftain-powerplus" aria-selected="false" tabindex="-1">Chieftain PowerPlus</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-chieftain" class="imc-family-tab" data-family="chieftain" aria-controls="imc-panel-chieftain" aria-selected="false" tabindex="-1">Chieftain</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-challenger" class="imc-family-tab" data-family="challenger" aria-controls="imc-panel-challenger" aria-selected="false" tabindex="-1">Indian
+                                Challenger</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-roadmaster-powerplus" class="imc-family-tab" data-family="roadmaster-powerplus" aria-controls="imc-panel-roadmaster-powerplus" aria-selected="false" tabindex="-1">Roadmaster PowerPlus</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-roadmaster" class="imc-family-tab" data-family="roadmaster" aria-controls="imc-panel-roadmaster" aria-selected="false" tabindex="-1">Roadmaster</button></div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-pursuit" class="imc-family-tab" data-family="pursuit" aria-controls="imc-panel-pursuit" aria-selected="false" tabindex="-1">Pursuit</button>
+                        </div>
+                        <div class="swiper-slide" role="presentation"><button type="button" role="tab" id="imc-tab-elite" class="imc-family-tab" data-family="elite" aria-controls="imc-panel-elite" aria-selected="false" tabindex="-1">Elite</button></div>
+                    </div>
+                </div>
+                <button type="button" class="imc-arrow imc-next imc-family-next" aria-label="Next motorcycle families"></button>
+            </div>
+            <div class="imc-model-panels">
+                <div class="imc-model-panel" id="imc-panel-scout" data-panel="scout" role="tabpanel" aria-labelledby="imc-tab-scout">
+                    <div class="swiper imc-model-swiper" aria-label="Scout models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-scout-sixty-bobber.webp" alt="Scout Sixty Bobber" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Scout Sixty Bobber</h3>
+                                        <p class="imc-model-description">Scout Sixty Bobber brings iconic Scout style,
+                                            approachable performance, and confident control to a stripped-down,
+                                            blacked-out package.</p>
+                                        <div class="imc-model-price">STARTING AT $9,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Scout Sixty Bobber" data-model-slug="2027-indian-motorcycle-scout-sixty-bobber-29455591b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-scout-bobber.webp" alt="Scout Bobber" width="700" height="500" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Scout Bobber</h3>
+                                        <p class="imc-model-description">Scout Bobber combines iconic bobber style with
+                                            the liquid-cooled 1250cc SpeedPlus V-Twin, a slammed stance, and clean,
+                                            aggressive details.</p>
+                                        <div class="imc-model-price">STARTING AT $12,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Scout Bobber" data-model-slug="2027-indian-motorcycle-scout-bobber-29455592b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-scout-bobber-limited.webp" alt="Scout Bobber Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Scout Bobber Limited</h3>
+                                        <p class="imc-model-description">Scout Bobber combines iconic bobber style with
+                                            the liquid-cooled 1250cc SpeedPlus V-Twin, a slammed stance, and clean,
+                                            aggressive details.</p>
+                                        <div class="imc-model-price">STARTING AT $15,199 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Scout Bobber Limited" data-model-slug="2027-indian-motorcycle-scout-bobber-limited-29455593b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-sport-scout-limited.webp" alt="Sport Scout Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Sport Scout Limited</h3>
+                                        <p class="imc-model-description">Sport Scout gives the Scout lineup a more
+                                            aggressive edge with performance-inspired ergonomics, custom style, and
+                                            powered by the 1250cc liquid-cooled SpeedPlus V-Twin.</p>
+                                        <div class="imc-model-price">STARTING AT $15,699 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Sport Scout Limited" data-model-slug="2027-indian-motorcycle-sport-scout-limited-29455594b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-super-scout-limited.webp" alt="Super Scout Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Super Scout Limited</h3>
+                                        <p class="imc-model-description">Super Scout adds touring capability, passenger
+                                            comfort, and classic styling to the iconic, approachable Scout platform.</p>
+                                        <div class="imc-model-price">STARTING AT $16,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Super Scout Limited" data-model-slug="2027-indian-motorcycle-super-scout-limited-29455595b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-101-scout.webp" alt="101 Scout" width="700" height="500" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">101 Scout</h3>
+                                        <p class="imc-model-description">101 Scout is the highest-performance Scout in
+                                            the lineup, combining 111 horsepower with premium suspension, braking,
+                                            ergonomics, and exclusive details.</p>
+                                        <div class="imc-model-price">STARTING AT $16,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="101 Scout" data-model-slug="2027-indian-motorcycle-101-scout-29455596b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+                <div class="imc-model-panel" id="imc-panel-chief" data-panel="chief" role="tabpanel" aria-labelledby="imc-tab-chief" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Chief models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief.webp" alt="Chief" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chief</h3>
+                                        <p class="imc-model-description">For riders wanting a mean, tough expression of
+                                            their style, Chief models offer an old school custom look.</p>
+                                        <div class="imc-model-price">STARTING AT $14,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chief" data-model-slug="2026-indian-motorcycle-chief-29354714b">Browse Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-dark-horse.webp" alt="Chief Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chief Dark Horse</h3>
+                                        <p class="imc-model-description">Everything you love about the Chief with
+                                            blacked-out finishes, more power, and more ride-enhancing tech.</p>
+                                        <div class="imc-model-price">STARTING AT $18,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chief Dark Horse" data-model-slug="2026-indian-motorcycle-chief-dark-horse-29354713b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-sport-chief.webp" alt="Sport Chief" width="700" height="500" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Sport Chief</h3>
+                                        <p class="imc-model-description">For the rider who wants to let loose and ride
+                                            hard, Sport Chief is packed with premium components that enhance performance
+                                            and style.</p>
+                                        <div class="imc-model-price">STARTING AT $19,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Sport Chief" data-model-slug="2026-indian-motorcycle-sport-chief-29354760b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-bobber.webp" alt="Chief Bobber" width="700" height="500" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chief Bobber</h3>
+                                        <p class="imc-model-description">A contemporary nod to post war era V-Twins, the
+                                            Chief Bobber is perfect for those who want a classic bobber aesthetic with
+                                            modern capability and tech.</p>
+                                        <div class="imc-model-price">STARTING AT $17,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chief Bobber" data-model-slug="2026-indian-motorcycle-chief-bobber-29354716b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-bobber-dark-horse.webp" alt="Chief Bobber Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chief Bobber Dark Horse</h3>
+                                        <p class="imc-model-description">Blacked out finishes, more power, and more
+                                            ride-enhancing tech giving you a bike with the most attitude.</p>
+                                        <div class="imc-model-price">STARTING AT $19,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chief Bobber Dark Horse" data-model-slug="2026-indian-motorcycle-chief-bobber-dark-horse-29354715b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-super-chief-limited.webp" alt="Super Chief Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Super Chief Limited</h3>
+                                        <p class="imc-model-description">Touring-inspired amenities suit riders who want
+                                            to ride longer, haul more cargo, or add a passenger, with premium chrome
+                                            finishes.</p>
+                                        <div class="imc-model-price">STARTING AT $21,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Super Chief Limited" data-model-slug="2026-indian-motorcycle-super-chief-limited-29354769b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-sport-chief-rt.webp" alt="SPORT CHIEF RT" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">SPORT CHIEF RT</h3>
+                                        <p class="imc-model-description">A purpose-built V-Twin, loaded with
+                                            factory-installed accessories and tuned for the open road, the Sport Chief
+                                            RT takes the beloved Indian Sport Chief to an entirely new level.</p>
+                                        <div class="imc-model-price">STARTING AT $22,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="SPORT CHIEF RT" data-model-slug="2026-indian-motorcycle-sport-scout-rt-29354763b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-super-chief-dark-horse.webp" alt="SUPER CHIEF DARK HORSE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">SUPER CHIEF DARK HORSE</h3>
+                                        <p class="imc-model-description">Touring-inspired amenities suit riders who want
+                                            to ride longer, haul more cargo, or add a passenger, with premium
+                                            blacked-out finishes.</p>
+                                        <div class="imc-model-price">STARTING AT $21,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="SUPER CHIEF DARK HORSE" data-model-slug="2026-indian-motorcycle-super-chief-dark-horse-29354770b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-vintage.webp" alt="CHIEF VINTAGE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEF VINTAGE</h3>
+                                        <p class="imc-model-description">A heritage inspired cruiser with valanced
+                                            fenders and an iconic lit headdress, silver engine finishes, vintage
+                                            floating seat and handlebars.</p>
+                                        <div class="imc-model-price">STARTING AT $19,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEF VINTAGE" data-model-slug="indian-motorcycle-cruiserv-twin-chief-2258969832530068792934868">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-vintage-sturgis-sd-edition.webp" alt="CHIEF VINTAGE STURGIS, SD EDITION" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEF VINTAGE STURGIS, SD EDITION</h3>
+                                        <p class="imc-model-description">BORN IN STURGIS, SD. POWERED BY 125 YEARS OF
+                                            INDIAN MOTORCYCLE.</p>
+                                        <div class="imc-model-price">STARTING AT $23,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEF VINTAGE STURGIS, SD EDITION" data-model-slug="2026-indian-motorcycle-chief-vintage-sturgis-sd-edition-29427760b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+                <div class="imc-model-panel" id="imc-panel-springfield" data-panel="springfield" role="tabpanel" aria-labelledby="imc-tab-springfield" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Indian Springfield models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-springfield.webp" alt="Indian Springfield" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Springfield</h3>
+                                        <p class="imc-model-description">Style meets comfort. A nod to the classic
+                                            Indian Motorcycle style with modern amenities for long-haul comfort.</p>
+                                        <div class="imc-model-price">STARTING AT $23,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Springfield" data-model-slug="2026-indian-motorcycle-springfield-29354767b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-springfield-dark-horse.webp" alt="Indian Springfield Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Springfield Dark Horse</h3>
+                                        <p class="imc-model-description">Inspired by the look of custom bikes, the
+                                            Springfield Dark Horse keeps your fists in the wind and eyes on you.</p>
+                                        <div class="imc-model-price">STARTING AT $24,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Springfield Dark Horse" data-model-slug="2026-indian-motorcycle-springfield-dark-horse-29354768b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-chieftain-powerplus" data-panel="chieftain-powerplus" role="tabpanel" aria-labelledby="imc-tab-chieftain-powerplus" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Chieftain PowerPlus models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chieftain-powerplus-limited.webp" alt="CHIEFTAIN POWERPLUS LIMITED" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEFTAIN POWERPLUS LIMITED</h3>
+                                        <p class="imc-model-description">Featuring a new fork-mounted fairing, premium
+                                            chrome finishes, and the PowerPlus liquid-cooled engine.</p>
+                                        <div class="imc-model-price">STARTING AT $27,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEFTAIN POWERPLUS LIMITED" data-model-slug="2026-indian-motorcycle-chieftain-powerplus-limited-29354734b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chieftain-powerplus-dark-horse.webp" alt="CHIEFTAIN POWERPLUS DARK HORSE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEFTAIN POWERPLUS DARK HORSE</h3>
+                                        <p class="imc-model-description">Featuring a new fork-mounted fairing,
+                                            blacked-out finishes, and the PowerPlus liquid-cooled engine.</p>
+                                        <div class="imc-model-price">STARTING AT $29,749 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEFTAIN POWERPLUS DARK HORSE" data-model-slug="2026-indian-motorcycle-chieftain-powerplus-dark-horse-29354733b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-chieftain" data-panel="chieftain" role="tabpanel" aria-labelledby="imc-tab-chieftain" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Chieftain models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chieftain-dark-horse.webp" alt="Chieftain Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chieftain Dark Horse</h3>
+                                        <p class="imc-model-description">Powered by the legendary Thunderstroke 116
+                                            giving you more power, more technology, and a meaner blacked out style.</p>
+                                        <div class="imc-model-price">STARTING AT $29,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chieftain Dark Horse" data-model-slug="2026-indian-motorcycle-chieftain-dark-horse-29354729b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chieftain-limited.webp" alt="Chieftain Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Chieftain Limited</h3>
+                                        <p class="imc-model-description">All the same features of the Chieftain Dark
+                                            Horse in a class package of premium metallic paints and chrome finishes.</p>
+                                        <div class="imc-model-price">STARTING AT $29,749 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Chieftain Limited" data-model-slug="2026-indian-motorcycle-chieftain-limited-29354730b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-challenger" data-panel="challenger" role="tabpanel" aria-labelledby="imc-tab-challenger" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Indian Challenger models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-elite.webp" alt="Indian Challenger Elite" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Challenger Elite</h3>
+                                        <p class="imc-model-description">Packed with industry leading technology, the
+                                            Indian Challenger Elite is the highest-performance Indian Challenger to
+                                            date.</p>
+                                        <div class="imc-model-price">STARTING AT $39,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Challenger Elite" data-model-slug="indian-motorcycle-cruiserv-twin-challenger-2258988279274142502486484">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-dark-horse.webp" alt="Indian Challenger Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Challenger Dark Horse</h3>
+                                        <p class="imc-model-description">A chassis-mounted fairing, bold, distinctive
+                                            styling, and modern amenities provide everything you need in a modern day
+                                            bagger.</p>
+                                        <div class="imc-model-price">STARTING AT $28,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Challenger Dark Horse" data-model-slug="2026-indian-motorcycle-challenger-dark-horse-29354717b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-limited.webp" alt="Indian Challenger Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Challenger Limited</h3>
+                                        <p class="imc-model-description">All the great features of the Indian Challenger
+                                            Dark Horse in a classic package of premium metallic paints and chrome
+                                            finishes.</p>
+                                        <div class="imc-model-price">STARTING AT $27,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Challenger Limited" data-model-slug="2026-indian-motorcycle-challenger-limited-29354718b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-elite.webp" alt="INDIAN CHALLENGER ELITE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN CHALLENGER ELITE</h3>
+                                        <p class="imc-model-description">The striking paint scheme is further
+                                            complemented by premium black Dark Horse finishes throughout, giving the
+                                            Indian Challenger Elite a bold, race-inspired style that stands out and gets
+                                            noticed.</p>
+                                        <div class="imc-model-price">STARTING AT $44,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN CHALLENGER ELITE" data-model-slug="indian-motorcycle-cruiserv-twin-challenger-2258988279274142502486484">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-roadmaster-powerplus" data-panel="roadmaster-powerplus" role="tabpanel" aria-labelledby="imc-tab-roadmaster-powerplus" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Roadmaster PowerPlus models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-powerplus-limited.webp" alt="ROADMASTER POWERPLUS LIMITED" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">ROADMASTER POWERPLUS LIMITED</h3>
+                                        <p class="imc-model-description">Featuring a fork mounted fairing, premium
+                                            chrome finishes, touring amenities and the liquid-cooled PowerPlus engine.
+                                        </p>
+                                        <div class="imc-model-price">STARTING AT $32,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="ROADMASTER POWERPLUS LIMITED" data-model-slug="2026-indian-motorcycle-roadmaster-powerplus-limited-29354745b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-powerplus-dark-horse.webp" alt="ROADMASTER POWERPLUS DARK HORSE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">ROADMASTER POWERPLUS DARK HORSE</h3>
+                                        <p class="imc-model-description">Featuring a fork mounted fairing, blacked out
+                                            finishes, touring amenities and the liquid-cooled PowerPlus engine.</p>
+                                        <div class="imc-model-price">STARTING AT $33,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="ROADMASTER POWERPLUS DARK HORSE" data-model-slug="2026-indian-motorcycle-roadmaster-powerplus-dark-horse-29354746b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-roadmaster" data-panel="roadmaster" role="tabpanel" aria-labelledby="imc-tab-roadmaster" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Roadmaster models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-elite.webp" alt="Roadmaster Elite" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Roadmaster Elite</h3>
+                                        <p class="imc-model-description">The ultimate in style and exclusivity. The
+                                            Roadmaster Elite boasts the iconic Springfield Blue and candy finishes
+                                            combined with striking graphics and premium accessories.</p>
+                                        <div class="imc-model-price">STARTING AT $41,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Roadmaster Elite" data-model-slug="indian-motorcycle-cruiserv-twin-roadmaster-2259080512994511050244564">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-dark-horse.webp" alt="Roadmaster Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Roadmaster Dark Horse</h3>
+                                        <p class="imc-model-description">Confident and mean style with premium blacked
+                                            out finishes front to back command attention. No amenities are sacrificed to
+                                            ensure riders are comfortable for a long ride.</p>
+                                        <div class="imc-model-price">STARTING AT $33,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Roadmaster Dark Horse" data-model-slug="2026-indian-motorcycle-roadmaster-dark-horse-29354741b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-limited.webp" alt="Roadmaster Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Roadmaster Limited</h3>
+                                        <p class="imc-model-description">Sparkling Chrome and premium metallic paints
+                                            provide the perfect balance of modern and heritage inspired style while
+                                            crushing miles with endless amenities.</p>
+                                        <div class="imc-model-price">STARTING AT $33,749 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Roadmaster Limited" data-model-slug="2026-indian-motorcycle-roadmaster-limited-29354740b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster.webp" alt="Roadmaster" width="700" height="500" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Roadmaster</h3>
+                                        <p class="imc-model-description">Fully loaded with Classic American Style as a
+                                            nod to our heritage. The classically designed fairing and valanced fender
+                                            makes it easy to tell this bike is an Indian Motorcycle.</p>
+                                        <div class="imc-model-price">STARTING AT $34,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Roadmaster" data-model-slug="2026-indian-motorcycle-roadmaster-29354739b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-pursuit" data-panel="pursuit" role="tabpanel" aria-labelledby="imc-tab-pursuit" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Pursuit models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-pursuit-limited.webp" alt="Indian Pursuit Limited" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Pursuit Limited</h3>
+                                        <p class="imc-model-description">This chromed-out powerhouse redefines American
+                                            touring performance. It’s ready for any route you can dream up.</p>
+                                        <div class="imc-model-price">STARTING AT $32,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Pursuit Limited" data-model-slug="2026-indian-motorcycle-pursuit-limited-29354724b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-pursuit-dark-horse.webp" alt="Indian Pursuit Dark Horse" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Pursuit Dark Horse</h3>
+                                        <p class="imc-model-description">The next generation of American touring
+                                            performance, with an aggressive blacked-out finish to match.</p>
+                                        <div class="imc-model-price">STARTING AT $33,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Pursuit Dark Horse" data-model-slug="2026-indian-motorcycle-pursuit-dark-horse-29354723b">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-pursuit-elite.webp" alt="INDIAN PURSUIT ELITE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN PURSUIT ELITE</h3>
+                                        <p class="imc-model-description">With a commanding and sophisticated style,
+                                            exacting fit-and-finish, and top-of-the-line touring amenities, the Indian
+                                            Pursuit Elite redefines what to expect in a premium American touring
+                                            machine.</p>
+                                        <div class="imc-model-price">STARTING AT $41,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN PURSUIT ELITE" data-model-slug="indian-motorcycle-cruiserv-twin-pursuit-2259025172762289921589716">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+
+                <div class="imc-model-panel" id="imc-panel-elite" data-panel="elite" role="tabpanel" aria-labelledby="imc-tab-elite" hidden="">
+                    <div class="swiper imc-model-swiper" aria-label="Elite models">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-signature-series.webp" alt="INDIAN CHALLENGER - SIGNATURE SERIES" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN CHALLENGER - SIGNATURE SERIES</h3>
+                                        <p class="imc-model-description">The Indian Challenger Signature Series is
+                                            engineered to stand out at speed or at rest. Abyss Metallic creates a deep,
+                                            blacked-out foundation, sharpened by Machined Silver and Red Alert accents
+                                            that cut through with precision and intent. A meticulous multi-layer paint
+                                            process delivers striking contrast and unmatched depth across every surface.
+                                            Limited in production, it’s a bold expression of performance-driven
+                                            craftsmanship.</p>
+                                        <div class="imc-model-price">STARTING AT $40,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN CHALLENGER - SIGNATURE SERIES" data-model-slug="indian-motorcycle-cruiserv-twin-challenger-2258988279274142502486484">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chieftain-powerplus-signature-series.webp" alt="CHIEFTAIN POWERPLUS - SIGNATURE SERIES" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEFTAIN POWERPLUS - SIGNATURE SERIES</h3>
+                                        <p class="imc-model-description">The Chieftain PowerPlus Signature Series
+                                            commands attention with a finish as bold as the ride itself. Abyss Metallic
+                                            forms a deep, shadowed foundation, cut through with Venom Green and Cypher
+                                            Green accents that create a sense of motion, even at a standstill.</p>
+                                        <div class="imc-model-price">STARTING AT $40,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEFTAIN POWERPLUS - SIGNATURE SERIES" data-model-slug="indian-motorcycle-cruiserv-twin-chieftain-powerplus-2259062066250437340692948">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-pursuit-signature-series.webp" alt="INDIAN PURSUIT - SIGNATURE SERIES" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN PURSUIT - SIGNATURE SERIES</h3>
+                                        <p class="imc-model-description">The Indian Pursuit Signature Series is a
+                                            tribute to American craftsmanship, past and present. Frontier Pearl creates
+                                            a timeless foundation, accented by Revere Red and Vigilant Blue to evoke a
+                                            legacy of strength, independence, and precision. Each layer is applied with
+                                            purpose, delivering depth and detail that stand apart on every road. Built
+                                            in limited numbers, it’s a modern expression of 125 years of riding forward.
+                                        </p>
+                                        <div class="imc-model-price">STARTING AT $46,749 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN PURSUIT - SIGNATURE SERIES" data-model-slug="indian-motorcycle-cruiserv-twin-pursuit-2259025172762289921589716">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-powerplus-signature-series.webp" alt="ROADMASTER POWERPLUS - SIGNATURE SERIES" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">ROADMASTER POWERPLUS - SIGNATURE SERIES</h3>
+                                        <p class="imc-model-description">The Indian Pursuit Signature Series is a
+                                            tribute to American craftsmanship, past and present. Frontier Pearl creates
+                                            a timeless foundation, accented by Revere Red and Vigilant Blue to evoke a
+                                            legacy of strength, independence, and precision. Each layer is applied with
+                                            purpose, delivering depth and detail that stand apart on every road. Built
+                                            in limited numbers, it’s a modern expression of 125 years of riding forward.
+                                        </p>
+                                        <div class="imc-model-price">STARTING AT $46,749 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="ROADMASTER POWERPLUS - SIGNATURE SERIES" data-model-slug="indian-motorcycle-cruiserv-twin-roadmaster-powerplus-2259098959738584759796180">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-scout-bobber-125th-anniversary-edition.webp" alt="SCOUT BOBBER 125TH ANNIVERSARY EDITION" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">SCOUT BOBBER 125TH ANNIVERSARY EDITION</h3>
+                                        <p class="imc-model-description">The Scout Bobber 125th Anniversary Edition
+                                            doesn’t look backward. It screams forward. Aggressive bobber stance. Chopped
+                                            fenders. Headlight nacelle. Solo seat. With elevated details and the highest
+                                            quality fit and finish.</p>
+                                        <div class="imc-model-price">STARTING AT $17,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="SCOUT BOBBER 125TH ANNIVERSARY EDITION" data-model-slug="indian-motorcycle-468">Browse Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-chief-vintage-125th-anniversary-edition.webp" alt="CHIEF VINTAGE: 125th Anniversary Edition" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">CHIEF VINTAGE: 125th Anniversary Edition</h3>
+                                        <p class="imc-model-description">The Chief Vintage 125th Anniversary Edition
+                                            carries forward the design language Indian Motorcycle established in the
+                                            1940s—valanced fenders, a floating solo seat, wire wheels, and the
+                                            unmistakable visual cues that made the Chief an icon then and still define
+                                            it now.</p>
+                                        <div class="imc-model-price">STARTING AT $24,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="CHIEF VINTAGE: 125th Anniversary Edition" data-model-slug="indian-motorcycle-468">Browse Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-125th-anniversary-edition.webp" alt="INDIAN CHALLENGER 125TH ANNIVERSARY EDITION" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN CHALLENGER 125TH ANNIVERSARY EDITION</h3>
+                                        <p class="imc-model-description">The Indian Challenger 125th Anniversary Edition
+                                            wears its performance openly. Confident, chiseled lines reflect the muscle
+                                            underneath. A compact, athletic stance delivers agility, while its
+                                            silhouette remains unmistakably imposing. The chassis-mounted fairing is
+                                            aerodynamically designed for stability at sustained high speeds.</p>
+                                        <div class="imc-model-price">STARTING AT $41,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN CHALLENGER 125TH ANNIVERSARY EDITION" data-model-slug="indian-motorcycle-468">Browse Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-125th-anniversary-edition.webp" alt="ROADMASTER 125TH ANNIVERSARY EDITION" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">ROADMASTER 125TH ANNIVERSARY EDITION</h3>
+                                        <p class="imc-model-description">The Roadmaster 125th Anniversary Edition
+                                            represents 125 years of refinement. Proof that when you build for the long
+                                            haul, progress never stands still. Every detail on this Anniversary model
+                                            reinforces what the Roadmaster has always stood for: comfort, quality, and
+                                            precision in places others overlook.</p>
+                                        <div class="imc-model-price">STARTING AT $43,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="ROADMASTER 125TH ANNIVERSARY EDITION" data-model-slug="indian-motorcycle-468">Browse Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-elite.webp" alt="INDIAN CHALLENGER ELITE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN CHALLENGER ELITE</h3>
+                                        <p class="imc-model-description">Packed with industry leading technology, and
+                                            crafted to be the ultimate in style and exclusivity.</p>
+                                        <div class="imc-model-price">STARTING AT $39,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN CHALLENGER ELITE" data-model-slug="indian-motorcycle-cruiserv-twin-challenger-2258988279274142502486484">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-pursuit-elite.webp" alt="INDIAN PURSUIT ELITE" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">INDIAN PURSUIT ELITE</h3>
+                                        <p class="imc-model-description">With a commanding and sophisticated style,
+                                            exacting fit-amd-finish, and top-of-the-line touring amenities, the Indian
+                                            Pursuit Elite redefines what to expect in a premium American touring
+                                            machine.</p>
+                                        <div class="imc-model-price">STARTING AT $41,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="INDIAN PURSUIT ELITE" data-model-slug="indian-motorcycle-cruiserv-twin-pursuit-2259025172762289921589716">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-roadmaster-elite.webp" alt="Roadmaster Elite" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Roadmaster Elite</h3>
+                                        <p class="imc-model-description">The ultimate in style and exclusivity. The
+                                            Roadmaster Elite boasts the iconic Springfield Blue and candy finishes
+                                            combined with striking graphics and premium accessories.</p>
+                                        <div class="imc-model-price">STARTING AT $41,999 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Roadmaster Elite" data-model-slug="indian-motorcycle-cruiserv-twin-roadmaster-2259080512994511050244564">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="imc-model">
+                                    <div class="imc-model-picture"><img src="/wp-content/uploads/2026/11/indian-motorcycles-indian-challenger-elite.webp" alt="Indian Challenger Elite" width="700" height="500" loading="lazy" decoding="async"></div>
+                                    <div class="imc-model-info">
+                                        <h3 class="imc-model-title">Indian Challenger Elite</h3>
+                                        <p class="imc-model-description">Packed with industry leading technology, the
+                                            Indian Challenger Elite is the highest-performance Indian Challenger to
+                                            date.</p>
+                                        <div class="imc-model-price">STARTING AT $38,499 MSRP</div>
+                                        <a class="imc-button imc-model-link" data-model="Indian Challenger Elite" data-model-slug="indian-motorcycle-cruiserv-twin-challenger-2258988279274142502486484">Browse
+                                            Model</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="imc-arrow imc-prev imc-model-prev" aria-label="Previous motorcycle"></button>
+                    <button type="button" class="imc-arrow imc-next imc-model-next" aria-label="Next motorcycle"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="imc-highlight">
+        <img class="imc-highlight-image" data-image="highlight" alt="" loading="lazy" decoding="async">
+        <div class="imc-container imc-highlight-content">
+            <h2 data-dealer="highlightTitle"></h2>
+            <a class="imc-button" data-link="reserve">Reserve Yours</a>
+        </div>
+    </div>
+
+    <div class="imc-promotions" id="imc-promotions">
+        <div class="imc-container">
+            <h2 class="imc-heading">Current Promotions</h2>
+            <div class="imc-promo-status" role="status" aria-live="polite">STAGING PREVIEW — Loading current promotions…
+            </div>
+            <div class="imc-promotions-content" id="imc-promotions-content" aria-busy="true"></div>
+        </div>
+    </div>
+
+    <div class="imc-footer" role="contentinfo">
+        <div class="imc-footer-top">
+            <div class="imc-container imc-footer-grid">
+                <div><a class="imc-footer-logo" data-link="home" aria-label="Indian Motorcycle dealer home"><img data-image="footerLogo" alt="Indian Motorcycle" width="250" height="96" loading="lazy"></a>
+                </div>
+                <div>
+                    <h4 class="imc-footer-heading" data-dealer="name"></h4>
+                    <div class="imc-footer-links">
+                        <a data-link="phone">Click to Call</a>
+                        <a data-link="hours">Map &amp; Hours</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="imc-footer-heading">Shopping Tools</h4>
+                    <div class="imc-footer-links"><a data-link="footerPromotions">Current Promotions</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="imc-footer-bottom">
+            <div class="imc-container imc-footer-copyright">
+                <span data-dealer="name"></span>
+                <span><span data-dealer="street"></span> <span data-dealer="cityLine"></span></span>
+                <span><a data-link="phone" data-dealer="phone"></a></span>
+                <span>© <span data-dealer="year"></span></span>
+                <span data-dealer="credit" hidden=""></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    /* ================================================================
+       1. DEALER SETTINGS — edit only this object when reusing the page.
+       The Orange County contact information is the reference example.
+       WordPress routes below are examples: use the actual dealer URLs.
+       ================================================================ */
+    window.indianDealer = {
+        name: 'Indian Motorcycles of Orange County',
+        street: '13031 Goldenwest St',
+        cityLine: 'Westminster, CA 92683',
+        country: 'USA',
+        phone: '714.908.4551',
+        phoneHref: '+17149084551',
+        credit: '', // e.g. 'Powered by Your Company'; optional
+
+        images: {
+            logo: '', // REQUIRED: set the uploaded local Indian Motorcycle logo URL
+            footerLogo: '', // defaults to logo; supply white logo if preferred
+            highlight: '/wp-content/uploads/2026/11/MY27_Scout_Sixty_Bobber_ElevatedCGI.webp' // Temporary: replace with a matching PowerPlus image if needed
+        },
+        highlightTitle: 'The New PowerPlus Family Featuring the New PowerPlus 112 Engine',
+
+        links: {
+            home: '/shop-indian-motorcycle/',
+            inventory: '/inventory/',
+            lineup: '#imc-lineup',
+            promotions: '#imc-promotions',
+            service: '/service/',
+            contact: '/contact-us/',
+            directions: '', // empty = Google Maps directions using the address
+            hours: '/contact-us/', // empty = same as directions
+            reserve: '/contact-us/',
+            footerPromotions: '#imc-promotions'
+        },
+
+        modelBase: '',
+        modelSearchKey: 's',
+        modelLinks: {
+            // '2027-indian-motorcycle-scout-sixty-bobber-29455591b': '/your-scout-page/'
+        },
+
+        // Load actual inventory filter values from this dealer's website.
+        search: {
+            source: '/inventory/',
+            defaultMake: 'Indian Motorcycle', // Select only if present in the response.
+            makeAliases: ['Indian Motorcycles', 'Indian'],
+            buttonText: 'View Results'
+        },
+
+        promotions: {
+            oem: 'Indian Motorcycle',
+            defaultRegion: 'USA', // Example dealer fallback; set to the actual dealer region
+            defaultStates: [], // leave empty unless explicitly approved for this dealer
+            dealerDomain: '', // optional real dealer domain for region/state lookup
+            ignoreRegion: false, // Keep geographic filtering enabled in production
+            ignoreStates: false, // Keep state filtering enabled in production
+            inventoryLink: '/inventory/?make=Indian%20Motorcycle',
+            useInHero: true
+        },
+
+        heroSlides: []
+    };
+</script>
+
+<!-- Swiper dependency only. WordPress provides jQuery; CSV parser is built in. -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/manuah-da/OEM-Services@main/dist/indian-motorcycle.min.js"></script>

@@ -1,0 +1,2858 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+
+// INDIAN MOTORCYCLE | Brand page
+// Compile this SCSS to CSS before deploying to WordPress.
+// CSS custom properties remain available for runtime dealer branding.
+
+// Responsive breakpoints (max-width)
+$breakpoint-header: 1450px;
+$breakpoint-tablet: 991px;
+$breakpoint-mobile: 767px;
+$breakpoint-small: 400px;
+
+#site-header,
+#wpadminbar {
+    display: none !important;
+}
+
+html.html {
+    margin: 0px !important;
+    margin-top: 85px !important;
+}
+
+footer#footer,
+div.footer-bottom {
+    display: none !important;
+}
+
+html .indian-page {
+    --imc-red: #981b27;
+    --imc-red-dark: #74121b;
+    --imc-black: #161616;
+    --imc-white: #fff;
+    --imc-gray: #f3f3f3;
+    --imc-border: #d5d5d5;
+    --imc-width: 1440px;
+    --imc-heading: "Arial Narrow", "Roboto Condensed", Arial, sans-serif;
+    --imc-body: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    color: var(--imc-black);
+    background: var(--imc-white);
+    font: 16px/1.5 var(--imc-body);
+    text-align: left;
+    isolation: isolate;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    h2,
+    h3,
+    h4,
+    p {
+        margin: 0;
+        padding: 0;
+        color: inherit;
+    }
+
+    h2,
+    h3,
+    h4 {
+        font-family: var(--imc-heading);
+        line-height: 1.15;
+        font-weight: 800;
+        letter-spacing: .025em;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border: 0;
+    }
+
+    button,
+    select {
+        font: inherit;
+        letter-spacing: normal;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    :is(a, button, select) {
+        transition: box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    :is(a, button, select):focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+
+        box-shadow:
+            0 0 0 1.5px #ffffff,
+            0 0 5px 1.5px rgba(0, 153, 255, 0.75),
+            0 0 10px 2px rgba(0, 153, 255, 0.35);
+    }
+
+    .imc-container {
+        width: calc(100% - 48px);
+        max-width: var(--imc-width);
+        margin-inline: auto;
+    }
+
+    .imc-heading {
+        font-size: 30px !important;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+
+        @media only screen and (min-width: 1530px) {
+            font-size: 60px !important;
+        }
+    }
+
+    .imc-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 13px 26px;
+        border: 2px solid var(--imc-red);
+        border-radius: 8px;
+        background: var(--imc-red);
+        color: white;
+        font-weight: 700;
+        font-size: 12px !important;
+        line-height: 1.25;
+        letter-spacing: .045em;
+        text-transform: uppercase;
+        text-align: center;
+        transition: background .2s, border-color .2s, color .2s;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+
+        @media only screen and (min-width: 992px) {
+            font-size: 20px !important;
+        }
+
+        &:hover {
+            background: var(--imc-red-dark);
+            border-color: var(--imc-red-dark);
+            color: white;
+        }
+    }
+
+    .imc-button-outline {
+        background: transparent;
+        border-color: var(--imc-red);
+        color: var(--imc-red);
+
+        &:hover {
+            background: var(--imc-red);
+            color: white;
+        }
+    }
+
+    .imc-icon {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: 0 0 auto;
+    }
+
+    .imc-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    #imc-lineup,
+    #imc-promotions {
+        scroll-margin-top: 24px;
+    }
+
+    // HEADER
+    .imc-header {
+        background: var(--imc-red);
+        border-bottom: 1px solid #dedede;
+    }
+
+    .imc-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 90px;
+        padding: 14px 24px;
+        /*  max-width: 1920px; */
+        margin: auto;
+        max-width: 100%;
+
+        position: fixed;
+        z-index: 999;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+
+        background-color: var(--imc-red);
+    }
+
+    .imc-identity {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex: 0 1 360px;
+        min-width: 0;
+    }
+
+    .imc-brand-logo {
+        width: 150px;
+        flex: 0 0 150px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .imc-identity-divider {
+        color: #777;
+        font-size: 28px;
+        line-height: 1;
+    }
+
+    .imc-dealer-name {
+        font-weight: 700;
+        font-size: 21px !important;
+        line-height: 1.2;
+        color: white;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+        text-align: center;
+        width: fit-content;
+    }
+
+    .imc-header-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(12px, 1.4vw, 26px);
+    }
+
+    .imc-header-nav a,
+    .imc-mobile-nav a {
+        font-size: 18px !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: white !important;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-header a:hover {
+        color: var(--imc-red);
+    }
+
+    .imc-header-info {
+        display: flex;
+        gap: 19px;
+        align-items: center;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .imc-address span {
+        display: block;
+        color: white !important;
+        font-size: 15px !important;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-contact-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        font-weight: 700;
+        color: white !important;
+        font-size: 18px !important;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+
+        span {
+            font-size: 18px !important;
+        }
+    }
+
+    .imc-phone-label {
+        font-size: 14px;
+        display: block;
+        color: white !important;
+        font-size: 15px !important;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-menu-button {
+        display: none;
+        width: 44px;
+        height: 44px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        background: white;
+        color: #222;
+        border-radius: 0;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+
+        .imc-icon {
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    .imc-mobile-nav {
+        display: none;
+        background: white;
+        border-top: 1px solid #ddd;
+        padding: 8px 24px 18px;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            white-space: normal;
+            color: #981b27 !important;
+        }
+    }
+
+    // SWIPER | shared controls, scoped to this page
+    .swiper {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .swiper-wrapper {
+        display: flex;
+    }
+
+    .swiper-slide {
+        flex-shrink: 0;
+        min-width: 0;
+    }
+
+    .imc-arrow {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #222;
+        z-index: 3;
+        transition: color .2s, background .2s;
+
+        &::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            border-top: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+            transform: rotate(225deg);
+        }
+    }
+
+    .imc-next::before {
+        transform: rotate(45deg);
+    }
+
+    .imc-arrow:hover {
+        color: var(--imc-red);
+        background: #eee;
+    }
+
+    .swiper-button-disabled {
+        opacity: .3;
+        cursor: default;
+    }
+
+    .swiper-button-lock {
+        display: none;
+    }
+
+    .swiper-pagination-bullet {
+        width: 16px;
+        height: 16px;
+        opacity: .65;
+        background: #fff;
+    }
+
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: var(--imc-red);
+    }
+
+    // If CDN is unavailable, keep the content navigable with native horizontal scrolling.
+    .swiper {
+        &:not(.swiper-initialized) {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        &:not(.swiper-initialized)>.swiper-wrapper>.swiper-slide {
+            width: 100%;
+            scroll-snap-align: start;
+        }
+    }
+
+    .imc-family-swiper:not(.swiper-initialized)>.swiper-wrapper>.swiper-slide {
+        width: auto;
+    }
+
+    // HERO
+    .imc-hero {
+        background: var(--imc-black);
+    }
+
+    .imc-hero-swiper {
+        background: #202020;
+    }
+
+    .imc-hero-media {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1920/720;
+        overflow: hidden;
+
+        picture,
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            @media only screen and (min-width: 576px) {
+                object-fit: contain;
+            }
+        }
+    }
+
+    .imc-placeholder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 9px;
+        text-align: center;
+        padding: 24px;
+        background: repeating-linear-gradient(135deg, #222, #222 24px, #272727 24px, #272727 48px);
+        color: #fff;
+
+        strong {
+            font-size: clamp(20px, 3vw, 38px);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        span {
+            font-size: 15px !important;
+            letter-spacing: .045em;
+        }
+    }
+
+    .imc-hero-swiper .imc-hero-dots {
+        position: absolute;
+        bottom: 14px;
+        top: auto;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+    }
+
+    .imc-hero-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 24px;
+
+        .imc-button-outline {
+            border-color: white;
+            color: white;
+        }
+
+        .imc-button-outline:hover {
+            border-color: var(--imc-red);
+        }
+    }
+
+    // SEARCH INVENTORY | presentation only
+    .imc-search {
+        background: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+        padding: 18px 0;
+    }
+
+    .imc-search-inner {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .imc-search-title {
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+        font-weight: 800;
+        font-size: 30px !important;
+        white-space: nowrap;
+        text-transform: uppercase;
+    }
+
+    .imc-search-toggle {
+        display: none;
+        background: transparent;
+        border: 0;
+        padding: 10px 0;
+        color: inherit;
+        width: 100%;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 20px;
+        text-align: center;
+
+        /* &::after {
+            content: "⌄";
+            display: inline-block;
+            margin-left: 10px;
+            transition: transform .2s;
+        } */
+
+        &[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+    }
+
+    .imc-search-fields {
+        flex: 1;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(145px, 1fr);
+        gap: 12px;
+        align-items: center;
+
+        .imc-year-range {
+            width: 100%;
+
+            @media only screen and (max-width: 768px) {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            >input {
+                max-width: 48%;
+
+                @media only screen and (max-width: 768px) {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+    .imc-search {
+        select {
+            width: 100%;
+            height: 44px;
+            min-width: 0;
+            color: #222;
+            border: 1px solid #c3c3c3;
+            border-radius: 0;
+            background-color: #fff;
+            padding: 0 28px 0 12px;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .imc-button {
+            min-height: 44px;
+            padding: 10px;
+            margin: 0;
+        }
+    }
+
+    // ==========================================================
+    // LATEST INVENTORY CAROUSEL
+    // ==========================================================
+
+    .imc-leatest-carrousel {
+        background: #111 !important;
+
+        #manage-inventory-featured-slider {
+            background: #111 !important;
+
+            // ==================================================
+            // SECTION HEADING
+            // ==================================================
+
+            >h2 {
+                color: #fff !important;
+                font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                font-size: 48px !important;
+                font-weight: 800 !important;
+                line-height: 1.2 !important;
+                letter-spacing: .025em !important;
+                text-transform: uppercase !important;
+                text-align: center !important;
+            }
+
+            // ==================================================
+            // INVENTORY CARDS
+            // ==================================================
+
+            .manage-inventory-featured-slider-slide {
+                background: #fff !important;
+                border-radius: 10px !important;
+                border-color: #d5d5d5 !important;
+
+                box-shadow:
+                    inset 0 0 0 1px #d5d5d5,
+                    0 4px 12px rgba(0, 0, 0, .12) !important;
+
+                transition:
+                    box-shadow .3s ease,
+                    background-color .3s ease,
+                    border-color .3s ease !important;
+
+                // Keep native slide display, width and positioning.
+
+                >a {
+                    text-decoration: none !important;
+                    color: inherit !important;
+                }
+
+                // Vehicle image link
+                >a:first-child {
+                    position: relative !important;
+                    display: block !important;
+
+                    width: 100% !important;
+                    height: auto !important;
+
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    border-radius: 10px 10px 0 0 !important;
+                    border: none !important;
+                    overflow: hidden !important;
+
+                    background: #fff !important;
+                }
+
+                // Vehicle title link
+                >a:nth-child(2) {
+                    display: block !important;
+
+                    width: auto !important;
+                    height: auto !important;
+
+                    padding: 0 0 15px !important;
+                    margin: 20px 22px 0 !important;
+
+                    border-bottom: 1px solid #d5d5d5 !important;
+                    text-align: left !important;
+                }
+
+                // Vehicle title
+                h3 {
+                    display: -webkit-box !important;
+                    -webkit-box-orient: vertical !important;
+                    -webkit-line-clamp: 2 !important;
+
+                    width: 100% !important;
+                    min-height: 2.7em !important;
+                    max-height: 2.7em !important;
+
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
+                    white-space: normal !important;
+                    overflow-wrap: anywhere !important;
+
+                    color: var(--imc-black) !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 21px !important;
+                    font-weight: 700 !important;
+                    line-height: 1.35 !important;
+
+                    text-align: left !important;
+                    text-transform: none !important;
+                    letter-spacing: 0 !important;
+
+                    transition: color .25s ease !important;
+                }
+            }
+
+            // ==================================================
+            // VEHICLE IMAGES
+            // ==================================================
+
+            .manage-inventory-image-container {
+                position: relative !important;
+                display: block !important;
+
+                width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                max-height: none !important;
+
+                aspect-ratio: 4 / 3 !important;
+                box-sizing: border-box !important;
+
+                padding: 14px !important;
+                margin: 0 !important;
+
+                background: #fff !important;
+                border: none !important;
+                border-radius: 10px 10px 0 0 !important;
+
+                overflow: hidden !important;
+
+                >img {
+                    display: block !important;
+
+                    width: 100% !important;
+                    height: 100% !important;
+                    min-height: 0 !important;
+                    max-height: none !important;
+                    max-width: 100% !important;
+
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    object-fit: contain !important;
+                    object-position: center !important;
+
+                    border: none !important;
+                    border-radius: 5px !important;
+
+                    transition:
+                        transform .45s cubic-bezier(.22, 1, .36, 1),
+                        filter .3s ease !important;
+                }
+            }
+
+            // ==================================================
+            // PRICING
+            // ==================================================
+
+            .price-container {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: flex-start !important;
+
+                width: auto !important;
+                min-height: 80px !important;
+                height: auto !important;
+
+                padding: 16px 0 !important;
+                margin: 0 22px !important;
+
+                background: transparent !important;
+                border: none !important;
+
+                text-align: left !important;
+
+                .price {
+                    display: flex !important;
+                    align-items: baseline !important;
+                    justify-content: flex-start !important;
+                    flex-wrap: wrap !important;
+
+                    gap: 8px !important;
+
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    color: var(--imc-black) !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 30px !important;
+                    font-weight: 800 !important;
+                    line-height: 1.25 !important;
+
+                    text-align: left !important;
+                }
+
+                // SALE / OUR PRICE label
+                .our-price {
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+
+                    padding: 5px 9px !important;
+                    margin: 0 !important;
+
+                    background: var(--imc-red) !important;
+                    color: #fff !important;
+
+                    border: none !important;
+                    border-radius: 4px !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 12px !important;
+                    font-weight: 700 !important;
+                    line-height: 1.2 !important;
+
+                    letter-spacing: .04em !important;
+                    text-transform: uppercase !important;
+                }
+
+                // Units without a displayed price
+                .call-for-quote {
+                    display: block !important;
+
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    background: transparent !important;
+                    color: var(--imc-red) !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 21px !important;
+                    font-weight: 700 !important;
+                    line-height: 1.3 !important;
+
+                    text-align: left !important;
+                    text-transform: none !important;
+                }
+            }
+
+            // ==================================================
+            // VIEW BUTTON
+            // ==================================================
+
+            .manage-inventory-featured-slider-slide>.view-button {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                box-sizing: border-box !important;
+
+                width: calc(100% - 44px) !important;
+                max-width: none !important;
+                min-width: 0 !important;
+
+                height: auto !important;
+                min-height: 48px !important;
+
+                padding: 14px 16px !important;
+                margin: 8px 22px 22px !important;
+
+                background: var(--imc-red) !important;
+                color: #fff !important;
+
+                border: 2px solid var(--imc-red) !important;
+                border-radius: 6px !important;
+
+                font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                font-size: 17px !important;
+                font-weight: 700 !important;
+                line-height: 1.25 !important;
+
+                text-align: center !important;
+                text-decoration: none !important;
+                text-transform: none !important;
+                letter-spacing: .02em !important;
+
+                cursor: pointer !important;
+
+                transition:
+                    background-color .25s ease,
+                    border-color .25s ease,
+                    color .25s ease,
+                    box-shadow .25s ease !important;
+
+                &:hover {
+                    background: var(--imc-red-dark) !important;
+                    border-color: var(--imc-red-dark) !important;
+                    color: #fff !important;
+
+                    box-shadow:
+                        0 4px 12px rgba(152, 27, 39, .2) !important;
+                }
+
+                &:focus-visible {
+                    outline: 2px solid var(--imc-red) !important;
+                    outline-offset: 3px !important;
+                }
+            }
+
+            // ==================================================
+            // FEATURED UNITS
+            // ==================================================
+
+            .manage-inventory-featured-slider-slide.featured {
+                border-color: #d5d5d5 !important;
+
+                >a:first-child {
+                    border: none !important;
+                }
+
+                .manage-inventory-image-container {
+                    border: none !important;
+                }
+            }
+
+            // Featured badge
+            .feature-title {
+                position: absolute !important;
+
+                top: 12px !important;
+                left: 12px !important;
+                bottom: auto !important;
+                right: auto !important;
+
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                gap: 7px !important;
+
+                width: auto !important;
+                height: auto !important;
+                max-width: calc(100% - 24px) !important;
+
+                padding: 8px 12px !important;
+                margin: 0 !important;
+
+                background: var(--imc-black) !important;
+                color: #fff !important;
+
+                border: none !important;
+                border-radius: 4px !important;
+
+                transform: none !important;
+                z-index: 2 !important;
+
+                // Remove native decorative blue accents
+                &::before,
+                &::after {
+                    content: none !important;
+                    display: none !important;
+                }
+
+                p {
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    color: #fff !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 12px !important;
+                    font-weight: 700 !important;
+                    line-height: 1.2 !important;
+
+                    letter-spacing: .04em !important;
+                    text-transform: uppercase !important;
+                }
+
+                svg {
+                    width: 12px !important;
+                    height: 12px !important;
+
+                    color: #fff !important;
+                    fill: currentColor !important;
+                    flex-shrink: 0 !important;
+                }
+            }
+
+            // ==================================================
+            // REBATES AND SPECIAL OFFER BANNERS
+            // ==================================================
+
+            .text-banner {
+                position: absolute !important;
+
+                top: auto !important;
+                left: auto !important;
+                bottom: 14px !important;
+                right: 14px !important;
+
+                display: block !important;
+
+                width: auto !important;
+                height: auto !important;
+                max-width: calc(100% - 28px) !important;
+
+                padding: 8px 12px !important;
+                margin: 0 !important;
+
+                background: var(--imc-red) !important;
+                color: #fff !important;
+
+                border: none !important;
+                border-radius: 4px !important;
+
+                transform: none !important;
+                clip-path: none !important;
+
+                box-shadow:
+                    0 3px 8px rgba(0, 0, 0, .15) !important;
+
+                z-index: 2 !important;
+
+                &::before,
+                &::after {
+                    content: none !important;
+                    display: none !important;
+                }
+
+                p {
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    color: #fff !important;
+
+                    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                    font-size: 13px !important;
+                    font-weight: 700 !important;
+                    line-height: 1.25 !important;
+
+                    text-transform: uppercase !important;
+                    text-align: center !important;
+
+                    white-space: normal !important;
+                    overflow-wrap: anywhere !important;
+
+                    transform: none !important;
+                }
+            }
+
+            // ==================================================
+            // CAROUSEL NAVIGATION
+            // APPEARANCE ONLY
+            // ==================================================
+
+            #previous-button,
+            #next-button {
+                background-color: var(--imc-red) !important;
+                color: #fff !important;
+
+                border-color: var(--imc-red) !important;
+                border-radius: 50% !important;
+
+                box-shadow:
+                    inset 0 0 0 1px rgba(255, 255, 255, .15),
+                    0 3px 8px rgba(0, 0, 0, .12) !important;
+
+                transition:
+                    background-color .25s ease,
+                    border-color .25s ease,
+                    color .25s ease,
+                    box-shadow .25s ease !important;
+
+                svg {
+                    color: inherit !important;
+                    fill: currentColor !important;
+                }
+
+                &:not(:disabled):not(.disabled):not([aria-disabled="true"]) {
+                    &:hover {
+                        background-color: #fff !important;
+                        border-color: #fff !important;
+                        color: var(--imc-red) !important;
+                    }
+                }
+
+                &:focus-visible {
+                    outline: 2px solid #fff !important;
+                    outline-offset: 3px !important;
+                }
+            }
+
+            // Keep the gradient element without darkening the units
+            .gradient-overlay {
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+
+            // ==================================================
+            // HOVER EFFECTS
+            // ==================================================
+
+            @media (hover: hover) and (pointer: fine) {
+                .manage-inventory-featured-slider-slide {
+                    &:hover {
+                        border-color: var(--imc-red) !important;
+
+                        box-shadow:
+                            inset 0 0 0 1px var(--imc-red),
+                            0 8px 24px rgba(0, 0, 0, .2) !important;
+
+                        h3 {
+                            color: var(--imc-red) !important;
+                        }
+
+                        .manage-inventory-image-container>img {
+                            transform: scale(1.035) !important;
+                        }
+                    }
+                }
+            }
+
+            // ==================================================
+            // RESPONSIVE
+            // ==================================================
+
+            @media (max-width: 1530px) {
+                >h2 {
+                    font-size: 44px !important;
+                }
+
+                .manage-inventory-featured-slider-slide h3 {
+                    font-size: 20px !important;
+                }
+
+                .price-container .price {
+                    font-size: 28px !important;
+                }
+            }
+
+            @media (max-width: 1199px) {
+                >h2 {
+                    font-size: 38px !important;
+                }
+
+                .manage-inventory-featured-slider-slide h3 {
+                    font-size: 19px !important;
+                }
+
+                .price-container .price {
+                    font-size: 26px !important;
+                }
+            }
+
+            @media (max-width: 991px) {
+                >h2 {
+                    font-size: 34px !important;
+                }
+
+                .manage-inventory-featured-slider-slide {
+                    >a:nth-child(2) {
+                        margin: 16px 16px 0 !important;
+                        padding-bottom: 12px !important;
+                    }
+
+                    h3 {
+                        font-size: 18px !important;
+                    }
+
+                    >.view-button {
+                        width: calc(100% - 32px) !important;
+                        margin: 8px 16px 16px !important;
+                        font-size: 16px !important;
+                    }
+                }
+
+                .price-container {
+                    margin: 0 16px !important;
+
+                    .price {
+                        font-size: 25px !important;
+                    }
+
+                    .call-for-quote {
+                        font-size: 18px !important;
+                    }
+                }
+            }
+
+            @media (max-width: 767px) {
+                >h2 {
+                    font-size: 28px !important;
+                }
+
+                .manage-inventory-image-container {
+                    padding: 10px !important;
+                }
+
+                .manage-inventory-featured-slider-slide {
+                    border-radius: 8px !important;
+
+                    h3 {
+                        font-size: 17px !important;
+                    }
+                }
+
+                .price-container {
+                    min-height: 68px !important;
+                    padding: 12px 0 !important;
+
+                    .price {
+                        font-size: 24px !important;
+                    }
+
+                    .our-price {
+                        font-size: 11px !important;
+                    }
+                }
+
+                .feature-title {
+                    top: 8px !important;
+                    left: 8px !important;
+                    padding: 6px 9px !important;
+
+                    p {
+                        font-size: 10px !important;
+                    }
+                }
+
+                .text-banner {
+                    bottom: 10px !important;
+                    right: 10px !important;
+                    padding: 6px 9px !important;
+
+                    p {
+                        font-size: 11px !important;
+                    }
+                }
+            }
+
+            @media (max-width: 400px) {
+                >h2 {
+                    font-size: 24px !important;
+                }
+
+                .manage-inventory-featured-slider-slide h3 {
+                    font-size: 16px !important;
+                }
+
+                .price-container .price {
+                    font-size: 22px !important;
+                }
+            }
+
+            // Reduced motion accessibility
+            @media (prefers-reduced-motion: reduce) {
+
+                .manage-inventory-featured-slider-slide,
+                .manage-inventory-image-container>img,
+                .view-button,
+                #previous-button,
+                #next-button,
+                h3 {
+                    transition: none !important;
+                }
+
+                .manage-inventory-featured-slider-slide:hover {
+                    .manage-inventory-image-container>img {
+                        transform: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // ==========================================================
+    // LATEST INVENTORY CAROUSEL | ALIGNMENT & VISUAL IMPROVEMENTS
+    // ==========================================================
+
+    .imc-leatest-carrousel {
+        background: var(--imc-white) !important;
+        width: 100% !important;
+        padding: 52px 0 !important;
+
+        #manage-inventory-featured-slider {
+            position: relative !important;
+
+            // Match the existing brand page container
+            width: calc(100% - 48px) !important;
+            max-width: var(--imc-width) !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+
+            background: transparent !important;
+
+            // ==================================================
+            // SECTION HEADING
+            // ==================================================
+
+            >h2 {
+                color: var(--imc-black) !important;
+
+                font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+                font-size: 48px !important;
+                font-weight: 800 !important;
+                line-height: 1.2 !important;
+                text-transform: uppercase !important;
+                text-align: center !important;
+
+                margin: 0 0 36px !important;
+                padding: 0 110px !important;
+            }
+
+            // ==================================================
+            // INVENTORY CARDS
+            // ==================================================
+
+            .manage-inventory-featured-slider-slide {
+                background: #fff !important;
+                border-color: #d5d5d5 !important;
+                border-radius: 10px !important;
+
+                box-shadow:
+                    inset 0 0 0 1px #d5d5d5,
+                    0 3px 10px rgba(0, 0, 0, .06) !important;
+
+                transition:
+                    box-shadow .3s ease,
+                    border-color .3s ease !important;
+
+                &:hover {
+                    border-color: var(--imc-red) !important;
+
+                    box-shadow:
+                        inset 0 0 0 1px var(--imc-red),
+                        0 6px 16px rgba(0, 0, 0, .09) !important;
+                }
+            }
+
+            // ==================================================
+            // NAVIGATION ARROWS
+            // ==================================================
+
+            #previous-button,
+            #next-button {
+                position: absolute !important;
+                top: 8px !important;
+                left: auto !important;
+                bottom: auto !important;
+
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+
+                padding: 0 !important;
+                margin: 0 !important;
+
+                background: #fff !important;
+                color: var(--imc-red) !important;
+
+                border: 1px solid var(--imc-red) !important;
+                border-radius: 50% !important;
+
+                box-shadow: 0 2px 6px rgba(0, 0, 0, .06) !important;
+
+                cursor: pointer !important;
+                z-index: 5 !important;
+
+                transition:
+                    background-color .25s ease,
+                    color .25s ease,
+                    border-color .25s ease,
+                    box-shadow .25s ease !important;
+
+                svg {
+                    width: 18px !important;
+                    height: 18px !important;
+                    color: inherit !important;
+                    fill: currentColor !important;
+                    vertical-align: middle !important;
+                }
+
+                &:not(:disabled):not(.disabled):not([aria-disabled="true"]) {
+                    &:hover {
+                        background: var(--imc-red) !important;
+                        border-color: var(--imc-red) !important;
+                        color: #fff !important;
+
+                        box-shadow:
+                            0 4px 12px rgba(152, 27, 39, .2) !important;
+                    }
+                }
+
+                &:focus-visible {
+                    outline: 2px solid var(--imc-red) !important;
+                    outline-offset: 3px !important;
+                }
+
+                &:disabled,
+                &.disabled,
+                &[aria-disabled="true"] {
+                    opacity: .35 !important;
+                    cursor: default !important;
+                    box-shadow: none !important;
+                }
+            }
+
+            // 44px button + 12px separation
+            #previous-button {
+                right: 56px !important;
+            }
+
+            #next-button {
+                right: 0 !important;
+            }
+
+            // Remove the native dark gradient
+            .gradient-overlay {
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+        }
+
+        // ======================================================
+        // RESPONSIVE
+        // ======================================================
+
+        @media (max-width: 1199px) {
+            padding: 44px 0 !important;
+
+            #manage-inventory-featured-slider {
+                >h2 {
+                    font-size: 40px !important;
+                }
+            }
+        }
+
+        @media (max-width: 991px) {
+            padding: 40px 0 !important;
+
+            #manage-inventory-featured-slider {
+                >h2 {
+                    font-size: 34px !important;
+                    margin-bottom: 28px !important;
+                    padding: 0 94px !important;
+                }
+
+                #previous-button,
+                #next-button {
+                    top: 0 !important;
+
+                    width: 38px !important;
+                    height: 38px !important;
+                    min-width: 38px !important;
+                    min-height: 38px !important;
+
+                    svg {
+                        width: 16px !important;
+                        height: 16px !important;
+                    }
+                }
+
+                #previous-button {
+                    right: 48px !important;
+                }
+            }
+        }
+
+        @media (max-width: 767px) {
+            padding: 34px 0 !important;
+
+            #manage-inventory-featured-slider {
+                width: calc(100% - 32px) !important;
+
+                >h2 {
+                    font-size: 28px !important;
+                    text-align: left !important;
+
+                    padding: 0 94px 0 0 !important;
+                    margin-bottom: 24px !important;
+                }
+            }
+        }
+
+        @media (max-width: 400px) {
+            #manage-inventory-featured-slider {
+                >h2 {
+                    font-size: 24px !important;
+                    padding-right: 80px !important;
+                }
+
+                #previous-button,
+                #next-button {
+                    width: 32px !important;
+                    height: 32px !important;
+                    min-width: 32px !important;
+                    min-height: 32px !important;
+
+                    svg {
+                        width: 14px !important;
+                        height: 14px !important;
+                    }
+                }
+
+                #previous-button {
+                    right: 42px !important;
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #manage-inventory-featured-slider {
+
+                #previous-button,
+                #next-button,
+                .manage-inventory-featured-slider-slide {
+                    transition: none !important;
+                }
+            }
+        }
+    }
+
+    // MOTORCYCLE MATRIX
+    .imc-lineup {
+        background: #fff;
+        padding: 54px 0 58px;
+    }
+
+    .imc-family-nav {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
+        align-items: stretch;
+        border-bottom: 1px solid var(--imc-border);
+    }
+
+    .imc-family-swiper .swiper-slide {
+        width: auto;
+        height: auto;
+    }
+
+    .imc-family-tab {
+        display: block;
+        height: 100%;
+        min-height: 54px;
+        padding: 15px 22px 12px;
+        border: 0;
+        border-bottom: 3px solid transparent;
+        background: #fff;
+        color: #272727;
+        border-radius: 0;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: color .2s, border-color .2s;
+
+        &:hover,
+        &.is-active {
+            color: var(--imc-red);
+            border-bottom-color: var(--imc-red);
+        }
+    }
+
+    .imc-family-nav .imc-arrow {
+        align-self: center;
+    }
+
+    .imc-model-panel {
+        position: relative;
+        padding: 18px 54px 0;
+        min-width: 0;
+    }
+
+    .imc-model-swiper .swiper-slide {
+        height: auto;
+    }
+
+    .imc-model {
+        display: grid;
+        grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+        align-items: center;
+        gap: clamp(18px, 3vw, 54px);
+        min-height: 390px;
+        height: 100%;
+        padding: 12px 0;
+    }
+
+    .imc-model-picture img {
+        width: 100%;
+        aspect-ratio: 7/5;
+        object-fit: contain;
+    }
+
+    .imc-model-info {
+        padding: 22px 8px 22px 0;
+    }
+
+    .imc-model-title {
+        font-size: clamp(28px, 3vw, 44px);
+        line-height: 1.12;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        overflow-wrap: anywhere;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-model-description {
+        font-size: 16px;
+        line-height: 1.65;
+        margin-bottom: 22px;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-model-price {
+        font-size: 19px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    }
+
+    .imc-model-panel {
+        >.imc-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        >.imc-prev {
+            left: 0;
+        }
+
+        >.imc-next {
+            right: 0;
+        }
+    }
+
+    // MODEL HIGHLIGHT
+    .imc-highlight {
+        position: relative;
+        min-height: 380px;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        background: #222;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .imc-highlight-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .imc-highlight::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(270deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .12) 75%);
+        pointer-events: none;
+    }
+
+    .imc-highlight-content {
+        position: relative;
+        z-index: 1;
+        padding-block: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: end !important;
+    }
+
+    .imc-highlight h2 {
+        max-width: 670px;
+        margin-bottom: 26px;
+        font-size: 30px !important;
+        text-transform: uppercase;
+        text-align: end;
+        font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+
+        @media only screen and (min-width: 1530px) {
+            font-size: 60px !important;
+        }
+    }
+
+    // ==========================================================
+    // CURRENT PROMOTIONS
+    // ==========================================================
+
+    .imc-promotions {
+        background: #fff;
+        padding: 52px 0;
+
+        .imc-heading {
+            margin-bottom: 32px;
+        }
+
+        // Loading, empty and staging messages
+        .imc-promo-status {
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            background: #f5f5f5;
+            border-left: 4px solid var(--imc-red);
+            color: #555;
+            font-size: 14px !important;
+            line-height: 1.5;
+
+            &:empty {
+                display: none;
+            }
+        }
+
+        // Promotions grid
+        .imc-promotions-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            align-items: start;
+            gap: 24px;
+            width: 100%;
+
+            @media (min-width: 992px) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 30px;
+            }
+        }
+
+        // Individual promotion
+        .imc-promo-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid var(--imc-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+
+            transition:
+                box-shadow .35s ease,
+                border-color .35s ease;
+
+            &:hover {
+                border-color: var(--imc-red);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, .15);
+            }
+        }
+
+        // Promotion image
+        .imc-promo-media {
+            display: block;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--imc-black);
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+
+                transition:
+                    transform .5s cubic-bezier(.22, 1, .36, 1),
+                    filter .35s ease;
+            }
+        }
+
+        // Promotion title
+        .imc-promo-title {
+            padding: 20px 16px;
+            margin: 0;
+            background: #fff;
+            color: var(--imc-black);
+            font-family: "Chakra Petch", "Times New Roman", Times, serif;
+            font-size: 25px !important;
+            font-weight: 700;
+            line-height: 1.25;
+            text-align: center;
+            text-transform: uppercase;
+            overflow-wrap: anywhere;
+
+            transition: color .3s ease;
+        }
+
+        // Terms and conditions
+        .imc-promo-terms {
+            margin: 0;
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+
+            summary {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                min-height: 48px;
+                padding: 12px 20px;
+                margin: 0;
+
+                background: var(--imc-red);
+                color: #fff;
+                cursor: pointer;
+                list-style: none;
+
+                font-family: "Chakra Petch", "Times New Roman", Times, serif;
+                font-size: 14px !important;
+                font-weight: 600;
+                line-height: 20px;
+                letter-spacing: .04em;
+                text-transform: uppercase;
+
+                transition: background .3s ease;
+
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
+                &::marker {
+                    content: "";
+                }
+
+                // Expand / collapse icon
+                &::after {
+                    content: "+";
+                    display: block;
+                    flex-shrink: 0;
+                    font-family: Arial, sans-serif;
+                    font-size: 24px;
+                    font-weight: 400;
+                    line-height: 1;
+
+                    transition: transform .3s ease;
+                }
+
+                &:hover {
+                    background: var(--imc-red-dark);
+                }
+
+                &:focus-visible {
+                    outline: 2px solid #fff;
+                    outline-offset: -4px;
+                }
+            }
+
+            // Disclaimer content
+            >p {
+                padding: 20px;
+                margin: 0;
+
+                max-height: 350px;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+
+                background: #1b1b1b;
+                color: #fff;
+
+                font-family: var(--imc-body);
+                font-size: 12px !important;
+                font-weight: 400;
+                line-height: 1.7;
+
+                white-space: pre-line;
+                overflow-wrap: anywhere;
+
+                // Scrollbar
+                scrollbar-width: thin;
+                scrollbar-color: var(--imc-red) #333;
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #333;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: var(--imc-red);
+                    border-radius: 5px;
+                }
+            }
+
+            &[open] {
+                summary {
+                    background: var(--imc-red-dark);
+
+                    &::after {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        // ======================================================
+        // DESKTOP HOVER ANIMATION
+        // ======================================================
+
+        @media (min-width: 992px) and (hover: hover) and (pointer: fine) {
+
+            .imc-promo-terms {
+
+                // Allow hover animations on closed details
+                &::details-content {
+                    content-visibility: visible;
+                }
+
+                summary {
+                    height: 48px;
+                }
+
+                >p {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 48px;
+                    z-index: 5;
+
+                    width: 100%;
+                    max-height: calc(100% - 96px);
+                    padding: 24px;
+
+                    background: rgba(15, 15, 15, .95);
+                    backdrop-filter: blur(8px);
+                    border-top: 3px solid var(--imc-red);
+
+                    opacity: 0;
+                    visibility: hidden;
+                    pointer-events: none;
+                    transform: translateY(18px);
+
+                    transition:
+                        opacity .35s ease,
+                        transform .35s cubic-bezier(.22, 1, .36, 1),
+                        visibility .35s ease;
+                }
+            }
+
+            // Reveal disclaimer on hover
+            .imc-promo-card:hover {
+
+                .imc-promo-media img {
+                    transform: scale(1.025);
+                    filter: brightness(.85);
+                }
+
+                .imc-promo-title {
+                    color: var(--imc-red);
+                }
+
+                .imc-promo-terms {
+
+                    summary {
+                        background: var(--imc-red-dark);
+
+                        &::after {
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    >p {
+                        opacity: 1;
+                        visibility: visible;
+                        pointer-events: auto;
+                        transform: translateY(0);
+                    }
+                }
+            }
+
+            // Keep native click and keyboard functionality
+            .imc-promo-terms[open]>p {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+        }
+
+        // ======================================================
+        // MOBILE / TABLET
+        // ======================================================
+
+        @media (max-width: 991px) {
+            padding: 40px 0;
+
+            .imc-heading {
+                font-size: 36px !important;
+                margin-bottom: 24px;
+            }
+
+            .imc-promotions-content {
+                gap: 24px;
+            }
+
+            .imc-promo-title {
+                font-size: 22px !important;
+                padding: 16px;
+            }
+
+            .imc-promo-terms {
+
+                summary {
+                    padding: 14px 16px;
+                    font-size: 13px !important;
+                }
+
+                >p {
+                    padding: 16px;
+                    max-height: 300px;
+                    font-size: 12px !important;
+                }
+            }
+        }
+
+        @media (max-width: 575px) {
+            padding: 34px 0;
+
+            .imc-heading {
+                font-size: 28px !important;
+            }
+
+            .imc-promo-card {
+                border-radius: 6px;
+            }
+
+            .imc-promo-title {
+                font-size: 20px !important;
+            }
+
+            .imc-promo-media {
+                aspect-ratio: auto;
+
+                img {
+                    height: auto;
+                }
+            }
+
+            .imc-promo-status {
+                padding: 12px 14px;
+                font-size: 12px !important;
+            }
+        }
+
+        // Reduced motion accessibility
+        @media (prefers-reduced-motion: reduce) {
+
+            .imc-promo-card,
+            .imc-promo-media img,
+            .imc-promo-title,
+            .imc-promo-terms summary,
+            .imc-promo-terms summary::after,
+            .imc-promo-terms>p {
+                transition: none !important;
+            }
+        }
+    }
+
+    // FOOTER
+    .imc-footer {
+        background: #1b1b1b;
+        color: #fff;
+    }
+
+    .imc-footer-top {
+        padding: 45px 0;
+    }
+
+    .imc-footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr 1fr;
+        align-items: start;
+        gap: 40px;
+    }
+
+    .imc-footer-logo {
+        display: block;
+        max-width: 250px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .imc-footer-heading {
+        font-size: 19px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .imc-footer-links {
+        display: grid;
+        gap: 9px;
+        font-size: 15px;
+    }
+
+    .imc-footer a:hover {
+        text-decoration: underline;
+    }
+
+    .imc-footer-bottom {
+        background: #101010;
+        padding: 19px 0;
+    }
+
+    .imc-footer-copyright {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+        font-size: 12px;
+        text-align: center;
+
+        >*+*::before {
+            content: "|";
+            margin-right: 10px;
+            color: #888;
+        }
+    }
+
+    // RESPONSIVE
+    @media (max-width: $breakpoint-header) {
+        .imc-header-inner {
+            flex-wrap: wrap;
+            gap: 12px 24px;
+        }
+
+        .imc-header-nav {
+            order: 3;
+            flex-basis: 100%;
+            padding: 10px 0 1px;
+            border-top: 1px solid #eee;
+        }
+
+        .imc-header-info {
+            margin-left: auto;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+
+        // Keep the header and its mobile submenu in the same fixed layer.
+        .imc-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 999 !important;
+            display: flex;
+            flex-direction: column;
+            max-height: 100vh;
+            max-height: 100dvh;
+            overflow: visible;
+        }
+
+        .imc-header-inner {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            z-index: 1 !important;
+            flex: 0 0 auto;
+            flex-wrap: nowrap;
+            width: 100%;
+            min-height: 76px;
+            margin: 0;
+        }
+
+        .imc-header-nav,
+        .imc-header-info {
+            display: none;
+        }
+
+        .imc-menu-button {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        // Keep the panel renderable during closing, even when the existing
+        // JavaScript sets hidden. Only override hidden for this mobile menu.
+        #imc-mobile-menu {
+            display: block !important;
+            position: relative;
+            flex: 0 1 auto;
+            min-height: 0;
+            max-height: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0 24px;
+            background: var(--imc-white);
+            border: 0;
+            box-shadow: none;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition:
+                max-height .35s cubic-bezier(.22, 1, .36, 1),
+                padding .35s cubic-bezier(.22, 1, .36, 1),
+                opacity .25s ease,
+                transform .35s cubic-bezier(.22, 1, .36, 1),
+                visibility 0s linear .35s,
+                box-shadow .25s ease;
+
+            &.is-open:not([hidden]) {
+                max-height: 480px;
+                padding: 8px 24px 18px;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateY(0);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, .14);
+                transition-delay: 0s;
+            }
+
+            >a {
+                min-height: 48px;
+                color: var(--imc-red) !important;
+                transition: background-color .2s ease, padding-left .2s ease;
+
+                &:hover,
+                &:focus-visible {
+                    background-color: #f7f2f2;
+                    padding-left: 8px;
+                }
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                transition: none !important;
+                transform: none !important;
+
+                >a {
+                    transition: none !important;
+                }
+            }
+        }
+
+        .imc-search-inner {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .imc-search-fields {
+            width: 100%;
+        }
+
+        .imc-model {
+            min-height: 0;
+            gap: 20px;
+        }
+
+        .imc-model-panel {
+            padding-inline: 38px;
+        }
+
+        .imc-model-title {
+            font-size: 29px;
+        }
+
+        .imc-model-description {
+            font-size: 15px;
+        }
+
+        .imc-footer-grid {
+            gap: 25px;
+        }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+        .imc-container {
+            width: calc(100% - 32px);
+        }
+
+        .imc-header-inner {
+            padding: 12px 16px;
+        }
+
+        .imc-brand-logo {
+            width: 110px;
+            flex-basis: 110px;
+        }
+
+        .imc-identity {
+            gap: 10px;
+        }
+
+        .imc-dealer-name {
+            font-size: 12px;
+        }
+
+        .imc-hero-media {
+            aspect-ratio: 455/300;
+
+            img {
+                object-fit: cover;
+
+                @media only screen and (min-width: 576px) {
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .imc-hero-actions {
+            gap: 10px;
+            padding: 16px;
+
+            .imc-button {
+                width: 100%;
+            }
+        }
+
+        .imc-search-title {
+            display: none;
+        }
+
+        .imc-search-toggle {
+            display: block;
+        }
+
+        .imc-search-fields {
+            display: none;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            &.is-open {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .imc-button {
+                grid-column: 1/-1;
+            }
+        }
+
+        .imc-lineup,
+        .imc-promotions {
+            padding: 34px 0;
+        }
+
+        .imc-heading {
+            margin-bottom: 22px;
+        }
+
+        .imc-family-nav {
+            grid-template-columns: 32px minmax(0, 1fr) 32px;
+
+            .imc-arrow {
+                width: 32px;
+            }
+        }
+
+        .imc-family-tab {
+            padding-inline: 15px;
+            min-height: 48px;
+            font-size: 13px;
+        }
+
+        .imc-model-panel {
+            padding: 12px 0 0;
+        }
+
+        .imc-model {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0;
+            padding: 0;
+        }
+
+        .imc-model-picture {
+            padding: 0 32px;
+        }
+
+        .imc-model-panel>.imc-arrow {
+            top: clamp(90px, 30vw, 220px);
+            width: 34px;
+        }
+
+        .imc-model-info {
+            text-align: center;
+            padding: 12px 8px 16px;
+        }
+
+        .imc-model-title {
+            font-size: 27px;
+            margin-bottom: 14px;
+        }
+
+        .imc-model-description,
+        .imc-model-price {
+            margin-bottom: 16px;
+        }
+
+        .imc-highlight {
+            min-height: 320px;
+
+            &::after {
+                background: rgba(0, 0, 0, .45);
+            }
+        }
+
+        .imc-highlight-content {
+            text-align: center;
+        }
+
+        .imc-highlight h2 {
+            margin-inline: auto;
+        }
+
+        .imc-footer-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 26px;
+        }
+
+        .imc-footer-logo {
+            max-width: 180px;
+            margin-inline: auto;
+        }
+
+        .imc-footer-top {
+            padding: 32px 0;
+        }
+
+        .imc-footer-copyright {
+            flex-direction: column;
+
+            >*+*::before {
+                content: none;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-small) {
+        .imc-search-fields {
+            grid-template-columns: 1fr;
+        }
+
+        .imc-identity-divider {
+            display: none;
+        }
+
+        .imc-brand-logo {
+            width: 96px;
+            flex-basis: 96px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            transition-duration: .01ms !important;
+        }
+    }
+}
+
+// ==========================================================
+// HERO PROMOTION TERMS | OVERLAY ONLY (no carousel resizing)
+// ==========================================================
+html .indian-page .imc-hero-slide-has-terms {
+    position: relative !important;
+}
+
+html .indian-page .imc-hero-terms-toggle,
+html .indian-page .imc-hero-terms-close {
+    appearance: none !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-family: "Chakra Petch", Arial, sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    transition: background-color .2s ease, color .2s ease, opacity .25s ease !important;
+}
+
+html .indian-page .imc-hero-terms-toggle {
+    position: absolute !important;
+    top: 20px !important;
+    left: 24px !important;
+    z-index: 3 !important;
+    min-height: 40px !important;
+    max-width: calc(100% - 48px) !important;
+    padding: 10px 16px !important;
+    background: rgba(22, 22, 22, .9) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, .75) !important;
+    font-size: 13px !important;
+    letter-spacing: .035em !important;
+    text-transform: uppercase !important;
+}
+
+html .indian-page .imc-hero-terms-toggle:hover,
+html .indian-page .imc-hero-terms-toggle[aria-expanded="true"] {
+    background: var(--imc-red) !important;
+    border-color: var(--imc-red) !important;
+}
+
+html .indian-page .imc-hero-terms-panel {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    z-index: 4 !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    background: rgba(18, 18, 18, .97) !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-left: 3px solid var(--imc-red) !important;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, .22) !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateX(24px) !important;
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .28s ease, visibility 0s linear .35s !important;
+}
+
+html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-panel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+    transition-delay: 0s !important;
+}
+
+// Leave the pagination controls unobstructed on multi-slide carousels.
+html .indian-page .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+    bottom: 36px !important;
+}
+
+html .indian-page .imc-hero-terms-header {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    padding: 20px 24px !important;
+    margin: 0 !important;
+    background: var(--imc-red) !important;
+    color: #fff !important;
+}
+
+html .indian-page .imc-hero-terms-heading-group {
+    min-width: 0 !important;
+}
+
+html .indian-page .imc-hero-terms-header h3 {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    font-family: "Chakra Petch", Arial, sans-serif !important;
+    font-size: clamp(18px, 1.5vw, 26px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    overflow-wrap: anywhere !important;
+}
+
+html .indian-page .imc-hero-terms-title {
+    display: block !important;
+    margin-top: 5px !important;
+    color: #fff !important;
+    font-family: var(--imc-body) !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+    overflow-wrap: anywhere !important;
+}
+
+html .indian-page .imc-hero-terms-close {
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, .75) !important;
+    background: transparent !important;
+    color: #fff !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 28px !important;
+}
+
+html .indian-page .imc-hero-terms-close:hover {
+    background: #fff !important;
+    color: var(--imc-red) !important;
+}
+
+html .indian-page .imc-hero-terms-body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 22px 24px !important;
+    color: #fff !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--imc-red) #333 !important;
+}
+
+html .indian-page .imc-hero-terms-body p {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    font-family: var(--imc-body) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    text-align: left !important;
+}
+
+html .indian-page .imc-hero-terms-body:focus-visible,
+html .indian-page .imc-hero-terms-toggle:focus-visible,
+html .indian-page .imc-hero-terms-close:focus-visible {
+    outline: 2px solid #fff !important;
+    outline-offset: -4px !important;
+    box-shadow: none !important;
+}
+
+// Mobile/tablet: a full-width panel over the banner is more readable
+// than squeezing the legal copy into half of a narrow screen.
+@media (max-width: 991px) {
+    html .indian-page .imc-hero-terms-toggle {
+        top: 10px !important;
+        left: auto !important;
+        right: 10px !important;
+        max-width: calc(100% - 20px) !important;
+        min-height: 36px !important;
+        padding: 8px 12px !important;
+        font-size: 11px !important;
+    }
+
+    html .indian-page .imc-hero-terms-panel {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        border-left: 0 !important;
+        border-top: 2px solid var(--imc-red) !important;
+        transform: translateY(16px) !important;
+    }
+
+    html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-panel {
+        transform: translateY(0) !important;
+    }
+
+    html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    html .indian-page .imc-hero-terms-header {
+        padding: 10px 14px !important;
+        gap: 8px !important;
+    }
+
+    html .indian-page .imc-hero-terms-header h3 {
+        font-size: 17px !important;
+    }
+
+    html .indian-page .imc-hero-terms-title {
+        font-size: 12px !important;
+        margin-top: 3px !important;
+    }
+
+    html .indian-page .imc-hero-terms-close {
+        flex-basis: 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 24px !important;
+    }
+
+    html .indian-page .imc-hero-terms-body {
+        padding: 12px 14px !important;
+    }
+
+    html .indian-page .imc-hero-terms-body p {
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html .indian-page .imc-hero-terms-panel,
+    html .indian-page .imc-hero-terms-toggle,
+    html .indian-page .imc-hero-terms-close {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+// Retain the previous jQuery smooth scrolling implementation.
+html:has(#indian-brand-page) {
+    scroll-behavior: auto !important;
+}
+
+html .indian-page #imc-current-inventory {
+    scroll-margin-top: 155px !important;
+}
+
+@media (max-width: 991px) {
+    html .indian-page #imc-current-inventory {
+        scroll-margin-top: 100px !important;
+    }
+}
+
+
+// ==========================================================
+// HERO TERMS | INSET PANEL + FIXED HEADER CLEARANCE
+// Append at the end of the existing SCSS (outside .indian-page).
+// ==========================================================
+
+// Keep the page's top clearance in sync with the fixed header.
+html.html:has(#indian-brand-page) {
+    --imc-fixed-header-space: 96px;
+    margin-top: var(--imc-fixed-header-space) !important;
+
+    @media (min-width: 992px) and (max-width: 1450px) {
+        --imc-fixed-header-space: 144px;
+    }
+
+    @media (max-width: 400px) {
+        --imc-fixed-header-space: 104px;
+    }
+}
+
+html .indian-page {
+    .imc-header-inner {
+        min-height: var(--imc-fixed-header-space, 96px) !important;
+    }
+
+    // Inset the desktop panel rather than covering the entire height.
+    .imc-hero-terms-panel {
+        top: 9% !important;
+        bottom: 9% !important;
+        right: 20px !important;
+        width: calc(50% - 20px) !important;
+        height: auto !important;
+        max-height: calc(100vh - var(--imc-fixed-header-space, 96px) - 80px) !important;
+        max-height: calc(100dvh - var(--imc-fixed-header-space, 96px) - 80px) !important;
+        border-radius: 8px !important;
+    }
+
+    // Reserve extra clearance for Swiper's pagination dots.
+    .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+        bottom: calc(9% + 24px) !important;
+    }
+
+    .imc-hero-terms-header {
+        padding: 14px 20px !important;
+    }
+
+    .imc-hero-terms-body {
+        min-height: 0 !important;
+        padding: 16px 20px !important;
+        overflow-y: auto !important;
+    }
+
+    @media (max-width: 991px) {
+
+        // More room for the legal text, including narrow phones.
+        .imc-hero-slide-has-terms .imc-hero-media {
+            min-height: 340px !important;
+        }
+
+        // Place the trigger near the bottom, away from the fixed header.
+        .imc-hero-terms-toggle {
+            top: auto !important;
+            bottom: 12px !important;
+            left: auto !important;
+            right: 12px !important;
+            min-height: 44px !important;
+            font-size: 12px !important;
+        }
+
+        .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-toggle {
+            bottom: 44px !important;
+        }
+
+        // Almost full-width panel with a small visible frame.
+        .imc-hero-terms-panel {
+            top: 10px !important;
+            bottom: 10px !important;
+            left: 10px !important;
+            right: 10px !important;
+            width: auto !important;
+            height: auto !important;
+            max-height: calc(100vh - var(--imc-fixed-header-space, 96px) - 24px) !important;
+            max-height: calc(100dvh - var(--imc-fixed-header-space, 96px) - 24px) !important;
+        }
+
+        .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+            bottom: 42px !important;
+        }
+
+        .imc-hero-terms-header {
+            padding: 10px 14px !important;
+        }
+
+        .imc-hero-terms-body {
+            padding: 12px 14px !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+
+        // Reduce wrapping in the fixed header at phone widths.
+        .imc-dealer-name {
+            font-size: 16px !important;
+            overflow-wrap: anywhere !important;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .imc-dealer-name {
+            font-size: 14px !important;
+        }
+    }
+}

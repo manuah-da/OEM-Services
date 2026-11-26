@@ -1,0 +1,2539 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+
+
+
+
+
+#site-header,
+#wpadminbar {
+    display: none !important
+}
+
+html.html {
+    margin: 0px !important;
+    margin-top: 85px !important
+}
+
+footer#footer,
+div.footer-bottom {
+    display: none !important
+}
+
+html .indian-page {
+    --imc-red: #981b27;
+    --imc-red-dark: #74121b;
+    --imc-black: #161616;
+    --imc-white: #fff;
+    --imc-gray: #f3f3f3;
+    --imc-border: #d5d5d5;
+    --imc-width: 1440px;
+    --imc-heading: "Arial Narrow", "Roboto Condensed", Arial, sans-serif;
+    --imc-body: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    color: var(--imc-black);
+    background: var(--imc-white);
+    font: 16px/1.5 var(--imc-body);
+    text-align: left;
+    isolation: isolate
+}
+
+html .indian-page *,
+html .indian-page *::before,
+html .indian-page *::after {
+    box-sizing: border-box
+}
+
+html .indian-page [hidden] {
+    display: none !important
+}
+
+html .indian-page h2,
+html .indian-page h3,
+html .indian-page h4,
+html .indian-page p {
+    margin: 0;
+    padding: 0;
+    color: inherit
+}
+
+html .indian-page h2,
+html .indian-page h3,
+html .indian-page h4 {
+    font-family: var(--imc-heading);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: 0.025em
+}
+
+html .indian-page a {
+    color: inherit;
+    text-decoration: none
+}
+
+html .indian-page a:hover {
+    text-decoration: none
+}
+
+html .indian-page img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 0
+}
+
+html .indian-page button,
+html .indian-page select {
+    font: inherit;
+    letter-spacing: normal
+}
+
+html .indian-page button {
+    cursor: pointer
+}
+
+html .indian-page :is(a, button, select) {
+    transition: box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1)
+}
+
+html .indian-page :is(a, button, select):focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 1.5px #fff, 0 0 5px 1.5px rgba(0, 153, 255, 0.75), 0 0 10px 2px rgba(0, 153, 255, 0.35)
+}
+
+html .indian-page .imc-container {
+    width: calc(100% - 48px);
+    max-width: var(--imc-width);
+    margin-inline: auto
+}
+
+html .indian-page .imc-heading {
+    font-size: 30px !important;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+@media only screen and (min-width:1530px) {
+    html .indian-page .imc-heading {
+        font-size: 60px !important
+    }
+}
+
+html .indian-page .imc-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 13px 26px;
+    border: 2px solid var(--imc-red);
+    border-radius: 8px;
+    background: var(--imc-red);
+    color: white;
+    font-weight: 700;
+    font-size: 12px !important;
+    line-height: 1.25;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+@media only screen and (min-width:992px) {
+    html .indian-page .imc-button {
+        font-size: 20px !important
+    }
+}
+
+html .indian-page .imc-button:hover {
+    background: var(--imc-red-dark);
+    border-color: var(--imc-red-dark);
+    color: white
+}
+
+html .indian-page .imc-button-outline {
+    background: transparent;
+    border-color: var(--imc-red);
+    color: var(--imc-red)
+}
+
+html .indian-page .imc-button-outline:hover {
+    background: var(--imc-red);
+    color: white
+}
+
+html .indian-page .imc-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: 0 0 auto
+}
+
+html .indian-page .imc-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap
+}
+
+html .indian-page #imc-lineup,
+html .indian-page #imc-promotions {
+    scroll-margin-top: 24px
+}
+
+html .indian-page .imc-header {
+    background: var(--imc-red);
+    border-bottom: 1px solid #dedede
+}
+
+html .indian-page .imc-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 90px;
+    padding: 14px 24px;
+    margin: auto;
+    max-width: 100%;
+    position: fixed;
+    z-index: 999;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background-color: var(--imc-red)
+}
+
+html .indian-page .imc-identity {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 0 1 360px;
+    min-width: 0
+}
+
+html .indian-page .imc-brand-logo {
+    width: 150px;
+    flex: 0 0 150px
+}
+
+html .indian-page .imc-brand-logo img {
+    width: 100%
+}
+
+html .indian-page .imc-identity-divider {
+    color: #777;
+    font-size: 28px;
+    line-height: 1
+}
+
+html .indian-page .imc-dealer-name {
+    font-weight: 700;
+    font-size: 21px !important;
+    line-height: 1.2;
+    color: white;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    text-align: center;
+    width: fit-content
+}
+
+html .indian-page .imc-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 1.4vw, 26px)
+}
+
+html .indian-page .imc-header-nav a,
+html .indian-page .imc-mobile-nav a {
+    font-size: 18px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: white !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-header a:hover {
+    color: var(--imc-red)
+}
+
+html .indian-page .imc-header-info {
+    display: flex;
+    gap: 19px;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.4
+}
+
+html .indian-page .imc-address span {
+    display: block;
+    color: white !important;
+    font-size: 15px !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-weight: 700;
+    color: white !important;
+    font-size: 18px !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-contact-link span {
+    font-size: 18px !important
+}
+
+html .indian-page .imc-phone-label {
+    font-size: 14px;
+    display: block;
+    color: white !important;
+    font-size: 15px !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-menu-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #222;
+    border-radius: 0;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-menu-button .imc-icon {
+    width: 26px;
+    height: 26px
+}
+
+html .indian-page .imc-mobile-nav {
+    display: none;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 8px 24px 18px
+}
+
+html .indian-page .imc-mobile-nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    white-space: normal;
+    color: #981b27 !important
+}
+
+html .indian-page .swiper {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden
+}
+
+html .indian-page .swiper-wrapper {
+    display: flex
+}
+
+html .indian-page .swiper-slide {
+    flex-shrink: 0;
+    min-width: 0
+}
+
+html .indian-page .imc-arrow {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #222;
+    z-index: 3;
+    transition: color 0.2s, background 0.2s
+}
+
+html .indian-page .imc-arrow::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(225deg)
+}
+
+html .indian-page .imc-next::before {
+    transform: rotate(45deg)
+}
+
+html .indian-page .imc-arrow:hover {
+    color: var(--imc-red);
+    background: #eee
+}
+
+html .indian-page .swiper-button-disabled {
+    opacity: 0.3;
+    cursor: default
+}
+
+html .indian-page .swiper-button-lock {
+    display: none
+}
+
+html .indian-page .swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    opacity: 0.65;
+    background: #fff
+}
+
+html .indian-page .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--imc-red)
+}
+
+html .indian-page .swiper:not(.swiper-initialized) {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory
+}
+
+html .indian-page .swiper:not(.swiper-initialized)>.swiper-wrapper>.swiper-slide {
+    width: 100%;
+    scroll-snap-align: start
+}
+
+html .indian-page .imc-family-swiper:not(.swiper-initialized)>.swiper-wrapper>.swiper-slide {
+    width: auto
+}
+
+html .indian-page .imc-hero {
+    background: var(--imc-black)
+}
+
+html .indian-page .imc-hero-swiper {
+    background: #202020
+}
+
+html .indian-page .imc-hero-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.6666666667;
+    overflow: hidden
+}
+
+html .indian-page .imc-hero-media picture,
+html .indian-page .imc-hero-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+@media only screen and (min-width:576px) {
+
+    html .indian-page .imc-hero-media picture,
+    html .indian-page .imc-hero-media img {
+        object-fit: contain
+    }
+}
+
+html .indian-page .imc-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    text-align: center;
+    padding: 24px;
+    background: repeating-linear-gradient(135deg, #222, #222 24px, #272727 24px, #272727 48px);
+    color: #fff
+}
+
+html .indian-page .imc-placeholder strong {
+    font-size: clamp(20px, 3vw, 38px);
+    text-transform: uppercase;
+    letter-spacing: 0.08em
+}
+
+html .indian-page .imc-placeholder span {
+    font-size: 15px !important;
+    letter-spacing: 0.045em
+}
+
+html .indian-page .imc-hero-swiper .imc-hero-dots {
+    position: absolute;
+    bottom: 14px;
+    top: auto;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 3
+}
+
+html .indian-page .imc-hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px
+}
+
+html .indian-page .imc-hero-actions .imc-button-outline {
+    border-color: white;
+    color: white
+}
+
+html .indian-page .imc-hero-actions .imc-button-outline:hover {
+    border-color: var(--imc-red)
+}
+
+html .indian-page .imc-search {
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    padding: 18px 0
+}
+
+html .indian-page .imc-search-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px
+}
+
+html .indian-page .imc-search-title {
+    font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    font-weight: 800;
+    font-size: 30px !important;
+    white-space: nowrap;
+    text-transform: uppercase
+}
+
+html .indian-page .imc-search-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    padding: 10px 0;
+    color: inherit;
+    width: 100%;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+}
+
+html .indian-page .imc-search-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg)
+}
+
+html .indian-page .imc-search-fields {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(145px, 1fr);
+    gap: 12px;
+    align-items: center
+}
+
+html .indian-page .imc-search-fields .imc-year-range {
+    width: 100%
+}
+
+@media only screen and (max-width:768px) {
+    html .indian-page .imc-search-fields .imc-year-range {
+        display: flex;
+        flex-direction: column;
+        gap: 15px
+    }
+}
+
+html .indian-page .imc-search-fields .imc-year-range>input {
+    max-width: 48%
+}
+
+@media only screen and (max-width:768px) {
+    html .indian-page .imc-search-fields .imc-year-range>input {
+        max-width: 100%
+    }
+}
+
+html .indian-page .imc-search select {
+    width: 100%;
+    height: 44px;
+    min-width: 0;
+    color: #222;
+    border: 1px solid #c3c3c3;
+    border-radius: 0;
+    background-color: #fff;
+    padding: 0 28px 0 12px;
+    font-size: 14px;
+    margin: 0
+}
+
+html .indian-page .imc-search .imc-button {
+    min-height: 44px;
+    padding: 10px;
+    margin: 0
+}
+
+html .indian-page .imc-leatest-carrousel {
+    background: #111 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider {
+    background: #111 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+    color: #fff !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.025em !important;
+    text-transform: uppercase !important;
+    text-align: center !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide {
+    background: #fff !important;
+    border-radius: 10px !important;
+    border-color: #d5d5d5 !important;
+    box-shadow: inset 0 0 0 1px #d5d5d5, 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>a {
+    text-decoration: none !important;
+    color: inherit !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>a:first-child {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    background: #fff !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>a:nth-child(2) {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 0 15px !important;
+    margin: 20px 22px 0 !important;
+    border-bottom: 1px solid #d5d5d5 !important;
+    text-align: left !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    width: 100% !important;
+    min-height: 2.7em !important;
+    max-height: 2.7em !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    color: var(--imc-black) !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    transition: color 0.25s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-image-container {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 1.3333333333 !important;
+    box-sizing: border-box !important;
+    padding: 14px !important;
+    margin: 0 !important;
+    background: #fff !important;
+    border: none !important;
+    border-radius: 10px 10px 0 0 !important;
+    overflow: hidden !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-image-container>img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border: none !important;
+    border-radius: 5px !important;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: auto !important;
+    min-height: 80px !important;
+    height: auto !important;
+    padding: 16px 0 !important;
+    margin: 0 22px !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: left !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: var(--imc-black) !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    text-align: left !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .our-price {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 9px !important;
+    margin: 0 !important;
+    background: var(--imc-red) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .call-for-quote {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    color: var(--imc-red) !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+    text-transform: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>.view-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    width: calc(100% - 44px) !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 48px !important;
+    padding: 14px 16px !important;
+    margin: 8px 22px 22px !important;
+    background: var(--imc-red) !important;
+    color: #fff !important;
+    border: 2px solid var(--imc-red) !important;
+    border-radius: 6px !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: 0.02em !important;
+    cursor: pointer !important;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>.view-button:hover {
+    background: var(--imc-red-dark) !important;
+    border-color: var(--imc-red-dark) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(152, 27, 39, 0.2) !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>.view-button:focus-visible {
+    outline: 2px solid var(--imc-red) !important;
+    outline-offset: 3px !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide.featured {
+    border-color: #d5d5d5 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide.featured>a:first-child {
+    border: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide.featured .manage-inventory-image-container {
+    border: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    bottom: auto !important;
+    right: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: calc(100% - 24px) !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    background: var(--imc-black) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    transform: none !important;
+    z-index: 2 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title::before,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title::after {
+    content: none !important;
+    display: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title p {
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title svg {
+    width: 12px !important;
+    height: 12px !important;
+    color: #fff !important;
+    fill: currentColor !important;
+    flex-shrink: 0 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner {
+    position: absolute !important;
+    top: auto !important;
+    left: auto !important;
+    bottom: 14px !important;
+    right: 14px !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: calc(100% - 28px) !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    background: var(--imc-red) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    transform: none !important;
+    clip-path: none !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+    z-index: 2 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner::before,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner::after {
+    content: none !important;
+    display: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner p {
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    transform: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button {
+    background-color: var(--imc-red) !important;
+    color: #fff !important;
+    border-color: var(--imc-red) !important;
+    border-radius: 50% !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 0 3px 8px rgba(0, 0, 0, 0.12) !important;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button svg,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button svg {
+    color: inherit !important;
+    fill: currentColor !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button:not(:disabled):not(.disabled):not([aria-disabled="true"]):hover,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button:not(:disabled):not(.disabled):not([aria-disabled="true"]):hover {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: var(--imc-red) !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button:focus-visible,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button:focus-visible {
+    outline: 2px solid #fff !important;
+    outline-offset: 3px !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .gradient-overlay {
+    opacity: 0 !important;
+    pointer-events: none !important
+}
+
+@media (hover:hover) and (pointer:fine) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide:hover {
+        border-color: var(--imc-red) !important;
+        box-shadow: inset 0 0 0 1px var(--imc-red), 0 8px 24px rgba(0, 0, 0, 0.2) !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide:hover h3 {
+        color: var(--imc-red) !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide:hover .manage-inventory-image-container>img {
+        transform: scale(1.035) !important
+    }
+}
+
+@media (max-width:1530px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 44px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+        font-size: 20px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+        font-size: 28px !important
+    }
+}
+
+@media (max-width:1199px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 38px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+        font-size: 19px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+        font-size: 26px !important
+    }
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 34px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>a:nth-child(2) {
+        margin: 16px 16px 0 !important;
+        padding-bottom: 12px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+        font-size: 18px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide>.view-button {
+        width: calc(100% - 32px) !important;
+        margin: 8px 16px 16px !important;
+        font-size: 16px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container {
+        margin: 0 16px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+        font-size: 25px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .call-for-quote {
+        font-size: 18px !important
+    }
+}
+
+@media (max-width:767px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 28px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-image-container {
+        padding: 10px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide {
+        border-radius: 8px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+        font-size: 17px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container {
+        min-height: 68px !important;
+        padding: 12px 0 !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+        font-size: 24px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .our-price {
+        font-size: 11px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title {
+        top: 8px !important;
+        left: 8px !important;
+        padding: 6px 9px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .feature-title p {
+        font-size: 10px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner {
+        bottom: 10px !important;
+        right: 10px !important;
+        padding: 6px 9px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .text-banner p {
+        font-size: 11px !important
+    }
+}
+
+@media (max-width:400px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 24px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide h3 {
+        font-size: 16px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .price-container .price {
+        font-size: 22px !important
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-image-container>img,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .view-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider h3 {
+        transition: none !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide:hover .manage-inventory-image-container>img {
+        transform: none !important
+    }
+}
+
+html .indian-page .imc-leatest-carrousel {
+    background: var(--imc-white) !important;
+    width: 100% !important;
+    padding: 52px 0 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider {
+    position: relative !important;
+    width: calc(100% - 48px) !important;
+    max-width: var(--imc-width) !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    background: transparent !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+    color: var(--imc-black) !important;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important;
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 36px !important;
+    padding: 0 110px !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide {
+    background: #fff !important;
+    border-color: #d5d5d5 !important;
+    border-radius: 10px !important;
+    box-shadow: inset 0 0 0 1px #d5d5d5, 0 3px 10px rgba(0, 0, 0, 0.06) !important;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide:hover {
+    border-color: var(--imc-red) !important;
+    box-shadow: inset 0 0 0 1px var(--imc-red), 0 6px 16px rgba(0, 0, 0, 0.09) !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button {
+    position: absolute !important;
+    top: 8px !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff !important;
+    color: var(--imc-red) !important;
+    border: 1px solid var(--imc-red) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    cursor: pointer !important;
+    z-index: 5 !important;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button svg,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button svg {
+    width: 18px !important;
+    height: 18px !important;
+    color: inherit !important;
+    fill: currentColor !important;
+    vertical-align: middle !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button:not(:disabled):not(.disabled):not([aria-disabled="true"]):hover,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button:not(:disabled):not(.disabled):not([aria-disabled="true"]):hover {
+    background: var(--imc-red) !important;
+    border-color: var(--imc-red) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(152, 27, 39, 0.2) !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button:focus-visible,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button:focus-visible {
+    outline: 2px solid var(--imc-red) !important;
+    outline-offset: 3px !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button:disabled,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button:disabled,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button.disabled,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button.disabled,
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button[aria-disabled="true"],
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button[aria-disabled="true"] {
+    opacity: 0.35 !important;
+    cursor: default !important;
+    box-shadow: none !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button {
+    right: 56px !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button {
+    right: 0 !important
+}
+
+html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .gradient-overlay {
+    opacity: 0 !important;
+    pointer-events: none !important
+}
+
+@media (max-width:1199px) {
+    html .indian-page .imc-leatest-carrousel {
+        padding: 44px 0 !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 40px !important
+    }
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-leatest-carrousel {
+        padding: 40px 0 !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 34px !important;
+        margin-bottom: 28px !important;
+        padding: 0 94px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button {
+        top: 0 !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button svg,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button svg {
+        width: 16px !important;
+        height: 16px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button {
+        right: 48px !important
+    }
+}
+
+@media (max-width:767px) {
+    html .indian-page .imc-leatest-carrousel {
+        padding: 34px 0 !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider {
+        width: calc(100% - 32px) !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 28px !important;
+        text-align: left !important;
+        padding: 0 94px 0 0 !important;
+        margin-bottom: 24px !important
+    }
+}
+
+@media (max-width:400px) {
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider>h2 {
+        font-size: 24px !important;
+        padding-right: 80px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button svg,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button svg {
+        width: 14px !important;
+        height: 14px !important
+    }
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button {
+        right: 42px !important
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #previous-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider #next-button,
+    html .indian-page .imc-leatest-carrousel #manage-inventory-featured-slider .manage-inventory-featured-slider-slide {
+        transition: none !important
+    }
+}
+
+html .indian-page .imc-lineup {
+    background: #fff;
+    padding: 54px 0 58px
+}
+
+html .indian-page .imc-family-nav {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: stretch;
+    border-bottom: 1px solid var(--imc-border)
+}
+
+html .indian-page .imc-family-swiper .swiper-slide {
+    width: auto;
+    height: auto
+}
+
+html .indian-page .imc-family-tab {
+    display: block;
+    height: 100%;
+    min-height: 54px;
+    padding: 15px 22px 12px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: #fff;
+    color: #272727;
+    border-radius: 0;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s
+}
+
+html .indian-page .imc-family-tab:hover,
+html .indian-page .imc-family-tab.is-active {
+    color: var(--imc-red);
+    border-bottom-color: var(--imc-red)
+}
+
+html .indian-page .imc-family-nav .imc-arrow {
+    align-self: center
+}
+
+html .indian-page .imc-model-panel {
+    position: relative;
+    padding: 18px 54px 0;
+    min-width: 0
+}
+
+html .indian-page .imc-model-swiper .swiper-slide {
+    height: auto
+}
+
+html .indian-page .imc-model {
+    display: grid;
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+    align-items: center;
+    gap: clamp(18px, 3vw, 54px);
+    min-height: 390px;
+    height: 100%;
+    padding: 12px 0
+}
+
+html .indian-page .imc-model-picture img {
+    width: 100%;
+    aspect-ratio: 1.4;
+    object-fit: contain
+}
+
+html .indian-page .imc-model-info {
+    padding: 22px 8px 22px 0
+}
+
+html .indian-page .imc-model-title {
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.12;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    overflow-wrap: anywhere;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-model-description {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-model-price {
+    font-size: 19px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif
+}
+
+html .indian-page .imc-model-panel>.imc-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+html .indian-page .imc-model-panel>.imc-prev {
+    left: 0
+}
+
+html .indian-page .imc-model-panel>.imc-next {
+    right: 0
+}
+
+html .indian-page .imc-highlight {
+    position: relative;
+    min-height: 380px;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    background: #222;
+    color: #fff;
+    overflow: hidden
+}
+
+html .indian-page .imc-highlight-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center
+}
+
+html .indian-page .imc-highlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.12) 75%);
+    pointer-events: none
+}
+
+html .indian-page .imc-highlight-content {
+    position: relative;
+    z-index: 1;
+    padding-block: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: end !important
+}
+
+html .indian-page .imc-highlight h2 {
+    max-width: 670px;
+    margin-bottom: 26px;
+    font-size: 30px !important;
+    text-transform: uppercase;
+    text-align: end;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif !important
+}
+
+@media only screen and (min-width:1530px) {
+    html .indian-page .imc-highlight h2 {
+        font-size: 60px !important
+    }
+}
+
+html .indian-page .imc-promotions {
+    background: #fff;
+    padding: 52px 0
+}
+
+html .indian-page .imc-promotions .imc-heading {
+    margin-bottom: 32px
+}
+
+html .indian-page .imc-promotions .imc-promo-status {
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    background: #f5f5f5;
+    border-left: 4px solid var(--imc-red);
+    color: #555;
+    font-size: 14px !important;
+    line-height: 1.5
+}
+
+html .indian-page .imc-promotions .imc-promo-status:empty {
+    display: none
+}
+
+html .indian-page .imc-promotions .imc-promotions-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+    width: 100%
+}
+
+@media (min-width:992px) {
+    html .indian-page .imc-promotions .imc-promotions-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px
+    }
+}
+
+html .indian-page .imc-promotions .imc-promo-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #fff;
+    border: 1px solid var(--imc-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.35s ease, border-color 0.35s ease
+}
+
+html .indian-page .imc-promotions .imc-promo-card:hover {
+    border-color: var(--imc-red);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15)
+}
+
+html .indian-page .imc-promotions .imc-promo-media {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.7777777778;
+    overflow: hidden;
+    background: var(--imc-black)
+}
+
+html .indian-page .imc-promotions .imc-promo-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease
+}
+
+html .indian-page .imc-promotions .imc-promo-title {
+    padding: 20px 16px;
+    margin: 0;
+    background: #fff;
+    color: var(--imc-black);
+    font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    font-size: 25px !important;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    transition: color 0.3s ease
+}
+
+html .indian-page .imc-promotions .imc-promo-terms {
+    margin: 0;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 48px;
+    padding: 12px 20px;
+    margin: 0;
+    background: var(--imc-red);
+    color: #fff;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Chakra Petch", "Times New Roman", Times, serif;
+    font-size: 14px !important;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.3s ease
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary::-webkit-details-marker {
+    display: none
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary::marker {
+    content: ""
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary::after {
+    content: "+";
+    display: block;
+    flex-shrink: 0;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.3s ease
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary:hover {
+    background: var(--imc-red-dark)
+}
+
+html .indian-page .imc-promotions .imc-promo-terms summary:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -4px
+}
+
+html .indian-page .imc-promotions .imc-promo-terms>p {
+    padding: 20px;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #1b1b1b;
+    color: #fff;
+    font-family: var(--imc-body);
+    font-size: 12px !important;
+    font-weight: 400;
+    line-height: 1.7;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    scrollbar-width: thin;
+    scrollbar-color: var(--imc-red) #333
+}
+
+html .indian-page .imc-promotions .imc-promo-terms>p::-webkit-scrollbar {
+    width: 5px
+}
+
+html .indian-page .imc-promotions .imc-promo-terms>p::-webkit-scrollbar-track {
+    background: #333
+}
+
+html .indian-page .imc-promotions .imc-promo-terms>p::-webkit-scrollbar-thumb {
+    background: var(--imc-red);
+    border-radius: 5px
+}
+
+html .indian-page .imc-promotions .imc-promo-terms[open] summary {
+    background: var(--imc-red-dark)
+}
+
+html .indian-page .imc-promotions .imc-promo-terms[open] summary::after {
+    transform: rotate(45deg)
+}
+
+@media (min-width:992px) and (hover:hover) and (pointer:fine) {
+    html .indian-page .imc-promotions .imc-promo-terms::details-content {
+        content-visibility: visible
+    }
+
+    html .indian-page .imc-promotions .imc-promo-terms summary {
+        height: 48px
+    }
+
+    html .indian-page .imc-promotions .imc-promo-terms>p {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 48px;
+        z-index: 5;
+        width: 100%;
+        max-height: calc(100% - 96px);
+        padding: 24px;
+        background: rgba(15, 15, 15, 0.95);
+        backdrop-filter: blur(8px);
+        border-top: 3px solid var(--imc-red);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(18px);
+        transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.35s ease
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card:hover .imc-promo-media img {
+        transform: scale(1.025);
+        filter: brightness(0.85)
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card:hover .imc-promo-title {
+        color: var(--imc-red)
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card:hover .imc-promo-terms summary {
+        background: var(--imc-red-dark)
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card:hover .imc-promo-terms summary::after {
+        transform: rotate(45deg)
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card:hover .imc-promo-terms>p {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0)
+    }
+
+    html .indian-page .imc-promotions .imc-promo-terms[open]>p {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0)
+    }
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-promotions {
+        padding: 40px 0
+    }
+
+    html .indian-page .imc-promotions .imc-heading {
+        font-size: 36px !important;
+        margin-bottom: 24px
+    }
+
+    html .indian-page .imc-promotions .imc-promotions-content {
+        gap: 24px
+    }
+
+    html .indian-page .imc-promotions .imc-promo-title {
+        font-size: 22px !important;
+        padding: 16px
+    }
+
+    html .indian-page .imc-promotions .imc-promo-terms summary {
+        padding: 14px 16px;
+        font-size: 13px !important
+    }
+
+    html .indian-page .imc-promotions .imc-promo-terms>p {
+        padding: 16px;
+        max-height: 300px;
+        font-size: 12px !important
+    }
+}
+
+@media (max-width:575px) {
+    html .indian-page .imc-promotions {
+        padding: 34px 0
+    }
+
+    html .indian-page .imc-promotions .imc-heading {
+        font-size: 28px !important
+    }
+
+    html .indian-page .imc-promotions .imc-promo-card {
+        border-radius: 6px
+    }
+
+    html .indian-page .imc-promotions .imc-promo-title {
+        font-size: 20px !important
+    }
+
+    html .indian-page .imc-promotions .imc-promo-media {
+        aspect-ratio: auto
+    }
+
+    html .indian-page .imc-promotions .imc-promo-media img {
+        height: auto
+    }
+
+    html .indian-page .imc-promotions .imc-promo-status {
+        padding: 12px 14px;
+        font-size: 12px !important
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    html .indian-page .imc-promotions .imc-promo-card,
+    html .indian-page .imc-promotions .imc-promo-media img,
+    html .indian-page .imc-promotions .imc-promo-title,
+    html .indian-page .imc-promotions .imc-promo-terms summary,
+    html .indian-page .imc-promotions .imc-promo-terms summary::after,
+    html .indian-page .imc-promotions .imc-promo-terms>p {
+        transition: none !important
+    }
+}
+
+html .indian-page .imc-footer {
+    background: #1b1b1b;
+    color: #fff
+}
+
+html .indian-page .imc-footer-top {
+    padding: 45px 0
+}
+
+html .indian-page .imc-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    align-items: start;
+    gap: 40px
+}
+
+html .indian-page .imc-footer-logo {
+    display: block;
+    max-width: 250px
+}
+
+html .indian-page .imc-footer-logo img {
+    width: 100%
+}
+
+html .indian-page .imc-footer-heading {
+    font-size: 19px;
+    text-transform: uppercase;
+    margin-bottom: 15px
+}
+
+html .indian-page .imc-footer-links {
+    display: grid;
+    gap: 9px;
+    font-size: 15px
+}
+
+html .indian-page .imc-footer a:hover {
+    text-decoration: underline
+}
+
+html .indian-page .imc-footer-bottom {
+    background: #101010;
+    padding: 19px 0
+}
+
+html .indian-page .imc-footer-copyright {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 12px;
+    text-align: center
+}
+
+html .indian-page .imc-footer-copyright>*+*::before {
+    content: "|";
+    margin-right: 10px;
+    color: #888
+}
+
+@media (max-width:1450px) {
+    html .indian-page .imc-header-inner {
+        flex-wrap: wrap;
+        gap: 12px 24px
+    }
+
+    html .indian-page .imc-header-nav {
+        order: 3;
+        flex-basis: 100%;
+        padding: 10px 0 1px;
+        border-top: 1px solid #eee
+    }
+
+    html .indian-page .imc-header-info {
+        margin-left: auto
+    }
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999 !important;
+        display: flex;
+        flex-direction: column;
+        max-height: 100vh;
+        max-height: 100dvh;
+        overflow: visible
+    }
+
+    html .indian-page .imc-header-inner {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        z-index: 1 !important;
+        flex: 0 0 auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        min-height: 76px;
+        margin: 0
+    }
+
+    html .indian-page .imc-header-nav,
+    html .indian-page .imc-header-info {
+        display: none
+    }
+
+    html .indian-page .imc-menu-button {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0
+    }
+
+    html .indian-page #imc-mobile-menu {
+        display: block !important;
+        position: relative;
+        flex: 0 1 auto;
+        min-height: 0;
+        max-height: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0 24px;
+        background: var(--imc-white);
+        border: 0;
+        box-shadow: none;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), padding 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.35s, box-shadow 0.25s ease
+    }
+
+    html .indian-page #imc-mobile-menu.is-open:not([hidden]) {
+        max-height: 480px;
+        padding: 8px 24px 18px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+        transition-delay: 0s
+    }
+
+    html .indian-page #imc-mobile-menu>a {
+        min-height: 48px;
+        color: var(--imc-red) !important;
+        transition: background-color 0.2s ease, padding-left 0.2s ease
+    }
+
+    html .indian-page #imc-mobile-menu>a:hover,
+    html .indian-page #imc-mobile-menu>a:focus-visible {
+        background-color: #f7f2f2;
+        padding-left: 8px
+    }
+
+    html .indian-page #imc-mobile-menu>a:last-child {
+        border-bottom: 0
+    }
+
+    html .indian-page .imc-search-inner {
+        flex-direction: column;
+        gap: 12px
+    }
+
+    html .indian-page .imc-search-fields {
+        width: 100%
+    }
+
+    html .indian-page .imc-model {
+        min-height: 0;
+        gap: 20px
+    }
+
+    html .indian-page .imc-model-panel {
+        padding-inline: 38px
+    }
+
+    html .indian-page .imc-model-title {
+        font-size: 29px
+    }
+
+    html .indian-page .imc-model-description {
+        font-size: 15px
+    }
+
+    html .indian-page .imc-footer-grid {
+        gap: 25px
+    }
+}
+
+@media (max-width:991px) and (prefers-reduced-motion:reduce) {
+    html .indian-page #imc-mobile-menu {
+        transition: none !important;
+        transform: none !important
+    }
+
+    html .indian-page #imc-mobile-menu>a {
+        transition: none !important
+    }
+}
+
+@media (max-width:767px) {
+    html .indian-page .imc-container {
+        width: calc(100% - 32px)
+    }
+
+    html .indian-page .imc-header-inner {
+        padding: 12px 16px
+    }
+
+    html .indian-page .imc-brand-logo {
+        width: 110px;
+        flex-basis: 110px
+    }
+
+    html .indian-page .imc-identity {
+        gap: 10px
+    }
+
+    html .indian-page .imc-dealer-name {
+        font-size: 12px
+    }
+
+    html .indian-page .imc-hero-media {
+        aspect-ratio: 1.5166666667
+    }
+
+    html .indian-page .imc-hero-media img {
+        object-fit: cover
+    }
+
+    html .indian-page .imc-hero-actions {
+        gap: 10px;
+        padding: 16px
+    }
+
+    html .indian-page .imc-hero-actions .imc-button {
+        width: 100%
+    }
+
+    html .indian-page .imc-search-title {
+        display: none
+    }
+
+    html .indian-page .imc-search-toggle {
+        display: block
+    }
+
+    html .indian-page .imc-search-fields {
+        display: none;
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    html .indian-page .imc-search-fields.is-open {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px
+    }
+
+    html .indian-page .imc-search-fields .imc-button {
+        grid-column: -1
+    }
+
+    html .indian-page .imc-lineup,
+    html .indian-page .imc-promotions {
+        padding: 34px 0
+    }
+
+    html .indian-page .imc-heading {
+        margin-bottom: 22px
+    }
+
+    html .indian-page .imc-family-nav {
+        grid-template-columns: 32px minmax(0, 1fr) 32px
+    }
+
+    html .indian-page .imc-family-nav .imc-arrow {
+        width: 32px
+    }
+
+    html .indian-page .imc-family-tab {
+        padding-inline: 15px;
+        min-height: 48px;
+        font-size: 13px
+    }
+
+    html .indian-page .imc-model-panel {
+        padding: 12px 0 0
+    }
+
+    html .indian-page .imc-model {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        padding: 0
+    }
+
+    html .indian-page .imc-model-picture {
+        padding: 0 32px
+    }
+
+    html .indian-page .imc-model-panel>.imc-arrow {
+        top: clamp(90px, 30vw, 220px);
+        width: 34px
+    }
+
+    html .indian-page .imc-model-info {
+        text-align: center;
+        padding: 12px 8px 16px
+    }
+
+    html .indian-page .imc-model-title {
+        font-size: 27px;
+        margin-bottom: 14px
+    }
+
+    html .indian-page .imc-model-description,
+    html .indian-page .imc-model-price {
+        margin-bottom: 16px
+    }
+
+    html .indian-page .imc-highlight {
+        min-height: 320px
+    }
+
+    html .indian-page .imc-highlight::after {
+        background: rgba(0, 0, 0, 0.45)
+    }
+
+    html .indian-page .imc-highlight-content {
+        text-align: center
+    }
+
+    html .indian-page .imc-highlight h2 {
+        margin-inline: auto
+    }
+
+    html .indian-page .imc-footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 26px
+    }
+
+    html .indian-page .imc-footer-logo {
+        max-width: 180px;
+        margin-inline: auto
+    }
+
+    html .indian-page .imc-footer-top {
+        padding: 32px 0
+    }
+
+    html .indian-page .imc-footer-copyright {
+        flex-direction: column
+    }
+
+    html .indian-page .imc-footer-copyright>*+*::before {
+        content: none
+    }
+}
+
+@media only screen and (max-width:767px) and (min-width:576px) {
+    html .indian-page .imc-hero-media img {
+        object-fit: contain
+    }
+}
+
+@media (max-width:400px) {
+    html .indian-page .imc-search-fields {
+        grid-template-columns: 1fr
+    }
+
+    html .indian-page .imc-identity-divider {
+        display: none
+    }
+
+    html .indian-page .imc-brand-logo {
+        width: 96px;
+        flex-basis: 96px
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    html .indian-page *,
+    html .indian-page *::before,
+    html .indian-page *::after {
+        transition-duration: 0.01ms !important
+    }
+}
+
+html .indian-page .imc-hero-slide-has-terms {
+    position: relative !important
+}
+
+html .indian-page .imc-hero-terms-toggle,
+html .indian-page .imc-hero-terms-close {
+    appearance: none !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-family: "Chakra Petch", Arial, sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.25s ease !important
+}
+
+html .indian-page .imc-hero-terms-toggle {
+    position: absolute !important;
+    top: 20px !important;
+    left: 24px !important;
+    z-index: 3 !important;
+    min-height: 40px !important;
+    max-width: calc(100% - 48px) !important;
+    padding: 10px 16px !important;
+    background: rgba(22, 22, 22, 0.9) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    font-size: 13px !important;
+    letter-spacing: 0.035em !important;
+    text-transform: uppercase !important
+}
+
+html .indian-page .imc-hero-terms-toggle:hover,
+html .indian-page .imc-hero-terms-toggle[aria-expanded="true"] {
+    background: var(--imc-red) !important;
+    border-color: var(--imc-red) !important
+}
+
+html .indian-page .imc-hero-terms-panel {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    z-index: 4 !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    background: rgba(18, 18, 18, 0.97) !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-left: 3px solid var(--imc-red) !important;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.22) !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateX(24px) !important;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease, visibility 0s linear 0.35s !important
+}
+
+html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-panel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+    transition-delay: 0s !important
+}
+
+html .indian-page .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+    bottom: 36px !important
+}
+
+html .indian-page .imc-hero-terms-header {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    padding: 20px 24px !important;
+    margin: 0 !important;
+    background: var(--imc-red) !important;
+    color: #fff !important
+}
+
+html .indian-page .imc-hero-terms-heading-group {
+    min-width: 0 !important
+}
+
+html .indian-page .imc-hero-terms-header h3 {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    font-family: "Chakra Petch", Arial, sans-serif !important;
+    font-size: clamp(18px, 1.5vw, 26px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    overflow-wrap: anywhere !important
+}
+
+html .indian-page .imc-hero-terms-title {
+    display: block !important;
+    margin-top: 5px !important;
+    color: #fff !important;
+    font-family: var(--imc-body) !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+    overflow-wrap: anywhere !important
+}
+
+html .indian-page .imc-hero-terms-close {
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    background: transparent !important;
+    color: #fff !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 28px !important
+}
+
+html .indian-page .imc-hero-terms-close:hover {
+    background: #fff !important;
+    color: var(--imc-red) !important
+}
+
+html .indian-page .imc-hero-terms-body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 22px 24px !important;
+    color: #fff !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--imc-red) #333 !important
+}
+
+html .indian-page .imc-hero-terms-body p {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #fff !important;
+    font-family: var(--imc-body) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    text-align: left !important
+}
+
+html .indian-page .imc-hero-terms-body:focus-visible,
+html .indian-page .imc-hero-terms-toggle:focus-visible,
+html .indian-page .imc-hero-terms-close:focus-visible {
+    outline: 2px solid #fff !important;
+    outline-offset: -4px !important;
+    box-shadow: none !important
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-hero-terms-toggle {
+        top: 10px !important;
+        left: auto !important;
+        right: 10px !important;
+        max-width: calc(100% - 20px) !important;
+        min-height: 36px !important;
+        padding: 8px 12px !important;
+        font-size: 11px !important
+    }
+
+    html .indian-page .imc-hero-terms-panel {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        border-left: 0 !important;
+        border-top: 2px solid var(--imc-red) !important;
+        transform: translateY(16px) !important
+    }
+
+    html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-panel {
+        transform: translateY(0) !important
+    }
+
+    html .indian-page .imc-hero-slide-has-terms.is-terms-open .imc-hero-terms-toggle {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important
+    }
+
+    html .indian-page .imc-hero-terms-header {
+        padding: 10px 14px !important;
+        gap: 8px !important
+    }
+
+    html .indian-page .imc-hero-terms-header h3 {
+        font-size: 17px !important
+    }
+
+    html .indian-page .imc-hero-terms-title {
+        font-size: 12px !important;
+        margin-top: 3px !important
+    }
+
+    html .indian-page .imc-hero-terms-close {
+        flex-basis: 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 24px !important
+    }
+
+    html .indian-page .imc-hero-terms-body {
+        padding: 12px 14px !important
+    }
+
+    html .indian-page .imc-hero-terms-body p {
+        font-size: 13px !important;
+        line-height: 1.55 !important
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+    html .indian-page .imc-hero-terms-panel,
+    html .indian-page .imc-hero-terms-toggle,
+    html .indian-page .imc-hero-terms-close {
+        transition: none !important;
+        transform: none !important
+    }
+}
+
+html:has(#indian-brand-page) {
+    scroll-behavior: auto !important
+}
+
+html .indian-page #imc-current-inventory {
+    scroll-margin-top: 155px !important
+}
+
+@media (max-width:991px) {
+    html .indian-page #imc-current-inventory {
+        scroll-margin-top: 100px !important
+    }
+}
+
+html.html:has(#indian-brand-page) {
+    --imc-fixed-header-space: 96px;
+    margin-top: var(--imc-fixed-header-space) !important
+}
+
+@media (min-width:992px) and (max-width:1450px) {
+    html.html:has(#indian-brand-page) {
+        --imc-fixed-header-space: 144px
+    }
+}
+
+@media (max-width:400px) {
+    html.html:has(#indian-brand-page) {
+        --imc-fixed-header-space: 104px
+    }
+}
+
+html .indian-page .imc-header-inner {
+    min-height: var(--imc-fixed-header-space, 96px) !important
+}
+
+html .indian-page .imc-hero-terms-panel {
+    top: 9% !important;
+    bottom: 9% !important;
+    right: 20px !important;
+    width: calc(50% - 20px) !important;
+    height: auto !important;
+    max-height: calc(100vh - var(--imc-fixed-header-space, 96px) - 80px) !important;
+    max-height: calc(100dvh - var(--imc-fixed-header-space, 96px) - 80px) !important;
+    border-radius: 8px !important
+}
+
+html .indian-page .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+    bottom: calc(9% + 24px) !important
+}
+
+html .indian-page .imc-hero-terms-header {
+    padding: 14px 20px !important
+}
+
+html .indian-page .imc-hero-terms-body {
+    min-height: 0 !important;
+    padding: 16px 20px !important;
+    overflow-y: auto !important
+}
+
+@media (max-width:991px) {
+    html .indian-page .imc-hero-slide-has-terms .imc-hero-media {
+        min-height: 340px !important
+    }
+
+    html .indian-page .imc-hero-terms-toggle {
+        top: auto !important;
+        bottom: 12px !important;
+        left: auto !important;
+        right: 12px !important;
+        min-height: 44px !important;
+        font-size: 12px !important
+    }
+
+    html .indian-page .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-toggle {
+        bottom: 44px !important
+    }
+
+    html .indian-page .imc-hero-terms-panel {
+        top: 10px !important;
+        bottom: 10px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        height: auto !important;
+        max-height: calc(100vh - var(--imc-fixed-header-space, 96px) - 24px) !important;
+        max-height: calc(100dvh - var(--imc-fixed-header-space, 96px) - 24px) !important
+    }
+
+    html .indian-page .imc-hero-swiper.has-multiple-hero-slides .imc-hero-terms-panel {
+        bottom: 42px !important
+    }
+
+    html .indian-page .imc-hero-terms-header {
+        padding: 10px 14px !important
+    }
+
+    html .indian-page .imc-hero-terms-body {
+        padding: 12px 14px !important
+    }
+}
+
+@media (max-width:767px) {
+    html .indian-page .imc-dealer-name {
+        font-size: 16px !important;
+        overflow-wrap: anywhere !important
+    }
+}
+
+@media (max-width:400px) {
+    html .indian-page .imc-dealer-name {
+        font-size: 14px !important
+    }
+}

@@ -15,6 +15,7 @@ const bundles = [
   "polaris-snowmobile-canada.min.js",
   "polaris-slingshot.min.js",
   "yamaha-powersports.min.js",
+  "indian-motorcycle.min.js",
   "manufacturer-promotions.min.js"
 ];
 

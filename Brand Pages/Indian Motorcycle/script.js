@@ -1,11 +1,6 @@
-/* INDIAN MOTORCYCLE | Shared page behavior and OEM Manager.
- * Dependencies: WordPress jQuery and Swiper 11 (PapaParse optional).
- * Dealer-specific settings remain in the WordPress HTML.
- */
 (function () {
     'use strict';
 
-    // WordPress supplies jQuery in noConflict mode. Never load a second copy.
     function start() {
         if (!window.jQuery) {
             console.error('Indian Motorcycle page: WordPress jQuery is required.');
@@ -36,7 +31,6 @@
         var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var swiperReady = false;
 
-        // URL validation also protects links and images coming from future APIs.
         function safeUrl(value) {
             if (typeof value !== 'string' || !value.trim()) return '';
             try {
@@ -50,7 +44,6 @@
             else element.removeAttr('href').attr({ 'aria-disabled': 'true', tabindex: '-1' });
         }
 
-        // 2. APPLY DEALER SETTINGS
         function applyDealerSettings() {
             var mapQuery = [dealer.street, dealer.cityLine, dealer.country].filter(Boolean).join(', ');
             var directions = safeUrl(dealer.links.directions) || 'https://www.google.com/maps/dir/?api=1\x26destination=' + encodeURIComponent(mapQuery);
@@ -98,7 +91,6 @@
         }
         applyDealerSettings();
 
-        // 3. MOBILE NAVIGATION AND SEARCH ACCORDION
         function setMenu(open) {
             page.find('.imc-menu-button').attr({ 'aria-expanded': String(open), 'aria-label': open ? 'Close navigation' : 'Open navigation' });
             page.find('.imc-mobile-nav').toggleClass('is-open', open).prop('hidden', !open);
@@ -119,7 +111,6 @@
             jQuery(this).attr('aria-expanded', String(open));
             page.find('.imc-search-fields').toggleClass('is-open', open);
         });
-        // INVENTORY FILTERS | read the dealer's existing inventory HTML once.
         var searchForm = page.find('#imc-search-fields');
         var searchStatus = searchForm.find('.imc-search-status');
         var filterRequest = null;
@@ -189,7 +180,6 @@
                 var chosen = previous[name];
                 if (!filtersLoaded ? (name === 'make' ? (!chosen ? dealer.search.defaultMake : false) : false) : false) {
                     var aliases = [dealer.search.defaultMake].concat(dealer.search.makeAliases || []);
-                    // Prefer the configured make, then its aliases, retaining the exact source value.
                     aliases.some(function (alias) {
                         var match = data.make.find(function (option) {
                             return normalizedFilter(option.value) === normalizedFilter(alias);
@@ -258,7 +248,6 @@
                     console.warn('Indian Motorcycle: could not parse inventory filters.', error);
                 }
             }).fail(function (xhr, status) {
-                // Do not invent values when the inventory page is unavailable.
                 finishInventoryFilters('Inventory filters are unavailable. You can still browse inventory.');
                 console.warn('Indian Motorcycle: inventory filter request failed.', status);
             }).always(function () {
@@ -270,7 +259,6 @@
         function buildInventoryUrl() {
             var url = new URL(safeUrl(dealer.links.inventory) || '/inventory/', window.location.href);
             var values = getSearchValues();
-            // Keep unrelated dealer-specific parameters. Replace the five managed filters.
             ['make', 'category', 'condition', 'min-year', 'max-year'].forEach(function (name) {
                 url.searchParams.delete(name);
                 if (values[name]) url.searchParams.set(name, values[name]);
@@ -298,7 +286,6 @@
             window.location.assign(buildInventoryUrl());
         });
 
-        // HERO TERMS | each panel belongs to its own promotional slide.
         var heroRoot = page.find('.imc-hero-swiper');
         var heroHovered = false;
         var heroFocused = false;
@@ -321,7 +308,6 @@
             if (!panel.length) return;
             if (!open) {
                 if (restoreFocus || panel[0].contains(document.activeElement)) {
-                    // Reveal the trigger before moving focus out of the panel.
                     item.removeClass('is-terms-open');
                     trigger[0].focus({ preventScroll: true });
                 }
@@ -349,7 +335,6 @@
                 if (slide === active) return;
                 if (slide.contains(focused)) moveFocus = true;
             });
-            // Re-enable the incoming slide before moving keyboard focus.
             jQuery(active).prop('inert', false).removeAttr('aria-hidden');
             if (moveFocus) {
                 var nextFocus = active.querySelector('.imc-hero-terms-toggle, a[href]');
@@ -389,7 +374,6 @@
             item.append(trigger, panel);
         }
 
-        // Hover pauses autoplay only. Terms open exclusively via the button.
         heroRoot.on('pointerenter', function (event) {
             if (!desktopHeroHover.matches || event.pointerType !== 'mouse') return;
             heroHovered = true;
@@ -432,7 +416,6 @@
             event.stopPropagation();
             setHeroTerms(item, false, true);
         });
-        // On touch, tapping outside the hero closes an explicitly opened panel.
         jQuery(document).on('pointerdown.imcHeroTerms', function (event) {
             if (heroRoot[0].contains(event.target)) return;
             if (!heroRoot.find('.is-terms-open').length) return;
@@ -446,7 +429,6 @@
         if (desktopHeroHover.addEventListener) desktopHeroHover.addEventListener('change', resetHeroTermsForViewport);
         else if (desktopHeroHover.addListener) desktopHeroHover.addListener(resetHeroTermsForViewport);
 
-        // 4. SWIPER CAROUSELS
         function createHeroSwiper() {
             var el = page.find('.imc-hero-swiper')[0];
             var count = jQuery(el).find('.swiper-slide').length;
@@ -498,7 +480,6 @@
                 navigation: { prevEl: panel.find('.imc-model-prev')[0], nextEl: panel.find('.imc-model-next')[0] },
                 a11y: { enabled: true }
             });
-            // Update height after lazy-loaded images settle.
             panel.find('img').on('load', function () { modelSwipers[key].updateAutoHeight(0); });
         }
         function selectFamily(key, focusTab) {
@@ -533,9 +514,6 @@
             selectFamily(tabs.eq(index).attr('data-family'), true);
         });
 
-        // 5. HERO API MOUNT POINT
-        // Accepts an array of { desktop, mobile, alt, url, promotion, terms } objects.
-        // OEM Manager uses this same method to replace hero slides.
         function setHeroSlides(slides) {
             if (!Array.isArray(slides)) return false;
             var valid = slides.filter(function (slide) { return slide ? safeUrl(slide.desktop) : false; });
@@ -563,7 +541,6 @@
             if (swiperReady) createHeroSwiper();
             return true;
         }
-        // 6. OEM MANAGER | same CSV layout as the Polaris automation.
         var promoConfig = jQuery.extend({
             csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxeKAIyWFGRAoXqXW9TG5KNkwkfTuQi2CJNFNVwtFMNyn5CVJjIfnC_2R0McOMEE-xZELk5WBSeEcQ/pub?gid=0\x26single=true\x26output=csv',
             oem: 'Indian Motorcycle',
@@ -613,8 +590,6 @@
                 return dealerStates.includes(state);
             });
         }
-        // Image columns are discovered across the entire CSV header, not only A:P.
-        // Keep the existing promotion and customer mappings unchanged.
         function normalizeImageHeader(value) {
             return clean(value).normalize('NFKC')
                 .replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -646,15 +621,11 @@
             var primary = collect(columns.primary);
             var secondary = collect(columns.secondary);
             var first = primary[0] || null;
-            // A dedicated secondary column takes priority. If none is usable,
-            // take a second distinct image from the primary cell or duplicate header.
             var second = secondary[0] || primary.find(function (item) {
                 return first ? item.url !== first.url : false;
             }) || null;
             return { first: first, second: second, primary: primary, secondary: secondary };
         }
-        // Carousel Position is a numeric sort key, not a slide index.
-        // Discover the column across the entire CSV header, as with images.
         function findCarouselPositionColumn(headers) {
             var keys = headers.map(normalizeImageHeader);
             var index = keys.indexOf('carouselposition');
@@ -679,21 +650,9 @@
             var allHeaders = rows[0] || [];
             var imageColumns = getImageColumns(allHeaders);
             var positionColumn = findCarouselPositionColumn(allHeaders);
-            if (positionColumn === -1) {
-                console.warn('[OEM TEST] Carousel Position column not found; retaining CSV row order.');
-            } else {
-                console.log('[OEM TEST] Carousel Position column:', positionColumn + 1, allHeaders[positionColumn]);
-            }
             var headers = allHeaders.slice(0, PROMOTION_COLUMN_COUNT).map(function (header) {
                 return clean(header).replace(/^\uFEFF/, '').toLowerCase();
             });
-            console.table(allHeaders.map(function (header, index) {
-                return {
-                    column: index + 1, header: header,
-                    imageRole: imageColumns.secondary.includes(index) ? 'Image 2 / Hero' :
-                        (imageColumns.primary.includes(index) ? 'Image 1 / Promotions' : '')
-                };
-            }));
             if (!['oem', 'status', 'region', 'banner states'].every(function (header) { return headers.includes(header); })) {
                 throw new Error('OEM Manager CSV headers do not match the expected schema.');
             }
@@ -723,37 +682,10 @@
             }
             function stateMatches(promo) { return matchesStates(promo['banner states'], states); }
             var strictRegional = active.filter(regionMatches);
-            var strictEligible = strictRegional.filter(stateMatches);
             var ignoreRegion = promoConfig.ignoreRegion === true;
             var ignoreStates = promoConfig.ignoreStates === true;
             var regional = ignoreRegion ? active : strictRegional;
             var eligible = ignoreStates ? regional : regional.filter(stateMatches);
-            console.log('[OEM TEST] Available OEM names:', Array.from(new Set(all.map(function (p) { return p.oem; }).filter(Boolean))));
-            console.log('[OEM TEST] Dealer:', {
-                currentDomain: currentDomain, lookupDomain: lookupDomain,
-                registered: Boolean(customer), rawRegion: customer ? customer[CUSTOMER_REGION_COLUMN] : '',
-                region: region, states: states, ignoreRegion: ignoreRegion, ignoreStates: ignoreStates
-            });
-            console.table(oem.map(function (promo) {
-                return {
-                    title: promo.title, carouselPosition: promo.carouselPosition, status: promo.status, rawRegion: promo.region,
-                    normalizedRegion: normalizeRegion(promo.region), bannerStates: promo['banner states'],
-                    regionMatches: regionMatches(promo), statesMatch: stateMatches(promo),
-                    hasPrimaryImage: Boolean(promo.imageFields.first),
-                    hasSecondaryImage: Boolean(promo.imageFields.second),
-                    primaryColumn: promo.imageFields.first ? promo.imageFields.first.column : '',
-                    secondaryColumn: promo.imageFields.second ? promo.imageFields.second.column : '',
-                    primaryImage: promo.imageFields.first ? promo.imageFields.first.url : '',
-                    secondaryImage: promo.imageFields.second ? promo.imageFields.second.url : ''
-                };
-            }));
-            console.table({
-                csvDataRows: rows.length - 1, matchingOEM: oem.length, active: active.length,
-                matchingRegion: strictRegional.length, matchingStates: strictEligible.length,
-                afterTestRegion: regional.length, afterTestStates: eligible.length,
-                usableBanners: buildBanners(eligible).length
-            });
-            if (ignoreRegion || ignoreStates) console.warn('[OEM TEST] Geographic restrictions bypassed for staging only. Disable both switches before production.');
             return sortPromotionsByPosition(eligible);
         }
         function splitImageLinks(value) {
@@ -769,7 +701,6 @@
             return raw.split(/[\n,;]+/).map(function (url) { return url.trim(); }).filter(Boolean);
         }
         function imageUrl(value) {
-            // Sheet images must use HTTP(S), not executable or data URLs.
             try {
                 var url = new URL(value);
                 if (!/^https?:$/.test(url.protocol)) return '';
@@ -831,7 +762,18 @@
         }
         function renderPromotions(banners, message) {
             promoContainer.empty();
-            promoStatus.text(message || (banners.length ? ((promoConfig.ignoreRegion === true || promoConfig.ignoreStates === true) ? 'STAGING PREVIEW: Geographic restrictions may be bypassed. Not a dealer-approved offer.' : '') : 'No current promotions available. Please check back soon.'));
+            promoStatus.text(
+                message || (
+                    banners.length
+                        ? (
+                            promoConfig.ignoreRegion === true ||
+                                promoConfig.ignoreStates === true
+                                ? 'Preview promotions — not approved for production.'
+                                : ''
+                        )
+                        : 'No current promotions available. Please check back soon.'
+                )
+            );
             if (!banners.length) {
                 resetPromoHero();
                 return;
@@ -843,7 +785,7 @@
                     media.attr({ href: banner.url, title: banner.alt });
                     if (banner.external) media.attr({ target: '_blank', rel: 'noopener noreferrer' });
                 }
-                var image = jQuery('\x3cimg\x3e').on('error', function () { console.warn('[OEM TEST] Image failed:', banner.promoImage); }).attr({ src: banner.promoImage, alt: banner.alt, loading: 'lazy', decoding: 'async' });
+                var image = jQuery('\x3cimg\x3e').on('error', function () { console.warn('[Indian Motorcycle] Image failed:', banner.promoImage); }).attr({ src: banner.promoImage, alt: banner.alt, loading: 'lazy', decoding: 'async' });
                 media.append(image);
                 card.append(media);
                 card.append(jQuery('\x3ch3\x3e', { class: 'imc-promo-title' }).text(banner.alt));
@@ -856,8 +798,6 @@
             });
             if (promoConfig.useInHero) usingPromoHero = setHeroSlides(banners);
         }
-        // Fallback CSV parser when PapaParse is not already on the page.
-        // Preserves quoted commas, escaped double quotes, multiline cells and blank rows.
         function parseCSV(text) {
             var rows = [], row = [], value = '', quoted = false, closed = false;
             text = text.replace(/^\uFEFF/, '');
@@ -890,10 +830,9 @@
             var request = ++promoRequest;
             promoContainer.attr('aria-busy', 'true');
             promoStatus.text('Loading current promotions...');
-            console.log('[OEM TEST] Request:', promoConfig.csvUrl);
             function fail(error) {
                 if (request !== promoRequest) return;
-                console.error('[OEM TEST] Failed:', error);
+                console.error('[Indian Motorcycle] Failed:', error);
                 promoContainer.attr('aria-busy', 'false');
                 renderPromotions([], 'Current promotions are temporarily unavailable. Please check back soon.');
             }
@@ -901,21 +840,9 @@
                 if (request !== promoRequest) return;
                 try {
                     if (!Array.isArray(rows) || !rows.length) throw new Error('Empty promotion CSV response.');
-                    console.log('[OEM TEST] CSV received successfully.');
                     var banners = buildBanners(getMatchingPromotions(rows));
                     renderPromotions(banners);
                     promoContainer.attr('aria-busy', 'false');
-                    console.table(banners.map(function (banner, index) {
-                        return {
-                            displayOrder: index + 1, carouselPosition: banner.carouselPosition, title: banner.alt, heroSource: banner.heroSource,
-                            heroImage: banner.desktop, promoSource: banner.promoSource,
-                            promoImage: banner.promoImage, sameImage: banner.desktop === banner.promoImage
-                        };
-                    }));
-                    banners.forEach(function (banner) {
-                        if (banner.desktop === banner.promoImage) console.warn('[OEM TEST] Same image in both sections:', banner.alt, banner.heroSource, banner.promoSource);
-                    });
-                    console.log('[OEM TEST] Rendered banners:', banners.length);
                 } catch (error) { fail(error); }
             }
             if (window.Papa) {
@@ -931,7 +858,6 @@
                 }
             }
             fetch(promoConfig.csvUrl, { credentials: 'omit', cache: 'no-store' }).then(function (response) {
-                console.log('[OEM TEST] HTTP status:', response.status);
                 if (!response.ok) throw new Error('HTTP ' + response.status);
                 return response.text();
             }).then(function (text) { complete(parseCSV(text)); }).catch(fail);
@@ -939,7 +865,6 @@
 
         if (Array.isArray(dealer.heroSlides) ? dealer.heroSlides.length : false) setHeroSlides(dealer.heroSlides);
 
-        // Public hooks for the future API/shortcode integration.
         window.indianBrandPage = {
             setHeroSlides: setHeroSlides,
             refreshPromotions: loadPromotions,
@@ -950,8 +875,6 @@
             promotionsElement: page.find('#imc-promotions-content')[0]
         };
 
-        // All OEM promotions link to the latest inventory shortcode.
-        // Keep native anchor navigation when the section has inventory.
         page.on('click', '.imc-hero-promotion, .imc-promo-media', function (event) {
             if (jQuery(this).attr('href') !== '#imc-current-inventory') return;
             var section = page.find('#imc-current-inventory')[0];
@@ -960,12 +883,10 @@
                     if (section.getClientRects().length) return;
                 }
             }
-            // Empty or not yet loaded: browse the dealer's inventory instead.
             event.preventDefault();
             window.location.assign(safeUrl(promoConfig.inventoryLink) || safeUrl(dealer.links.inventory) || '/inventory/');
         });
 
-        // Smooth in-page navigation, after the empty-inventory fallback.
         page.on('click', 'a[href^="#"]', function (event) {
             var href = jQuery(this).attr('href');
             if (!href || href === '#' || event.isDefaultPrevented()) return;
@@ -981,7 +902,6 @@
             jQuery('html, body').stop(true).animate({ scrollTop: targetPosition }, instant ? 0 : 1000, 'swing');
         });
 
-        // Native arrow fallback if the Swiper dependency is unavailable.
         page.on('click', '.imc-arrow', function () {
             if (swiperReady) return;
             var control = jQuery(this);
@@ -996,7 +916,6 @@
         } else {
             console.warn('Indian Motorcycle page: Swiper unavailable; native scrolling is enabled.');
         }
-        window.indianOEMTest = { config: promoConfig, refresh: loadPromotions };
         loadInventoryFilters();
         loadPromotions();
     }
